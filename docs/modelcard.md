@@ -18,7 +18,8 @@ The models have two hierarchical tasks:
 
 To evaluate the performance of the models the GriSearchCV was employed for performing the hyperparameter tuning in order to determine the optimal values of the models. It uses the Cross-Validation method, fixed to 10.
 
-The project and the paper are available at: https://github.com/graziaperna/NLP-project.
+The project, the paper and a simple demo are available at: https://github.com/graziaperna/NLP-project.
+
 
 ## Intended Use 
 ### Primary intended uses
@@ -36,17 +37,35 @@ The primary intended users of this study caters primarily to researchers, practi
 Additionally, participants and researchers involved in similar challenges or projects addressing nuanced language analysis and detection of sensitive content may find our work relevant and insightful.
 
 ## Factors 
-### Training Factors 
 
-For text processing tasks, TreeBankTokenizer and NLTK libraries were necessary. 
-In terms of machine learning, the libraries used were Scikit-learn and NumPy. 
-To chain together various steps such as text vectorization and model training, Scikit-learn’s Pipeline class was used. Additionally, two useful libraries were the pandas library for data manipulation and analysis and NumPy for efficient array operations.
+The accuracy of the results of these models can be influenced by several demographic factors, like the language, the culture, the age and the gender.
 
 ## Metrics 
 ### Metrics should be chosen to reflect potential realworld impacts of the model.
-- Model performance measures
-- Decision thresholds
-- Variation approaches
+
+The data were divided into three splits: train, validation and test. As a matter of fact, the models were trained using the train set.
+Then the validation set was used to assess their performance and make any necessary adjustments or tuning. Finally, the test set was employed to evaluate the models’ generalization ability and obtain their final performance metrics.
+The metric computed were:
+- Accuracy
+- Precision
+- Recall
+- f1
+
+For ach of these metrics were considered the macro measure.
+In the following table the model performance measures computed on validation and test set are shown respectively:
+
+
+| Task | Accuracy | Precision | Recall | F1     |
+|------|----------|-----------|--------|--------|
+| A    | 0.8340   | 0.7899    | 0.7255 | 0.7481 |
+| B    | 0.5453   | 0.5258    | 0.4491 | 0.4675 |
+
+| Task | Accuracy | Precision | Recall | F1       |
+|------|----------|-----------|--------|----------|
+| A    | 0.8405   | 0.7947  | 0.7444 | 0.0.7637 |
+| B    | 0.5124   | 0.4932    | 0.4438 | 0.4597   |
+
+The best SOTA results are related to the task A, while in the task B the results are not so promising due to the complexity of the problem.
 
 
 ## Evaluation Data 
@@ -55,17 +74,25 @@ To chain together various steps such as text vectorization and model training, S
 - Motivation
 - Preprocessing
 
-
-## Training Data 
+## Training details
+### Training Data 
 ### May not be possible to provide in practice. When possible, this section should mirror Evaluation Data. If such detail is not possible, minimal allowable information should be provided here, such as details of the distribution over various factors in the training datasets.
 
+### Training Procedure
+#### Preprocessing
 
-## Quantitative Analyses
-- Unitary results
-- Intersectional results 
+#### Training hyperparameters
+
 
 
 ## Ethical Considerations
+
+In this study ethical considerations were prioritized:
+- avoid perpetuating stereotypes and worked towards fair and unbiased representation in the detection and categorization of online sexism
+- consider the ethical implications of deploying automated systems for sensitive tasks and advocate for ongoing discussions surrounding the ethical use of AI technologies
+
+By addressing these ethical considerations, this project to contribute responsibly to the exploration of online sexism detection, recognizing the importance of maintaining integrity, fairness and respect for individuals throughout the research process.
+
 
 
 ## Caveats and Recommendations
