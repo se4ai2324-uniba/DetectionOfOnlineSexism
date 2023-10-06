@@ -24,17 +24,23 @@ The project, the paper and a simple demo are available at: https://github.com/gr
 ## Intended Use 
 ### Primary intended uses
 
-This project is intended for commercial and research use in English. The models can be used in several domains:
+The primary use case on which the model is trained on is to detect if a message is sexist or not and in a positive case it will understand the type of sexism it belongs. Words can be sexist or not according to the context.
+
+### Primary intended users
+
+
+The primary intended users of this study caters primarily to researchers, practitioners and participants engaged in the field of natural language processing. This audience includes individuals and entities actively involved in the development and implementation of algorithms and models for the detection and categorization of online sexism.
+
+Additionally, participants and researchers involved in similar challenges or projects addressing nuanced language analysis and detection of sensitive content may find our work relevant and insightful.
+The models can be used in several domains:
 - Messenger services
 - Investigations
 - Journalism
 - Publishing
 
-### Primary intended users
+### Out-of-scope
 
-The primary intended users of this study caters primarily to researchers, practitioners and participants engaged in the field of natural language processing. This audience includes individuals and entities actively involved in the development and implementation of algorithms and models for the detection and categorization of online sexism.
-
-Additionally, participants and researchers involved in similar challenges or projects addressing nuanced language analysis and detection of sensitive content may find our work relevant and insightful.
+This project is limited to English because of the dataset and it doesn't consider the culture. 
 
 ## Factors 
 
@@ -69,21 +75,14 @@ The best SOTA results are related to the task A, while in the task B the results
 
 
 ## Evaluation Data 
-### Details on the dataset(s) used for the quantitative analyses in the card.
-- Datasets
-- Motivation
-- Preprocessing
-
-## Training details
-### Training Data 
-### May not be possible to provide in practice. When possible, this section should mirror Evaluation Data. If such detail is not possible, minimal allowable information should be provided here, such as details of the distribution over various factors in the training datasets.
-
-### Training Procedure
-#### Preprocessing
-
-#### Training hyperparameters
-
-
+### Dataset: 
+The dataset is given by the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge and it has 19988 samples. 
+### Motivation: 
+This project was developed for this specific challenge. 
+### Preprocessing: 
+For Task A, we implemented a custom text cleaning function to remove spaces, convert text to lowercase and eliminate punctuation. We used TreeBankTokenizer and the WordNetLemmatizer for lemmatization.
+The cleaned text was then fed into a CountVectorizer, which transformed the text into numerical features suitable for classification.
+Both individual words and word pairs (n-grams) were considered by the vectorizers.
 
 ## Ethical Considerations
 
@@ -93,6 +92,6 @@ In this study ethical considerations were prioritized:
 
 By addressing these ethical considerations, this project to contribute responsibly to the exploration of online sexism detection, recognizing the importance of maintaining integrity, fairness and respect for individuals throughout the research process.
 
-
-
 ## Caveats and Recommendations
+
+A very huge limitation is that the dataset considers the context in which the message are used. That can change consistently the results. In addition it works only with the english language so it can be used only in certain countries.
