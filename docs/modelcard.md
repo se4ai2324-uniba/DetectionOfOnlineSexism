@@ -5,8 +5,9 @@
 ### Basic information about the model.
 The project described in this documentation has been developed for the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge on CodaLab by Grazia Perna and Maria Elena Zaza, in which two models have been implemented.
 
-Before training these two models a preprocessing phase has been carried out, where there was a custom text cleaning function to remove spaces, convert text to lowercase and eliminate punctuation.There were used other techniques like the tokenization and, in the case of the task A, the lemmatization.
-The cleaned text was then fed into a CountVectorizer, which transformed the text into numerical features suitable for classification.
+Before training the models, the used data was preprocessed, 
+to remove spaces, convert text to lowercase and eliminate punctuation. Other techniques like tokenization and lemmatization (for task A) were also used for here.
+The preprocessed text was then inserted into a CountVectorizer, which transformed the text into numerical features, suitable for classification.
 
 The models have two hierarchical tasks:
 - TASK A - Sexism Detection: for detecting whether a post is sexist by using the LinearSVC classifier.
@@ -40,14 +41,14 @@ The models can be used in several domains:
 
 ### Out-of-scope
 
-This project is limited to English because of the dataset and it doesn't consider the culture. 
+This project is limited to the english language because of the used dataset. 
+Also it doesn't consider cultural factors. 
 
 ## Factors 
 
 The accuracy of the results of these models can be influenced by several demographic factors, like the language, the culture, the age and the gender.
 
 ## Metrics 
-### Metrics should be chosen to reflect potential realworld impacts of the model.
 
 The data were divided into three splits: train, validation and test. As a matter of fact, the models were trained using the train set.
 Then the validation set was used to assess their performance and make any necessary adjustments or tuning. Finally, the test set was employed to evaluate the models’ generalization ability and obtain their final performance metrics.
@@ -55,9 +56,9 @@ The metric computed were:
 - Accuracy
 - Precision
 - Recall
-- f1
+- F1
 
-For ach of these metrics were considered the macro measure.
+For each of these metrics were considered the macro measure.
 In the following table the model performance measures computed on validation and test set are shown respectively:
 
 
