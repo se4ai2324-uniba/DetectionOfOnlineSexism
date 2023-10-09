@@ -6,7 +6,7 @@
 The project described in this documentation has been developed for the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge on CodaLab by Grazia Perna and Maria Elena Zaza, in which two models have been implemented.
 
 Before training the models, the used data was preprocessed, 
-to remove spaces, convert text to lowercase and eliminate punctuation. Other techniques like tokenization and lemmatization (for task A) were also used for here.
+to remove spaces, convert text to lowercase and eliminate punctuation. Other techniques like tokenization and lemmatization (for task A) were also used here.
 The preprocessed text was then inserted into a CountVectorizer, which transformed the text into numerical features, suitable for classification.
 
 The models have two hierarchical tasks:
