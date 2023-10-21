@@ -1,3 +1,59 @@
+---
+language:
+- en
+
+tags:
+- natural-language-processing
+- classification
+- tokenization
+- pre-processing
+- sexism
+
+datasets:
+- edos_labelled_aggregated
+
+metrics:
+- f1
+- recall
+- precision
+
+model-index:
+- name: LinearSVC classifier
+  results:
+  - task:
+      type: sexism-classification
+      name: Sexism classification
+    dataset:
+      type: edos_labelled_aggregated
+      name: edos labelled aggregated
+    metrics:
+      - type: precision
+        value: 0.7947
+        name: precision
+      - type: recall
+        value: 0.7444
+        name: recall
+      - type: f1
+        value: 0.7637
+        name: f1
+  - task:
+      type: classification-sexism-type
+      name: Classification sexism type
+    dataset:
+      type: edos_labelled_aggregated
+      name: edos labelled aggregated
+    metrics:
+      - type: precision
+        value: 0.4932
+        name: precision
+      - type: recall
+        value: 0.4438
+        name: recall
+      - type: f1
+        value: 0.4597
+        name: f1
+---
+
 # Detection of Online Sexism
 
 
