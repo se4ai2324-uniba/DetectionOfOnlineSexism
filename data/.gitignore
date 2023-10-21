@@ -1,1 +1,6 @@
-/data.xml
+/dev_category.csv
+/dev_sexist.csv
+/test_category.csv
+/test_sexist.csv
+/train_category.csv
+/train_sexist.csv

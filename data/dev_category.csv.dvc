@@ -1,0 +1,5 @@
+outs:
+- md5: 8afb4940c4da8d465f387903b39495b7
+  size: 79250
+  hash: md5
+  path: dev_category.csv

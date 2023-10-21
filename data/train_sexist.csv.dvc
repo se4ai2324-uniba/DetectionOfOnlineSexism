@@ -1,0 +1,5 @@
+outs:
+- md5: 2d0a3520ddc5c39f42d5437cf8f7d57b
+  size: 2055739
+  hash: md5
+  path: train_sexist.csv
