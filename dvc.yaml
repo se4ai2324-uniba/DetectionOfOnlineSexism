@@ -1,0 +1,46 @@
+stages:
+  train_A:
+    cmd: 
+      - python src/models/train_A.py
+    deps: 
+      - data/Raw/train_sexist.csv
+      - src/models/train_A.py 
+    outs:
+      - models/train_A.pkl
+  validation_A:
+    cmd: 
+      - python src/models/validation_A.py
+    deps: 
+      - data/Raw/dev_sexist.csv
+      - src/models/validation_A.py 
+    outs: 
+      - models/validation_A.pkl
+  test_A:
+    cmd: 
+      - python src/models/test_A.py
+    deps: 
+      - data/Raw/test_sexist.csv
+      - src/models/test_A.py
+  train_B:
+    cmd: 
+      - python src/models/train_B.py
+    deps: 
+      - data/Raw/train_category.csv
+      - src/models/train_B.py 
+    outs:
+      - models/train_B.pkl
+  validation_B:
+    cmd: 
+      - python src/models/validation_B.py
+    deps: 
+      - data/Raw/dev_category.csv
+      - src/models/validation_B.py 
+    outs: 
+      - models/validation_B.pkl
+  test_B:
+    cmd: 
+      - python src/models/test_B.py
+    deps: 
+      - data/Raw/test_category.csv
+      - src/models/test_B.py
+  

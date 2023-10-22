@@ -1,0 +1,94 @@
+schema: '2.0'
+stages:
+  train_A:
+    cmd:
+    - python src/models/train_A.py
+    deps:
+    - path: data/Raw/train_sexist.csv
+      hash: md5
+      md5: 2d0a3520ddc5c39f42d5437cf8f7d57b
+      size: 2055739
+    - path: src/models/train_A.py
+      hash: md5
+      md5: 349073058a2627561f8452e3b46ed74a
+      size: 2149
+    outs:
+    - path: models/train_A.pkl
+      hash: md5
+      md5: 418574d5b5f75558a8d1a159b6f94ce3
+      size: 4412528
+  validation_A:
+    cmd:
+    - python src/models/validation_A.py
+    deps:
+    - path: data/Raw/dev_sexist.csv
+      hash: md5
+      md5: e9e89d805effdd5eb958cbb4b7cdc857
+      size: 289155
+    - path: src/models/validation_A.py
+      hash: md5
+      md5: 07054d573f3985c713c93adc72954ea2
+      size: 1530
+    outs:
+    - path: models/validation_A.pkl
+      hash: md5
+      md5: 95a629f89f66f63e10f5cc793701dbe5
+      size: 8828533
+  test_A:
+    cmd:
+    - python src/models/test_A.py
+    deps:
+    - path: data/Raw/test_sexist.csv
+      hash: md5
+      md5: f1e28b6bf85bbb7dfd7acba50b9b2874
+      size: 578709
+    - path: src/models/test_A.py
+      hash: md5
+      md5: 33d2c9f7878841cba0d8fa973684c7e7
+      size: 426
+  train_B:
+    cmd:
+    - python src/models/train_B.py
+    deps:
+    - path: data/Raw/train_category.csv
+      hash: md5
+      md5: acea1359bd0ad532cc7ef74aacecaf03
+      size: 549295
+    - path: src/models/train_B.py
+      hash: md5
+      md5: cfb46a43b2724faf6319385f7ee61819
+      size: 2230
+    outs:
+    - path: models/train_B.pkl
+      hash: md5
+      md5: d0f7934ff50a454f65b376169c8e2df4
+      size: 2834218
+  validation_B:
+    cmd:
+    - python src/models/validation_B.py
+    deps:
+    - path: data/Raw/dev_category.csv
+      hash: md5
+      md5: 8afb4940c4da8d465f387903b39495b7
+      size: 79250
+    - path: src/models/validation_B.py
+      hash: md5
+      md5: d5601609dd0d4ef07476d3dbab0b6031
+      size: 1677
+    outs:
+    - path: models/validation_B.pkl
+      hash: md5
+      md5: 7c730f2b02ca1e325d87849406b2172c
+      size: 2834217
+  test_B:
+    cmd:
+    - python src/models/test_B.py
+    deps:
+    - path: data/Raw/test_category.csv
+      hash: md5
+      md5: 6b766771902f776b7e21aa3e13e0891b
+      size: 156106
+    - path: src/models/test_B.py
+      hash: md5
+      md5: 2cd8dfefa01839c5aba76cbc193288d4
+      size: 432
