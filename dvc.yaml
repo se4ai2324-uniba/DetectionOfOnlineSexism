@@ -13,6 +13,7 @@ stages:
     deps: 
       - data/Raw/dev_sexist.csv
       - src/models/validation_A.py 
+      - models/train_A.pkl
     outs: 
       - models/validation_A.pkl
   test_A:
@@ -21,6 +22,7 @@ stages:
     deps: 
       - data/Raw/test_sexist.csv
       - src/models/test_A.py
+      - models/validation_A.pkl
   train_B:
     cmd: 
       - python src/models/train_B.py
@@ -35,6 +37,7 @@ stages:
     deps: 
       - data/Raw/dev_category.csv
       - src/models/validation_B.py 
+      - models/train_B.pkl
     outs: 
       - models/validation_B.pkl
   test_B:
@@ -43,4 +46,5 @@ stages:
     deps: 
       - data/Raw/test_category.csv
       - src/models/test_B.py
+      - models/validation_B.pkl
   

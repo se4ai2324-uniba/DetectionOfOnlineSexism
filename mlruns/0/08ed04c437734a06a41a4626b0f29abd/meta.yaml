@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/DetectionOfOnlineSexism/mlruns/0/08ed04c437734a06a41a4626b0f29abd/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 08ed04c437734a06a41a4626b0f29abd
+run_name: righteous-loon-168
+run_uuid: 08ed04c437734a06a41a4626b0f29abd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1698081518504
+status: 1
+tags: []
+user_id: graziaperna

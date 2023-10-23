@@ -2,6 +2,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
 from train_A import pipe_sexism, x_train, y_train, n_cpu
+import mlflow
 import pickle
 import os
 
@@ -19,6 +20,8 @@ def evaluation_metrics(x, y, pipe):
     print("Recall: {:.4f}".format(recall))
     print("F1 Score: {:.4f}".format(f1))
 
+    return accuracy, precision, recall, f1
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 dfv = read_csv('../../data/Raw/dev_sexist.csv')
 x_val = dfv['text']
@@ -26,9 +29,15 @@ y_val = dfv['label_sexist']
 dfv.set_index('ID')
 print("VALIDATION: \n", y_val.value_counts(), end="\n\n")
 
-#evaluation metrics for the validation data
-evaluation_metrics(x_val, y_val, pipe_sexism)
 
+#evaluation metrics for the validation data
+accuracy, precision, recall, f1 = evaluation_metrics(x_val, y_val, pipe_sexism)
+mlflow.start_run()
+mlflow.log_metric("accuracy_val_A", accuracy)
+mlflow.log_metric("precision_val_A", precision)
+mlflow.log_metric("recall_val_A", recall)
+mlflow.log_metric("f1_val_A", f1)
+mlflow.end_run()
 params = {'vectorizer__ngram_range': [(1,1),(1,2)],
           'classifier__C': [0.2, 0.4, 1],
           'classifier__class_weight': ['balanced', None]}

@@ -9,6 +9,10 @@ import os
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
 import pickle
+import dagshub
+import mlflow
+
+#dagshub.init("DetectionOfOnlineSexism", "graziaperna", "https://dagshub.com/graziaperna/DetectionOfOnlineSexism.mlflow", mlflow=True, dvc = True)
 
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
@@ -71,4 +75,3 @@ pipe_sexism = Pipeline([("cleaner", predictors()),
 pipe_sexism.fit(x_train, y_train)
 
 pickle.dump(pipe_sexism, open('../../models/train_A.pkl', 'wb'))
-

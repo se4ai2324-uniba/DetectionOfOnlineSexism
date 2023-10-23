@@ -10,12 +10,12 @@ stages:
       size: 2055739
     - path: src/models/train_A.py
       hash: md5
-      md5: 349073058a2627561f8452e3b46ed74a
-      size: 2149
+      md5: 1e456cef81f8c005c278dacfd637ca77
+      size: 2328
     outs:
     - path: models/train_A.pkl
       hash: md5
-      md5: 418574d5b5f75558a8d1a159b6f94ce3
+      md5: 41b8741930ae93bfacc4cde8056be40b
       size: 4412528
   validation_A:
     cmd:
@@ -25,14 +25,18 @@ stages:
       hash: md5
       md5: e9e89d805effdd5eb958cbb4b7cdc857
       size: 289155
+    - path: models/train_A.pkl
+      hash: md5
+      md5: d321ca37c16a3a1e368d7ed30901db19
+      size: 4412527
     - path: src/models/validation_A.py
       hash: md5
-      md5: 07054d573f3985c713c93adc72954ea2
-      size: 1530
+      md5: fc275026071c0d13ab103f2145dd199d
+      size: 1837
     outs:
     - path: models/validation_A.pkl
       hash: md5
-      md5: 95a629f89f66f63e10f5cc793701dbe5
+      md5: e44de1e50f1077b088d2bad4ddbe91d8
       size: 8828533
   test_A:
     cmd:
@@ -42,10 +46,14 @@ stages:
       hash: md5
       md5: f1e28b6bf85bbb7dfd7acba50b9b2874
       size: 578709
+    - path: models/validation_A.pkl
+      hash: md5
+      md5: efb3c487c0cf84b2766e4ac8c3acbbdd
+      size: 8828533
     - path: src/models/test_A.py
       hash: md5
-      md5: 33d2c9f7878841cba0d8fa973684c7e7
-      size: 426
+      md5: 848632becb834572ebec0731d228a6a0
+      size: 695
   train_B:
     cmd:
     - python src/models/train_B.py
@@ -71,14 +79,18 @@ stages:
       hash: md5
       md5: 8afb4940c4da8d465f387903b39495b7
       size: 79250
+    - path: models/train_B.pkl
+      hash: md5
+      md5: dcd91e63377de509a7868d85ad4edb6a
+      size: 2834217
     - path: src/models/validation_B.py
       hash: md5
-      md5: d5601609dd0d4ef07476d3dbab0b6031
-      size: 1677
+      md5: 16c051e402ba0819349f976e159ba932
+      size: 1982
     outs:
     - path: models/validation_B.pkl
       hash: md5
-      md5: 7c730f2b02ca1e325d87849406b2172c
+      md5: 0269d6bed967f334e01526e100d5bc2b
       size: 2834217
   test_B:
     cmd:
@@ -88,7 +100,11 @@ stages:
       hash: md5
       md5: 6b766771902f776b7e21aa3e13e0891b
       size: 156106
+    - path: models/validation_B.pkl
+      hash: md5
+      md5: 781e00deeff06c1f0c4373734efc39e4
+      size: 2834217
     - path: src/models/test_B.py
       hash: md5
-      md5: 2cd8dfefa01839c5aba76cbc193288d4
-      size: 432
+      md5: fda6c8f91b6a3a0b0c9f1cfa075ddb63
+      size: 678
