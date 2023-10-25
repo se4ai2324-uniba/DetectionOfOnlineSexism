@@ -22,7 +22,7 @@ def evaluation_metrics(x, y, pipe):
 
     return accuracy, precision, recall, f1
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+#os.chdir(os.path.dirname(os.path.abspath(__file__)))
 dfv = read_csv('../../data/Raw/dev_sexist.csv')
 x_val = dfv['text']
 y_val = dfv['label_sexist']

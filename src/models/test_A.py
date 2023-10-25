@@ -3,7 +3,7 @@ from validation_A import pipe_optimized,evaluation_metrics
 import mlflow
 import os 
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+#os.chdir(os.path.dirname(os.path.abspath(__file__)))
 dfs = read_csv('../../data/Raw/test_sexist.csv')
 
 

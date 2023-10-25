@@ -12,7 +12,7 @@ import pickle
 import dagshub
 import mlflow
 
-#dagshub.init("DetectionOfOnlineSexism", "graziaperna", "https://dagshub.com/graziaperna/DetectionOfOnlineSexism.mlflow", mlflow=True, dvc = True)
+dagshub.init("DetectionOfOnlineSexism", "se4ai2324-uniba", mlflow=True)
 
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
