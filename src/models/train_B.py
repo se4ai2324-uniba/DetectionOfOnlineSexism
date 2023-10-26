@@ -9,6 +9,11 @@ import os
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
 import pickle
+import dagshub
+import mlflow
+
+dagshub.init("DetectionOfOnlineSexism", "se4ai2324-uniba", mlflow=True)
+mlflow.start_run(run_name="Experiment_3_TaskB")
 
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
@@ -54,7 +59,6 @@ nltk.download('omw-1.4')
 
 #vector that uses TreebankWordTokenizer without lemmatization
 vector_no_lemma = CountVectorizer(tokenizer = TreebankWordTokenizer().tokenize, ngram_range=(1,2))
-
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 dft = read_csv('../../data/Raw/train_category.csv')
 x1_train = dft['text']
@@ -62,7 +66,10 @@ y1_train = dft['label_category']
 dft.set_index('ID')
 print("TRAIN: \n", y1_train.value_counts(), end="\n\n")
     
-classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced')
+mlflow.log_param("max_iter", 10000)
+mlflow.log_param("class_weight", 'balanced')
+mlflow.log_param("C", 0.4)   
+classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C=0.4)
 
 # Create the pipeline
 pipe_category = Pipeline([("cleaner", predictors()),

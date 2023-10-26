@@ -13,7 +13,7 @@ import dagshub
 import mlflow
 
 dagshub.init("DetectionOfOnlineSexism", "se4ai2324-uniba", mlflow=True)
-
+mlflow.start_run(run_name="Experiment_3_TaskA")
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
 
@@ -64,7 +64,10 @@ y_train = dft['label_sexist']
 dft.set_index('ID')
 print("TRAIN: \n", y_train.value_counts(), end="\n\n")
     
-classifier = svm.LinearSVC(max_iter = 10000, class_weight= {"not sexist": 0.2, "sexist": 1})
+mlflow.log_param("max_iter", 10000)
+mlflow.log_param("class_weight", {"not sexist": 0.3, "sexist": 2})
+mlflow.log_param("C", 0.4)
+classifier = svm.LinearSVC(max_iter = 10000, class_weight= {"not sexist": 0.3, "sexist": 2}, C= 0.4)
 
 # Create the pipeline
 
