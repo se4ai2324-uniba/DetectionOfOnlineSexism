@@ -11,6 +11,7 @@ import pickle
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
+import mlflow
 from train_a import pipe_sexism, x_train, y_train, n_cpu
 
 def evaluation_metrics(x, y, pipe):
@@ -47,6 +48,10 @@ print("VALIDATION: \n", y_val.value_counts(), end="\n\n")
 
 #evaluation metrics for the validation data
 precision, recall, f1 = evaluation_metrics(x_val, y_val, pipe_sexism)
+
+mlflow.log_metric("precision_val", precision)
+mlflow.log_metric("recall_val", recall)
+mlflow.log_metric("f1_val", f1)
 
 params = {'vectorizer__ngram_range': [(1,1),(1,2)],
           'classifier__C': [0.2, 0.4, 1],

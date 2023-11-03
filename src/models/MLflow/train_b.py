@@ -15,8 +15,14 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline
 from pandas import read_csv
+import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
+import dagshub
+import mlflow
+
+dagshub.init("DetectionOfOnlineSexism", "se4ai2324-uniba", mlflow=True)
+mlflow.start_run(run_name="Experiment_4_TaskB")
 
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
@@ -33,14 +39,14 @@ class Predictors(TransformerMixin):
         Preprocess and clean a list of text data.
 
         Args:
-            x (list): A list of text data to be preprocessed.
+            X (list): A list of text data to be preprocessed.
 
         Returns:
             list: A list of cleaned and preprocessed text data.
         """
         return [clean_text(text) for text in x]
 
-    def fit(self, x, y=None, **fit_params): # pylint: disable=unused-argument
+    def fit(self):
         """
         Fit the transformer (no operation).
 
@@ -53,7 +59,7 @@ class Predictors(TransformerMixin):
         """
         return self
 
-    def get_params(self, deep=True): # pylint: disable=unused-argument
+    def get_params(self):
         """
         Get the parameters of the transformer (empty dictionary).
 
@@ -105,6 +111,9 @@ def treebank_word_tokenizer(sentence):
 
     return lemmatized_tokens
 
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
 #vector that uses TreebankWordTokenizer without lemmatization
 vector_no_lemma = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -113,6 +122,9 @@ x1_train = dft['text']
 y1_train = dft['label_category']
 dft.set_index('ID')
 print("TRAIN: \n", y1_train.value_counts(), end="\n\n")
+mlflow.log_param("max_iter", 10000)
+mlflow.log_param("class_weight", 'balanced')
+mlflow.log_param("C", 0.2)
 classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C=0.2)
 # Create the pipeline
 pipe_category = Pipeline([("cleaner", Predictors()),
