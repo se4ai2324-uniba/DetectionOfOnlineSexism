@@ -25,10 +25,15 @@ Project Organization
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
+    │   ├── Raw            <- Datasets used for training, validation and test.
+    │   │    ├── dev_category.csv
+    │   │    ├── dev_sexist.csv
+    │   │    ├── test_sexist.csv
+    │   │    ├── test_category.csv
+    │   │    ├── train_sexist.csv
+    │   │    └── train_category.csv
+    │   │
+    │   └── README.md      <- The README for developers using these datasets.
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
@@ -58,9 +63,30 @@ Project Organization
     │   │
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
+    │   │   ├── dataset_test.py
+    │   │   ├── test_A.py
+    │   │   ├── test_B.py
+    │   │   ├── train_A.py
+    │   │   ├── train_B.py
+    │   │   ├── validation_A.py
+    │   │   ├── validation_B.py
+    │   │   ├── mlruns
+    │   │   └── MLflow
+    │   │       ├── test_A.py
+    │   │       ├── test_B.py
+    │   │       ├── train_A.py
+    │   │       ├── train_B.py
+    │   │       ├── validation_A.py
+    │   │       └── validation_B.py
+    │   ├── tests 
+    │   │   ├── dataset_testing
+    │   │   │   ├── dataset_test_model_a.py
+    │   │   │   └── dataset_test_model_b.py
+    │   │   └── model_training_testing
+    │   │       ├── test_model_a.py
+    │   │       └── test_model_b.py
+    │   │
+    │   │  
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
     │

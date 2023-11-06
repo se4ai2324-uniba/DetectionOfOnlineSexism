@@ -11,13 +11,13 @@ class TestSexismClassifier:
         # Test per un messaggio non sessista
         message = "Then, she's a keeper"
         predicted_label = pipe_sexism.predict([message])[0]
-        assert predicted_label == "not sexist"
+        assert predicted_label == "not sexist", f"The message has been categorized as not sexist."
     
     def test_sexist_message(self):
         # Test per un messaggio sessista
         message = "I did. You have to have the bravery to escalate, touch her boobs etc, and work on escalating it further"
         predicted_label = pipe_sexism.predict([message])[0]
-        assert predicted_label == "sexist"
+        assert predicted_label == "sexist", f"The message has been categorized as sexist."
     
     def test_empty_message(self):
         # Test per un messaggio vuoto
