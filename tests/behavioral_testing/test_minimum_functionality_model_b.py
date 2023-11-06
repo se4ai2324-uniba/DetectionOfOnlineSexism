@@ -1,4 +1,10 @@
 import pytest
+import sys
+import os
+
+current_directory = os.getcwd()
+sys.path.append(current_directory+'\\..\\..\\src\\models') 
+
 from validation_B import pipe_category, evaluation_metrics
 from pandas import read_csv
 

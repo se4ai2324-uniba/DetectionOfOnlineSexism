@@ -8,7 +8,7 @@ Date: 2023-11-03
 """
 
 from pandas import read_csv
-from validation_a import pipe_sexism,evaluation_metrics
+from validation_A import pipe_sexism,evaluation_metrics
 
 dfs = read_csv('../../data/Raw/test_sexist.csv')
 

@@ -1,5 +1,11 @@
 import pytest
-from validation_a import pipe_sexism,evaluation_metrics
+import sys
+import os
+
+current_directory = os.getcwd()
+sys.path.append(current_directory+'\\..\\..\\src\\models') 
+
+from validation_A import pipe_sexism,evaluation_metrics
 from pandas import read_csv
 
 VALUE = 0.70
