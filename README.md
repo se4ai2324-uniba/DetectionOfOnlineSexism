@@ -63,30 +63,28 @@ Project Organization
     │   │
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
-    │   │   ├── dataset_test.py
-    │   │   ├── test_A.py
-    │   │   ├── test_B.py
-    │   │   ├── train_A.py
-    │   │   ├── train_B.py
-    │   │   ├── validation_A.py
-    │   │   ├── validation_B.py
+    │   │   ├── test_a.py
+    │   │   ├── test_b.py
+    │   │   ├── train_a.py
+    │   │   ├── train_b.py
+    │   │   ├── validation_a.py
+    │   │   ├── validation_b.py
     │   │   ├── mlruns
     │   │   └── MLflow
-    │   │       ├── test_A.py
-    │   │       ├── test_B.py
-    │   │       ├── train_A.py
-    │   │       ├── train_B.py
-    │   │       ├── validation_A.py
-    │   │       └── validation_B.py
+    │   │       ├── test_a.py
+    │   │       ├── test_b.py
+    │   │       ├── train_a.py
+    │   │       ├── train_b.py
+    │   │       ├── validation_a.py
+    │   │       └── validation_b.py
     │   ├── tests 
     │   │   ├── dataset_testing
-    │   │   │   ├── dataset_test_model_a.py
-    │   │   │   └── dataset_test_model_b.py
+    │   │   │   ├── test_dataset_model_a.py
+    │   │   │   └── test_dataset_model_b.py
     │   │   ├── model_training_testing
-    │   │   │    ├── test_model_a.py
-    │   │   │    └── test_model_b.py
+    │   │   │    ├── test_overfit.py
     │   │   ├── preprocessing_testing
-    │   │   │    └── preprocessing_ab.py
+    │   │   │    └── test_preprocessing.py
     │   │   └── behavioral_testing
     │   │       ├── test_directional_model_a.py
     │   │       ├── test_directional_model_b.py
