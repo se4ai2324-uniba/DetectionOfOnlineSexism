@@ -10,7 +10,7 @@ import pickle
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
-from train_B import pipe_category, x1_train, y1_train, n_cpu
+from src.models.train_b import pipe_category, x1_train, y1_train, n_cpu
 
 def evaluation_metrics(x, y, pipe):
     """

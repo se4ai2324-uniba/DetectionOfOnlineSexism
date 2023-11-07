@@ -7,14 +7,6 @@ TESTING_SOURCE_PATH = '../../data/Raw/test_sexist.csv'
 
 tags = ["sexist", "not sexist"]
 
-train = read_csv(TRAINING_SOURCE_PATH)
-validation = read_csv(VALIDATION_SOURCE_PATH)
-test = read_csv(TESTING_SOURCE_PATH)
-
-train_dataset = PandasDataset(train)
-validation_dataset = PandasDataset(validation)
-test_dataset = PandasDataset(test)
-
 def test_training_set(train):
     train_dataset = PandasDataset(train)
 

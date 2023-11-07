@@ -8,7 +8,7 @@ Date: 2023-11-03
 """
 
 from pandas import read_csv
-from validation_B import pipe_category,evaluation_metrics
+from src.models.validation_b import pipe_category,evaluation_metrics
 
 dfs = read_csv('../../data/Raw/test_category.csv')
 
