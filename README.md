@@ -82,10 +82,18 @@ Project Organization
     │   │   ├── dataset_testing
     │   │   │   ├── dataset_test_model_a.py
     │   │   │   └── dataset_test_model_b.py
-    │   │   └── model_training_testing
-    │   │       ├── test_model_a.py
-    │   │       └── test_model_b.py
-    │   │
+    │   │   ├── model_training_testing
+    │   │   │    ├── test_model_a.py
+    │   │   │    └── test_model_b.py
+    │   │   ├── preprocessing_testing
+    │   │   │    └── preprocessing_ab.py
+    │   │   └── behavioral_testing
+    │   │       ├── test_directional_model_a.py
+    │   │       ├── test_directional_model_b.py
+    │   │       ├── test_invariance_model_a.py
+    │   │       ├── test_invariance_model_b.py
+    │   │       ├── test_minimum_funcionality_model_a.py
+    │   │       └── test_minimum_funcionality_model_b.py
     │   │  
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
