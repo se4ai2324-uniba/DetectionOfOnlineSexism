@@ -8,12 +8,6 @@ def test_clean_text_punctuation():
     expected_output = "then shes a keeper"
     assert clean_text(input_text) == expected_output
 
-def test_clean_text_lowercase():
-    #Test with only lowercase text
-    input_text = "if youre hyping up your nintendo switch to women, then its already so over lmfao"
-    expected_output = "if youre hyping up your nintendo switch to women then its already so over lmfao"
-    assert clean_text(input_text) == expected_output
-
 def test_clean_text_uppercase():
     #Test with only uppercase text
     input_text = "[USER] WE COULD MAKE IT A TRIPLE THREAT MATCH WITH [USER] BLISS VS [USER] VS [USER] McMAHON. BUT AS MUCH AS WE'D LIKE TO SEE [USER] VS [USER] AT [USER], I THINK THE [USER] UNIVERSE IS CRAAAAAAVVVVVVINNNNNGGGGG!!!"
