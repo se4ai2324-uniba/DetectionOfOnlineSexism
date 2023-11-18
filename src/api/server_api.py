@@ -1,41 +1,43 @@
-from fastapi import FastAPI 
+from fastapi import FastAPI, HTTPException
 import uvicorn
-from src.api.corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B
+from corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B
 
 app = FastAPI() 
 
 @app.get("/") 
-def root():   
+def main():   
     return main_description
 
 @app.get("/task") 
-def root():   
+def task():   
     return task
 
-@app.get("/task/A") 
-def root():   
-    return task_A
+@app.get("/task/{task_name}") 
+def task_AB(task_name:str):
+    if task_name=="A":
+        return task_A
+    if task_name=="B":
+        return task_B
+    else:
+        raise HTTPException(status_code=404, detail="Task not found")
 
-@app.get("/task/A/metrics") 
-def root():   
-    return metrics_A
+@app.get("/task/{task_name}/metrics") 
+def metrics(task_name:str):   
+    if task_name=="A":
+        return metrics_A
+    if task_name=="B":
+        return metrics_B
+    else:
+        raise HTTPException(status_code=404, detail="Task not found")
 
-@app.get("/task/A/preprocessing") 
-def root():   
-    return preprocessing_A
-
-@app.get("/task/B") 
-def root():   
-    return task_B
-
-@app.get("/task/B/metrics") 
-def root():   
-    return metrics_B
-
-@app.get("/task/B/preprocessing") 
-def root():   
-    return preprocessing_B
-
+@app.get("/task/{task_name}/preprocessing") 
+def preprocessing(task_name:str):   
+    if task_name=="A":
+        return preprocessing_A
+    if task_name=="B":
+        return preprocessing_B
+    else:
+        raise HTTPException(status_code=404, detail="Task not found")
 
 if __name__ == '__main__':
    uvicorn.run(app, host='127.0.0.1', port=8000)
