@@ -1,5 +1,16 @@
 from pydantic import BaseModel, ValidationError
 from typing import List, Optional
+import pickle
+import os
+import sys
+current_directory = os.getcwd()
+sys.path.append(current_directory+'\\..\\..\\src\\models')
+import train_A
+with open(current_directory +'/../../models/validation_A.pkl', 'rb') as file:
+    loaded_model = pickle.load(file)
+
+class PredictionModel(BaseModel):
+    Message: str
 
 class MainDescriptionModel(BaseModel):
     Title: str
@@ -106,7 +117,19 @@ try:
 except ValidationError as e:
     print(e.json())
 
+message_not_sexist="The message has been categorized as not sexist."
+message_sexist="The message has been categorized as not sexist."
+
+def prediction(message):
+    predicted_label = loaded_model.best_estimator_.predict([message])[0]
+    if predicted_label == "not sexist":
+        return  message_not_sexist
+    else:
+        return  message_sexist
+    
 #validation of right endpoints
+message_not_sexist_model = PredictionModel(message_not_sexist)
+message_sexist_model = PredictionModel(message_sexist)
 main_description_model = MainDescriptionModel(**main_description)
 task_model = TaskModel(**task)
 task_A_model = SubTaskModel(**task_A)
