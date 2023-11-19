@@ -3,14 +3,17 @@ from typing import List, Optional
 import pickle
 import os
 import sys
+import src.models.train_A
+import src.models.train_B
+
 current_directory = os.getcwd()
-sys.path.append(current_directory+'\\..\\..\\src\\models')
-import train_A
 with open(current_directory +'/../../models/validation_A.pkl', 'rb') as file:
-    loaded_model = pickle.load(file)
+    sexism_model = pickle.load(file)
+with open(current_directory +'/../../models/validation_B.pkl', 'rb') as file:
+    category_model = pickle.load(file)
 
 class PredictionModel(BaseModel):
-    Message: str
+    Prediction: str
 
 class MainDescriptionModel(BaseModel):
     Title: str
@@ -103,6 +106,31 @@ preprocessing_B = {
     "Lemmatizer": "No",
 }
 
+message_not_sexist= {
+    "Prediction": "The message has been categorized as not sexist."
+}
+
+message_sexist= {
+    "Prediction": "The message has been categorized as sexist."
+}
+
+message_prejudiced_discussions = {
+    "Prediction": "The category of sexism is 'prejudiced discussions'."
+}
+
+message_animosity = {
+    "Prediction": "The category of sexism is 'animosity'."
+}
+
+message_derogation = {
+    "Prediction": "The category of sexism is 'derogation'."
+}
+
+message_threats = {
+    "Prediction": "The category of sexism is 'threats'."
+}
+
+
 #example of validation error
 try:
     #in this case "MoreInformation" should be a list 
@@ -117,19 +145,33 @@ try:
 except ValidationError as e:
     print(e.json())
 
-message_not_sexist="The message has been categorized as not sexist."
-message_sexist="The message has been categorized as not sexist."
 
-def prediction(message):
-    predicted_label = loaded_model.best_estimator_.predict([message])[0]
+def predict_sexism(message):
+    predicted_label = sexism_model.predict([message])[0]
     if predicted_label == "not sexist":
-        return  message_not_sexist
+        return  "The message has been categorized as not sexist."
     else:
-        return  message_sexist
+        return  "The message has been categorized as sexist."
+    
+
+def predict_category(message):
+    predicted_label = sexism_model.predict([message])[0]
+    if predicted_label == "1. threats, plans to harm and incitement":
+        return "The category of sexism is 'threats'."
+    if predicted_label == "2. derogation":
+        return  "The category of sexism is 'derogation'."
+    if predicted_label == "3. animosity":
+        return  "The category of sexism is 'animosity'."
+    if predicted_label == "4. prejudiced discussions":
+        return  "The category of sexism is 'prejudiced discussions'."
     
 #validation of right endpoints
-message_not_sexist_model = PredictionModel(message_not_sexist)
-message_sexist_model = PredictionModel(message_sexist)
+message_not_sexist_model = PredictionModel(**message_not_sexist)
+message_sexist_model = PredictionModel(**message_sexist)
+message_sexist_model = PredictionModel(**message_prejudiced_discussions)
+message_sexist_model = PredictionModel(**message_animosity)
+message_sexist_model = PredictionModel(**message_derogation)
+message_sexist_model = PredictionModel(**message_threats)
 main_description_model = MainDescriptionModel(**main_description)
 task_model = TaskModel(**task)
 task_A_model = SubTaskModel(**task_A)

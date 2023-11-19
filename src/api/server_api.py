@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException,Form
 from typing import Annotated
 import uvicorn
-from corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B,prediction
+from corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B, predict_sexism, predict_category
 
 app = FastAPI() 
 
@@ -23,8 +23,12 @@ def task_AB(task_name:str):
         raise HTTPException(status_code=404, detail="Task not found")
     
 @app.post("/prediction_sexism")
-def run_test_non_sexist_message(message: Annotated[str, Form()]):
-    return prediction(message)
+def prediction_sexism(message: Annotated[str, Form()]):
+    return predict_sexism(message)
+
+@app.post("/prediction_category")
+def prediction_category(message: Annotated[str, Form()]):
+    return predict_category(message)
 
 @app.get("/task/{task_name}/metrics") 
 def metrics(task_name:str):   
