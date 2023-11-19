@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import uvicorn
-from corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B
+from src.api.corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B
 
 app = FastAPI() 
 
@@ -9,7 +9,7 @@ def main():
     return main_description
 
 @app.get("/task") 
-def task():   
+def get_task():   
     return task
 
 @app.get("/task/{task_name}") 
