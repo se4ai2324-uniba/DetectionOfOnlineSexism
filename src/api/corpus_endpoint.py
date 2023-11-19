@@ -16,94 +16,94 @@ class PredictionModel(BaseModel):
     Prediction: str
 
 class MainDescriptionModel(BaseModel):
-    Title: str
-    Description: str
-    Version: str
-    AvailableEndpoints: List[str]
+    title: str
+    description: str
+    version: str
+    available_endpoints: List[str]
 
 class TaskModel(BaseModel):
-    Title: str
-    Description: str
-    Pipeline: str
-    MoreInformation: List[str]
+    title: str
+    description: str
+    pipeline: str
+    more_information: List[str]
 
 class SubTaskModel(BaseModel):
-    Title: str
-    Description: str
-    Model: List[str]
-    Metrics: str
+    title: str
+    description: str
+    model: List[str]
+    metrics: str
 
 class MetricsModel(BaseModel):
-    Title: str
-    Model: str
-    F1: float
-    Recall: float
-    Precision: float
+    title: str
+    model: str
+    f1: float
+    recall: float
+    precision: float
 
 class PreprocessingModel(BaseModel):
-    Title: str
-    Tokenizer: str
-    Vectorizer: str
-    Lemmatizer: Optional[str] = None
+    title: str
+    tokenizer: str
+    vectorizer: str
+    lemmatizer: Optional[str] = None
 
 models = ["LinearSVC classifier", "Random Forest"]
 
 main_description = {
-    "Title": "Detection of Online Sexism",
-    "Description": "An NLP model used to detect sexist messages and the type of sexism.",
-    "Version": "1.0",
-    "AvailableEndpoints": ["/task", "/task/A", "/task/A/metrics", "/task/A/preprocessing", "/task/B", "/task/B/metrics", "/task/B/preprocessing"]
+    "title": "Detection of Online Sexism",
+    "description": "An NLP model used to detect sexist messages and the type of sexism.",
+    "version": "1.0",
+    "available_endpoints": ["/task", "/task/A", "/task/A/metrics", "/task/A/preprocessing", "/task/B", "/task/B/metrics", "/task/B/preprocessing"]
 }
 
 task = {
-    "Title": "Tasks",
-    "Description": "The models have two hierarchical tasks: TASK A and TASK B",
-    "Pipeline": "- Preprocessing - Training - Validation - Test",
-    "MoreInformation": ["/task/A", "/task/B"]
+    "title": "Tasks",
+    "description": "The models have two hierarchical tasks: TASK A and TASK B",
+    "pipeline": "- Preprocessing - Training - Validation - Test",
+    "more_information": ["/task/A", "/task/B"]
 }
 
 task_A = {
-    "Title": "Task A",
-    "Description": "Sexism Detection: for detecting whether a post is sexist",
-    "Model": models,
-    "Metrics": "/task/A/metrics"
+    "title": "Task A",
+    "description": "Sexism Detection: for detecting whether a post is sexist",
+    "model": models,
+    "metrics": "/task/A/metrics"
 }
 
 metrics_A = {
-    "Title": "Metrics Task A",
-    "Model": "Linear SVC",
-    "F1": 0.7637,
-    "Recall": 0.7444,
-    "Precision": 0.7947
+    "title": "Metrics Task A",
+    "model": "Linear SVC",
+    "f1": 0.7637,
+    "recall": 0.7444,
+    "precision": 0.7947
 }
 
 preprocessing_A = {
-    "Title": "Preprocessing Task A",
-    "Tokenizer": "TreeBankWord",
-    "Vectorizer": "CountVectorizer",
-    "Lemmatizer": "Yes",
+    "title": "Preprocessing Task A",
+    "tokenizer": "TreeBankWord",
+    "vectorizer": "CountVectorizer",
+    "lemmatizer": "Yes",
 }
 
 task_B = {
-    "Title": "Task B",
-    "Description": "Category of Sexism: for assigning to each of the sexist texts a category (threats, derogation, animosity, prejudiced discussions",
-    "Model": models,
-    "Metrics": "/task/B/metrics"
+    "title": "Task B",
+    "description": "Category of Sexism: for assigning to each of the sexist texts a category (threats, derogation, animosity, prejudiced discussions",
+    "model": models,
+    "metrics": "/task/B/metrics"
 }
 
 metrics_B = {
-    "Title": "Metrics Task B",
-    "Model": "Linear SVC",
-    "F1": 0.4597,
-    "Recall": 0.4438,
-    "Precision": 0.4932
+    "title": "Metrics Task B",
+    "model": "Linear SVC",
+    "f1": 0.4597,
+    "recall": 0.4438,
+    "precision": 0.4932
 }
 
 preprocessing_B = {
-    "Title": "Preprocessing Task B",
-    "Tokenizer": "TreeBankWord",
-    "Vectorizer": "CountVectorizer",
-    "Lemmatizer": "No",
+    "title": "Preprocessing Task B",
+    "tokenizer": "TreeBankWord",
+    "vectorizer": "CountVectorizer",
+    "lemmatizer": "No",
 }
 
 message_not_sexist= {
@@ -135,10 +135,10 @@ message_threats = {
 try:
     #in this case "MoreInformation" should be a list 
     invalid_task_data = {
-        "Title": "Invalid Task",
-        "Description": "Invalid Description",
-        "Pipeline": "Invalid Pipeline",
-        "MoreInformation": "Invalid Information"  
+        "title": "Invalid Task",
+        "description": "Invalid Description",
+        "pipeline": "Invalid Pipeline",
+        "more_information": "Invalid Information"  
     }
     
     invalid_task_model = TaskModel(**invalid_task_data)

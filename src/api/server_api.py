@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException,Form
 from typing import Annotated
 import uvicorn
-from corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B, predict_sexism, predict_category
+from src.api.corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B, predict_sexism, predict_category
 
 app = FastAPI() 
 
@@ -10,7 +10,7 @@ def main():
     return main_description
 
 @app.get("/task") 
-def task():   
+def get_task():   
     return task
 
 @app.get("/task/{task_name}") 
