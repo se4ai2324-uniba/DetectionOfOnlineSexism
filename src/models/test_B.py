@@ -8,6 +8,8 @@ Date: 2023-11-03
 """
 
 from pandas import read_csv
+import sys
+sys.path.append('C:/Users/Utente/Desktop/Progetto Software Engineering/DetectionOfOnlineSexism')
 from src.models.validation_b import pipe_category,evaluation_metrics
 
 dfs = read_csv('../../data/Raw/test_category.csv')

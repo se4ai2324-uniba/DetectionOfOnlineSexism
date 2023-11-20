@@ -11,6 +11,8 @@ import pickle
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
+import sys
+sys.path.append('C:/Users/Utente/Desktop/Progetto Software Engineering/DetectionOfOnlineSexism')
 from src.models.train_a import pipe_sexism, x_train, y_train, n_cpu
 
 def evaluation_metrics(x, y, pipe):
