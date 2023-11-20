@@ -1,5 +1,7 @@
 import pytest
-from src.models.train_a import Predictors, vector, classifier
+import os, sys
+sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
+from src.models.train_A import Predictors, vector, classifier
 from sklearn.pipeline import Pipeline
 from pandas import read_csv
 from sklearn.metrics import accuracy_score

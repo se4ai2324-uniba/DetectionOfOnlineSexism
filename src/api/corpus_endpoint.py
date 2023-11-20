@@ -2,11 +2,16 @@ from pydantic import BaseModel, ValidationError
 from typing import List, Optional
 import pickle
 import os
+import sys
 
-current_directory = os.getcwd()
-with open(current_directory +'/models/validation_a.pkl', 'rb') as file:
+sys.path.append(os.getcwd()+"/src/models/")
+import train_A
+import train_B
+
+os.chdir(os.getcwd() + '/../../models/')
+with open(os.getcwd() + '/validation_A.pkl', 'rb') as file:
     sexism_model = pickle.load(file)
-with open(current_directory +'/models/validation_b.pkl', 'rb') as file:
+with open(os.getcwd() + '/validation_B.pkl', 'rb') as file:
     category_model = pickle.load(file)
 
 class PredictionModel(BaseModel):

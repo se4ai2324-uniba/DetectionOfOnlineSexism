@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException, Form
 import uvicorn
 import sys
-sys.path.append('C:/Users/Utente/Desktop/Progetto Software Engineering/DetectionOfOnlineSexism')
+import os
+
+sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
 
 from src.api.corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B, predict_sexism, predict_category
 
