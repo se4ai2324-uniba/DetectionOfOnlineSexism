@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_a import pipe_sexism
+from src.models.validation_A import pipe_sexism
  
 def test_directional():
     
