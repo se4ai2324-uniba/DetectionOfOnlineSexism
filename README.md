@@ -55,6 +55,11 @@ Project Organization
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
+    │   ├── api            <- Scripts to crate Api using FastAPI
+    │   │   ├── corpus_endpoint.py
+    │   │   ├── redoc.py
+    │   │   └── server_api.py
+    │   │
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
     │   │
@@ -77,14 +82,20 @@ Project Organization
     │   │       ├── train_b.py
     │   │       ├── validation_a.py
     │   │       └── validation_b.py
-    │   ├── tests 
+    │   ├── tests         <- Scripts to test using Pytest
+    │   │   ├── api_testing
+    │   │   │   └── test_api.py
+    │   │   │
     │   │   ├── dataset_testing
     │   │   │   ├── test_dataset_model_a.py
     │   │   │   └── test_dataset_model_b.py
+    │   │   │
     │   │   ├── model_training_testing
-    │   │   │    ├── test_overfit.py
+    │   │   │    └── test_overfit.py
+    │   │   │
     │   │   ├── preprocessing_testing
     │   │   │    └── test_preprocessing.py
+    │   │   │
     │   │   └── behavioral_testing
     │   │       ├── test_directional_model_a.py
     │   │       ├── test_directional_model_b.py
