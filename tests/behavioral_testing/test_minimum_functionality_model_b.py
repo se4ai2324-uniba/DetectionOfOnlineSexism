@@ -1,6 +1,7 @@
 import pytest
 import sys
 import os
+sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
 from src.models.validation_b import pipe_category, evaluation_metrics
 from pandas import read_csv
 
