@@ -1,7 +1,7 @@
 import pytest
 import os, sys
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_B import pipe_category
+sys.path.append(os.getcwd()+"/DetectionOfOnlineSexism")
+from src.models.validation_b import pipe_category
 
 def test_invariance_category():
     tokens = ["get","obtain"]

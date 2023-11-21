@@ -1,5 +1,5 @@
 """
-Module: train_a
+Module: test_b
 Description: This module contains functions for testing model b.
 Authors: Francesco Brescia
         Maria Elena Zaza
@@ -9,8 +9,8 @@ Date: 2023-11-03
 
 from pandas import read_csv
 import sys, os
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_B import pipe_category,evaluation_metrics
+sys.path.append(os.getcwd()+"/DetectionOfOnlineSexism")
+from src.models.validation_b import pipe_category,evaluation_metrics
 
 dfs = read_csv('../../data/Raw/test_category.csv')
 

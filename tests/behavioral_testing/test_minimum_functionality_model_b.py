@@ -1,12 +1,9 @@
 import pytest
+from pandas import read_csv
 import sys
 import os
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_B import pipe_category, evaluation_metrics
-from pandas import read_csv
-
-current_directory = os.getcwd()
-sys.path.append(current_directory+'\\..\\..\\src\\models') 
+sys.path.append(os.getcwd()+"/DetectionOfOnlineSexism")
+from src.models.validation_b import pipe_category, evaluation_metrics
 
 VALUE = 0.40
 

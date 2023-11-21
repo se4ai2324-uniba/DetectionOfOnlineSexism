@@ -4,13 +4,10 @@ import pickle
 import os
 import sys
 
-sys.path.append(os.getcwd()+"/src/models/")
-import train_A
-import train_B
-
-os.chdir(os.getcwd() + '/../../models/')
+os.chdir(os.getcwd() + '/models')
 with open(os.getcwd() + '/validation_A.pkl', 'rb') as file:
     sexism_model = pickle.load(file)
+os.chdir(os.path.dirname(os.path.dirname(os.getcwd())) + '/models')
 with open(os.getcwd() + '/validation_B.pkl', 'rb') as file:
     category_model = pickle.load(file)
 
