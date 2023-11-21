@@ -9,8 +9,7 @@ Date: 2023-11-03
 
 from pandas import read_csv
 import sys, os
-sys.path.append(os.getcwd()+"/DetectionOfOnlineSexism")
-from src.models.validation_b import pipe_category,evaluation_metrics
+from validation_b import pipe_category,evaluation_metrics
 
 dfs = read_csv('../../data/Raw/test_category.csv')
 

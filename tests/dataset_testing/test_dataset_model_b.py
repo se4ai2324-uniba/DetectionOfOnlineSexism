@@ -1,9 +1,9 @@
 from pandas import read_csv
 from great_expectations.dataset import PandasDataset
 
-TRAINING_SOURCE_PATH = '../../data/Raw/train_category.csv'
-VALIDATION_SOURCE_PATH = '../../data/Raw/dev_category.csv'
-TESTING_SOURCE_PATH = '../../data/Raw/test_category.csv'
+TRAINING_SOURCE_PATH = 'data/Raw/train_category.csv'
+VALIDATION_SOURCE_PATH = 'data/Raw/dev_category.csv'
+TESTING_SOURCE_PATH = 'data/Raw/test_category.csv'
 
 tags = ["1. threats, plans to harm and incitement", "2. derogation", "3. animosity", "4. prejudiced discussions"]
 

@@ -121,5 +121,5 @@ pipe_sexism = Pipeline([("cleaner", Predictors()),
 
 pipe_sexism.fit(x_train, y_train)
 
-with open('../../models/train_A.pkl', 'wb') as file_train_a:
+with open('../../models/train_a.pkl', 'wb') as file_train_a:
     pickle.dump(pipe_sexism, file_train_a)

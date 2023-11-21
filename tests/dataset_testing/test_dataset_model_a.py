@@ -1,9 +1,9 @@
 from pandas import read_csv
 from great_expectations.dataset import PandasDataset
 
-TRAINING_SOURCE_PATH = '../../data/Raw/train_sexist.csv'
-VALIDATION_SOURCE_PATH = '../../data/Raw/dev_sexist.csv'
-TESTING_SOURCE_PATH = '../../data/Raw/test_sexist.csv'
+TRAINING_SOURCE_PATH = 'data/Raw/train_sexist.csv'
+VALIDATION_SOURCE_PATH = 'data/Raw/dev_sexist.csv'
+TESTING_SOURCE_PATH = 'data/Raw/test_sexist.csv'
 
 tags = ["sexist", "not sexist"]
 

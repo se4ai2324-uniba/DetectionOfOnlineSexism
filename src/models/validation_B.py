@@ -7,12 +7,11 @@ Authors: Francesco Brescia
 Date: 2023-11-03
 """
 import pickle
+import os
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
-import sys, os
-sys.path.append(os.getcwd()+"/DetectionOfOnlineSexism")
-from src.models.train_b import pipe_category, x1_train, y1_train, n_cpu
+from train_b import pipe_category, x1_train, y1_train, n_cpu
 
 def evaluation_metrics(x, y, pipe):
     """
@@ -62,5 +61,5 @@ best_params = pipe1_optimized.best_params_
 pipe_category.set_params(**best_params)
 pipe_category.fit(x1_train, y1_train)
 
-with open('../../models/validation_B.pkl', 'wb') as file_validation_b:
+with open('../../models/validation_b.pkl', 'wb') as file_validation_b:
     pickle.dump(pipe_category, file_validation_b)

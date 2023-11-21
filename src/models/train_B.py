@@ -120,5 +120,5 @@ pipe_category = Pipeline([("cleaner", Predictors()),
 ('classifier', classifier)])
 
 pipe_category.fit(x1_train, y1_train)
-with open('../../models/train_B.pkl', 'wb') as file_train_b:
+with open('../../models/train_b.pkl', 'wb') as file_train_b:
     pickle.dump(pipe_category, file_train_b)
