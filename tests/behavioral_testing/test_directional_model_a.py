@@ -1,9 +1,12 @@
 import pytest
-import sys
-import os
+import os, sys
+import pickle
+sys.path.append(os.getcwd()+"/src/models/")
+import train_a
 
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_a import pipe_sexism
+os.chdir(os.getcwd() + '/../../models/')
+with open(os.getcwd() + '/validation_a.pkl', 'rb') as file:
+    pipe_sexism = pickle.load(file)
  
 def test_directional():
     

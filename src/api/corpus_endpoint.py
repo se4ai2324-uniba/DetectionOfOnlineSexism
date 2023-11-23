@@ -5,14 +5,28 @@ import os
 import sys
 
 sys.path.append(os.getcwd()+"/src/models/")
-import train_A
-import train_B
+import train_a
+import train_b
 
-os.chdir(os.getcwd() + '/../../models/')
-with open(os.getcwd() + '/validation_A.pkl', 'rb') as file:
+# Percorso alla cartella genitore della cartella corrente
+parent_directory = os.path.dirname(os.path.dirname(os.getcwd()))
+
+# Percorso alla cartella 'models' che si trova al livello superiore rispetto a 'src'
+models_path = os.path.join(parent_directory, 'models')
+
+# Aggiungi il percorso alla cartella 'models' al sys.path
+sys.path.append(models_path)
+
+# Carica il file validation_a.pkl
+sexism_model_path = os.path.join(models_path, 'validation_a.pkl')
+with open(sexism_model_path, 'rb') as file:
     sexism_model = pickle.load(file)
-with open(os.getcwd() + '/validation_B.pkl', 'rb') as file:
+
+# Carica il file validation_b.pkl
+category_model_path = os.path.join(models_path, 'validation_b.pkl')
+with open(category_model_path, 'rb') as file:
     category_model = pickle.load(file)
+
 
 class PredictionModel(BaseModel):
     prediction: str

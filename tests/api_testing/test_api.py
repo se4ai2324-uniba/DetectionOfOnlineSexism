@@ -2,7 +2,7 @@ import pytest
 from fastapi.testclient import TestClient
 import sys
 import os
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
+sys.path.append(os.getcwd()+"/DetectionOfOnlineSexism")
 
 from src.api.server_api import app
 from src.api.corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A, task_B, metrics_B, preprocessing_B

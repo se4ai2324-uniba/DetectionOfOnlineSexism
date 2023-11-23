@@ -1,8 +1,14 @@
 import pytest
 import os, sys
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_a import pipe_sexism,evaluation_metrics
+import pickle
 from pandas import read_csv
+sys.path.append(os.getcwd()+"/src/models/")
+import train_a
+from validation_a import evaluation_metrics
+
+os.chdir(os.getcwd() + '/../../models/')
+with open(os.getcwd() + '/validation_a.pkl', 'rb') as file:
+    pipe_sexism = pickle.load(file)
 
 VALUE = 0.70
 
@@ -23,7 +29,7 @@ def test_empty_message():
     assert predicted_label == "not sexist"  # Sostituisci con il comportamento desiderato
 
 def test_evaluation_metrics():
-    dfs = read_csv('../../data/Raw/test_sexist.csv')
+    dfs = read_csv('../data/Raw/test_sexist.csv')
 
     x_test = dfs['text']
     y_test= dfs['label_sexist']

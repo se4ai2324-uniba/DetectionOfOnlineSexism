@@ -1,12 +1,14 @@
 import pytest
-import sys
-import os
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_b import pipe_category, evaluation_metrics
+import sys, os
+import pickle
 from pandas import read_csv
+sys.path.append(os.getcwd()+"/src/models/")
+import train_b
+from validation_b import evaluation_metrics
 
-current_directory = os.getcwd()
-sys.path.append(current_directory+'\\..\\..\\src\\models') 
+os.chdir(os.getcwd() + '/../../models/')
+with open(os.getcwd() + '/validation_b.pkl', 'rb') as file:
+    pipe_category = pickle.load(file)
 
 VALUE = 0.40
 
@@ -43,7 +45,7 @@ def test_prejudiced_discussions_sexism():
         pytest.skip("Message is not classified as prejudiced discussions.")
 
 def test_evaluation_metrics():
-    dfs = read_csv('../../data/Raw/test_category.csv')
+    dfs = read_csv('../data/Raw/test_category.csv')
 
     x1_test = dfs['text']
     y1_test = dfs['label_category']

@@ -1,7 +1,5 @@
 import pytest
-import os, sys
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.train_A import clean_text
+from src.models.train_a import clean_text
 
 def test_clean_text_punctuation():
 

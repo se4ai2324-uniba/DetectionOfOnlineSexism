@@ -1,7 +1,12 @@
 import pytest
 import os, sys
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_b import pipe_category
+import pickle
+sys.path.append(os.getcwd()+"/src/models/")
+import train_b
+
+os.chdir(os.getcwd() + '/../../models/')
+with open(os.getcwd() + '/validation_b.pkl', 'rb') as file:
+    pipe_category = pickle.load(file)
 
 def test_invariance_category():
     tokens = ["get","obtain"]

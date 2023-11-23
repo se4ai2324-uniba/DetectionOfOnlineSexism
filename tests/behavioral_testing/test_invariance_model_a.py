@@ -1,7 +1,12 @@
 import pytest
 import os, sys
-sys.path.append(os.getcwd()+"DetectionOfOnlineSexism")
-from src.models.validation_a import pipe_sexism
+import pickle
+sys.path.append(os.getcwd()+"/src/models/")
+import train_a
+
+os.chdir(os.getcwd() + '/../../models/')
+with open(os.getcwd() + '/validation_a.pkl', 'rb') as file:
+    pipe_sexism = pickle.load(file)
 
 def test_non_sexist_message():
     tokens = ["want","wish"]
