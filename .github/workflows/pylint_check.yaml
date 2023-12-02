@@ -25,7 +25,7 @@ jobs:
       run: |
         pylint src/ --output-format=json:pylint_report.json, colorized
 
-     - name: Upload Pylint Artifact
+    - name: Upload Pylint Artifact
       uses: actions/upload-artifact@v3
       with:
         name: pylint-report
