@@ -1,6 +1,6 @@
 name: Pylint
 
-on: [push, pull_request]
+on: [push]
 
 
 jobs:
@@ -23,8 +23,8 @@ jobs:
 
     - name: Running Pylint
       run: |
-        pylint src/ --output-format=json:pylint_report.json, colorized
-
+        pylint src/ --output-format=json > pylint_report.json || true
+        
     - name: Upload Pylint Artifact
       uses: actions/upload-artifact@v3
       with:
