@@ -1,6 +1,6 @@
 Detection Of Online Sexism
 ==============================
-https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/workflows/pylint_check.yaml/badge.svg?
+![workflow](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/workflows/pylint_check.yaml/badge.svg?)
 
 The project described in this documentation has been developed for the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge on CodaLab by Grazia Perna, Maria Elena Zaza and Francesco Brescia in which two models have been implemented.
 
