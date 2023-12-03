@@ -26,3 +26,13 @@ fastapi
 uvicorn
 pydantic
 python-multipart
+
+#CODECARBON
+arrow
+pynvml
+requests
+psutil
+py-cpuinfo
+fuzzywuzzy
+click
+prometheus_client
