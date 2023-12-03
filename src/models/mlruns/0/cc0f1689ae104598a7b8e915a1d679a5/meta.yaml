@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/DetectionOfOnlineSexism/src/models/mlruns/0/cc0f1689ae104598a7b8e915a1d679a5/artifacts
+end_time: 1698082105757
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cc0f1689ae104598a7b8e915a1d679a5
+run_name: colorful-mouse-268
+run_uuid: cc0f1689ae104598a7b8e915a1d679a5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1698082105598
+status: 3
+tags: []
+user_id: graziaperna

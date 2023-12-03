@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/DetectionOfOnlineSexism/src/models/mlruns/0/df747f6984254241899cbb4ed99a5c86/artifacts
+end_time: 1698081795345
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: df747f6984254241899cbb4ed99a5c86
+run_name: unruly-bee-175
+run_uuid: df747f6984254241899cbb4ed99a5c86
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1698081795157
+status: 3
+tags: []
+user_id: graziaperna

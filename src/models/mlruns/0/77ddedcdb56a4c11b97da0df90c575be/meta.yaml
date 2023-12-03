@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/DetectionOfOnlineSexism/src/models/mlruns/0/77ddedcdb56a4c11b97da0df90c575be/artifacts
+end_time: 1698082899508
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 77ddedcdb56a4c11b97da0df90c575be
+run_name: adorable-hog-878
+run_uuid: 77ddedcdb56a4c11b97da0df90c575be
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1698082899366
+status: 3
+tags: []
+user_id: graziaperna
