@@ -12,6 +12,11 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
 from train_a import pipe_sexism, x_train, y_train, n_cpu
+from codecarbon import EmissionsTracker
+
+
+tracker = EmissionsTracker(project_name="validation_a", output_file="output_validation_a.json")
+
 
 def evaluation_metrics(x, y, pipe):
     """
@@ -39,26 +44,27 @@ def evaluation_metrics(x, y, pipe):
 
     return precision_value, recall_value, f1_value
 
-dfv = read_csv('../../data/Raw/dev_sexist.csv')
-x_val = dfv['text']
-y_val = dfv['label_sexist']
-dfv.set_index('ID')
-print("VALIDATION: \n", y_val.value_counts(), end="\n\n")
+with tracker:
+    dfv = read_csv('../../data/Raw/dev_sexist.csv')
+    x_val = dfv['text']
+    y_val = dfv['label_sexist']
+    dfv.set_index('ID')
+    print("VALIDATION: \n", y_val.value_counts(), end="\n\n")
 
-#evaluation metrics for the validation data
-precision, recall, f1 = evaluation_metrics(x_val, y_val, pipe_sexism)
+    #evaluation metrics for the validation data
+    precision, recall, f1 = evaluation_metrics(x_val, y_val, pipe_sexism)
 
-params = {'vectorizer__ngram_range': [(1,1),(1,2)],
-          'classifier__C': [0.2, 0.4, 1],
-          'classifier__class_weight': ['balanced', None]}
-pipe_optimized = GridSearchCV(pipe_sexism,param_grid=params,cv=10,
-                              scoring=make_scorer(f1_score, average="macro"),
-                              n_jobs=n_cpu-1,refit=True)
-pipe_optimized.fit(x_train, y_train)
-print("Migliori iperparametri:",pipe_optimized.best_params_)
-best_params = pipe_optimized.best_params_
-pipe_sexism.set_params(**best_params)
+    params = {'vectorizer__ngram_range': [(1,1),(1,2)],
+            'classifier__C': [0.2, 0.4, 1],
+            'classifier__class_weight': ['balanced', None]}
+    pipe_optimized = GridSearchCV(pipe_sexism,param_grid=params,cv=10,
+                                scoring=make_scorer(f1_score, average="macro"),
+                                n_jobs=n_cpu-1,refit=True)
+    pipe_optimized.fit(x_train, y_train)
+    print("Migliori iperparametri:",pipe_optimized.best_params_)
+    best_params = pipe_optimized.best_params_
+    pipe_sexism.set_params(**best_params)
 
-pipe_sexism.fit(x_train, y_train)
-with open('../../models/validation_a.pkl', 'wb') as file_validation_a:
-    pickle.dump(pipe_sexism, file_validation_a)
+    pipe_sexism.fit(x_train, y_train)
+    with open('../../models/validation_a.pkl', 'wb') as file_validation_a:
+        pickle.dump(pipe_sexism, file_validation_a)

@@ -17,9 +17,13 @@ from sklearn.pipeline import Pipeline
 from pandas import read_csv
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
+from codecarbon import EmissionsTracker
+
 
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
+
+tracker = EmissionsTracker(project_name="train_a", output_file="output_train_a.json")
 
 # Custom transformer using spaCy
 class Predictors(TransformerMixin):
@@ -119,7 +123,8 @@ pipe_sexism = Pipeline([("cleaner", Predictors()),
 ('vectorizer', vector),
 ('classifier', classifier)])
 
-pipe_sexism.fit(x_train, y_train)
+with tracker:
+    pipe_sexism.fit(x_train, y_train)
 
 with open('../../models/train_a.pkl', 'wb') as file_train_a:
     pickle.dump(pipe_sexism, file_train_a)
