@@ -26,7 +26,7 @@ jobs:
 
     - name: Run FastAPI
       run: |
-        uvicorn src.api.server_api:app --reload
+        uvicorn src.api.server_api:app --reload & sleep 5s
 
     - name: Upload FastAPI Logs
       uses: actions/upload-artifact@v2
