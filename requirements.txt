@@ -28,6 +28,7 @@ pydantic
 python-multipart
 
 #CODECARBON
+codecarbon
 arrow
 pynvml
 requests
