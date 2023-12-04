@@ -1,0 +1,35 @@
+name: FastAPI
+
+on: [push]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10"]
+
+    steps:
+    - name: Set up Python
+      uses: actions/checkout@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        python -c "import nltk; nltk.download('wordnet')"
+        python -c "import nltk; nltk.download('omw-1.4')"
+
+    - name: Run FastAPI
+      run: |
+        uvicorn src.api.server_api:app --reload
+
+    - name: Upload FastAPI Logs
+      uses: actions/upload-artifact@v2
+      with:
+        name: fastapi-logs
+        path: reports/  
