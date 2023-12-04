@@ -23,6 +23,19 @@ jobs:
         python -c "import nltk; nltk.download('wordnet')"
         python -c "import nltk; nltk.download('omw-1.4')"
 
+    - name: Copy relevant files to artifacts
+      run: |
+        mkdir -p artifacts
+        cp src/models/MLflow/test_a.py artifacts/
+            cp src/models/MLflow/test_b.py artifacts/
+            cp tests/behavioral_testing/test_directional_model_b.py artifacts/
+            cp tests/behavioral_testing/test_invariance_model_a.py artifacts/
+            cp tests/behavioral_testing/test_invariance_model_b.py artifacts/
+            cp tests/behavioral_testing/test_minimum_functionality_model_a.py artifacts/
+            cp tests/behavioral_testing/test_minimum_functionality_model_b.py artifacts/
+            cp tests/dataset_testing/test_dataset_model_a.py artifacts/
+            cp tests/dataset_testing/test_dataset_model_b.py artifacts/
+  
     - name: Run Pytest
       run: |
         pytest
