@@ -18,12 +18,13 @@ from pandas import read_csv
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
 from codecarbon import EmissionsTracker
+import pynvml
 
 
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
 
-tracker = EmissionsTracker(project_name="train_a", output_file="output_train_a.json")
+#tracker = EmissionsTracker(project_name="Train_A_Emission", output_file="output_train_a.csv")
 
 # Custom transformer using spaCy
 class Predictors(TransformerMixin):
@@ -109,22 +110,29 @@ def treebank_word_tokenizer(sentence):
 
     return lemmatized_tokens
 
-vector = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-dft = read_csv('../../data/Raw/train_sexist.csv')
-x_train = dft['text']
-y_train = dft['label_sexist']
-dft.set_index('ID')
-print("TRAIN: \n", y_train.value_counts(), end="\n\n")
-classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C= 0.2)
+try:
+    with EmissionsTracker(project_name="Train_A_Emission", output_file="output_train_a.csv") as tracker:
+        vector = CountVectorizer(tokenizer=treebank_word_tokenizer, ngram_range=(1, 2))
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        dft = read_csv('../../data/Raw/train_sexist.csv')
+        x_train = dft['text']
+        y_train = dft['label_sexist']
+        dft.set_index('ID')
+        print("TRAIN: \n", y_train.value_counts(), end="\n\n")
+        classifier = svm.LinearSVC(max_iter=10000, class_weight='balanced', C=0.2)
 
-# Create the pipeline
-pipe_sexism = Pipeline([("cleaner", Predictors()),
-('vectorizer', vector),
-('classifier', classifier)])
+        # Create the pipeline
+        pipe_sexism = Pipeline([("cleaner", Predictors()),
+                                ('vectorizer', vector),
+                                ('classifier', classifier)])
 
-with tracker:
-    pipe_sexism.fit(x_train, y_train)
+        pipe_sexism.fit(x_train, y_train)
 
-with open('../../models/train_a.pkl', 'wb') as file_train_a:
-    pickle.dump(pipe_sexism, file_train_a)
+        with open('../../models/train_a.pkl', 'wb') as file_train_a:
+            pickle.dump(pipe_sexism, file_train_a)
+
+except pynvml.NVMLError as e:
+    if e.value == pynvml.NVMLError_NotSupported:
+        print("Attenzione: Il monitoraggio delle emissioni non è supportato sulla tua GPU.")
+    else:
+        print(f"Errore sconosciuto di pynvml: {e}")
