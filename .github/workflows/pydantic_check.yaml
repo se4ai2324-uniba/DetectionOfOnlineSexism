@@ -1,4 +1,4 @@
-name: Pydantic Check
+name: Pydantic
 
 on: [push]
 
@@ -21,8 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pydantic
-        pip install -U scikit-learn
+        pip install -r requirements.txt
 
     - name: Running Pydantic
       run: |
