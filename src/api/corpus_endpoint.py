@@ -123,27 +123,27 @@ preprocessing_B = {
 }
 
 message_not_sexist= {
-    "prediction": "The message has been categorized as not sexist."
+    "prediction": "not_sexist"
 }
 
 message_sexist= {
-    "prediction": "The message has been categorized as sexist."
+    "prediction": "sexist"
 }
 
 message_prejudiced_discussions = {
-    "prediction": "The category of sexism is 'prejudiced discussions'."
+    "prediction": "1"
 }
 
 message_animosity = {
-    "prediction": "The category of sexism is 'animosity'."
+    "prediction": "2"
 }
 
 message_derogation = {
-    "prediction": "The category of sexism is 'derogation'."
+    "prediction": "3"
 }
 
 message_threats = {
-    "prediction": "The category of sexism is 'threats'."
+    "prediction": "4"
 }
 
 
@@ -163,6 +163,7 @@ except ValidationError as e:
 
 
 def predict_sexism(message):
+    print
     predicted_label = sexism_model.predict([message])[0]
     if predicted_label == "not sexist":
         return  message_not_sexist

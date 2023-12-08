@@ -2,12 +2,15 @@ FROM python:3.10-slim
 
 # Install pip requirements
 COPY requirements.txt requirements.txt
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
 RUN python -m nltk.downloader wordnet
 RUN python -m nltk.downloader omw-1.4
 
 WORKDIR /
+
 COPY . .
 
 EXPOSE 8000

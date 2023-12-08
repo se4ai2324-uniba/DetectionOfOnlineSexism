@@ -1,9 +1,15 @@
 version: '3.4'
 
 services:
-  web:
-    image: detectiononlinesexism
-    build:
-      context: .
+  backend:
+    build: . # Assicurati che questo punti alla directory con il Dockerfile corretto per il servizio web
+    image: detectiononlinesexism_backend
     ports:
-      - 8000:8000
+      - "8000:8000"
+  
+  frontend:
+    build: 
+      context: frontend # Assicurati che questo punti alla directory con il Dockerfile del frontend
+    image: detectiononlinesexism_frontend
+    ports:
+      - "8080:8080"
