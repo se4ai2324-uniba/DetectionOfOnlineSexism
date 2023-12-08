@@ -5,12 +5,18 @@ Detection Of Online Sexism
 ![fastapi](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/actions/workflows/fastapi_check.yaml/badge.svg)
 
 
-The project described in this documentation has been developed for the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge on CodaLab by Grazia Perna, Maria Elena Zaza and Francesco Brescia in which two models have been implemented.
+The system, developed by Grazia Perna, Maria Elena Zaza, and Francesco Brescia, addresses the SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS) challenge hosted on CodaLab. The primary aim of this initiative is to create and implement models capable of identifying and analyzing sexist content in online textual data. This documentation provides an overview of the methodologies employed, including data preprocessing techniques and the application of advanced machine learning models, to tackle the challenge effectively. The project underscores the importance of developing tools to foster a more inclusive and respectful online environment.
 
-Before training the models, the used data was preprocessed to remove spaces, convert text to lowercase and eliminate punctuation. Other techniques like tokenization and lemmatization (for task A) were also used here.
-The preprocessed text was then inserted into a CountVectorizer, which transformed the text into numerical features suitable for classification.
+The initial phase of the project involved the preprocessing of the dataset. This step was crucial to ensure the effectiveness of the models. The preprocessing techniques included:
+- Removing Extra Spaces: Ensuring that the text data is free from unnecessary spaces which could affect the model's interpretation.
+- Converting Text to Lowercase: Standardizing the text data by converting all characters to lowercase to maintain uniformity.
+- Eliminating Punctuation: Removing punctuation marks to reduce the complexity of the text and focus on the content.
+- Tokenization: Breaking down the text into smaller units (tokens) for better analysis.
+- Lemmatization (Task A specific): Reducing words to their base or root form, which is particularly beneficial for linguistic analysis.
 
-The models have two hierarchical tasks:
+Post-preprocessing, the text data was subjected to feature extraction. This involved the use of a CountVectorizer, which transformed the textual data into numerical features. These features were then utilized for classification purposes in the models.
+
+The challenge have two hierarchical tasks:
 - TASK A - Sexism Detection: for detecting whether a post is sexist by using the LinearSVC classifier.
 - TASK B - Category of Sexism: for assigning to each of the sexist texts one of the following categories:
     - threats
@@ -18,7 +24,7 @@ The models have two hierarchical tasks:
     - animosity
     - prejudiced discussions
 
-To evaluate the performance of the models the GriSearchCV was employed for performing the hyperparameter tuning in order to determine the optimal values of the models. It uses the Cross-Validation method, fixed to 10.
+To conclude, for both task the system utilizes the SVM model in order to compute the two tasks and to evaluate the performance of the models the GriSearchCV was employed for performing the hyperparameter tuning in order to determine the optimal values of the models. It uses the Cross-Validation method, fixed to 10.
 
 The project, the paper and a simple demo are available at: https://github.com/graziaperna/NLP-project.
 
