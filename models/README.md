@@ -148,3 +148,7 @@ By addressing these ethical considerations, this project to contribute responsib
 ## Caveats and Recommendations
 
 A very huge limitation is that the dataset considers the context in which the message are used. That can change consistently the results. In addition it works only with the english language so it can be used only in certain countries.
+
+## Codecarbon Footprint
+We tested our two models with CodeCarbon in order to trace our carbon footprint. Users need to know these details so they can make informed choices about how environmentally sustainable their machine learning operations are.
+These are the results:

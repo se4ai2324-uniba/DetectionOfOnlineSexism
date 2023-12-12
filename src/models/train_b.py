@@ -17,6 +17,8 @@ from sklearn.pipeline import Pipeline
 from pandas import read_csv
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
+from codecarbon import EmissionsTracker
+import pynvml
 
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
@@ -105,20 +107,27 @@ def treebank_word_tokenizer(sentence):
 
     return lemmatized_tokens
 
-#vector that uses TreebankWordTokenizer without lemmatization
-vector_no_lemma = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-dft = read_csv('../../data/Raw/train_category.csv')
-x1_train = dft['text']
-y1_train = dft['label_category']
-dft.set_index('ID')
-print("TRAIN: \n", y1_train.value_counts(), end="\n\n")
-classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C=0.2)
-# Create the pipeline
-pipe_category = Pipeline([("cleaner", Predictors()),
-('vectorizer', vector_no_lemma),
-('classifier', classifier)])
+try:
+    with EmissionsTracker(project_name="Train_B_Emission", output_file="output_train_b.csv") as tracker:
+        vector_no_lemma = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        dft = read_csv('../../data/Raw/train_category.csv')
+        x1_train = dft['text']
+        y1_train = dft['label_category']
+        dft.set_index('ID')
+        print("TRAIN: \n", y1_train.value_counts(), end="\n\n")
+        classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C=0.2)
+        # Create the pipeline
+        pipe_category = Pipeline([("cleaner", Predictors()),
+        ('vectorizer', vector_no_lemma),
+        ('classifier', classifier)])
 
-pipe_category.fit(x1_train, y1_train)
-with open('../../models/train_b.pkl', 'wb') as file_train_b:
-    pickle.dump(pipe_category, file_train_b)
+        pipe_category.fit(x1_train, y1_train)
+        with open('../../models/train_b.pkl', 'wb') as file_train_b:
+            pickle.dump(pipe_category, file_train_b)
+
+except pynvml.NVMLError as e:
+    if e.value == pynvml.NVMLError_NotSupported:
+        print("Attenzione: Il monitoraggio delle emissioni non è supportato sulla tua GPU.")
+    else:
+        print(f"Errore sconosciuto di pynvml: {e}")
