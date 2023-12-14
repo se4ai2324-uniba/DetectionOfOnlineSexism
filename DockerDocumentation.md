@@ -4,15 +4,15 @@ Docker is a lightweight virtualization tool that allows us to isolate the develo
 
 ## Components
 
-- `Dockerfile`: The Dockerfile contains instructions for creating the Docker image. This file defines the environment and dependencies required to run our machine learning project.
+- [Dockerfile](./Dockerfile): The Dockerfile contains instructions for creating the Docker image. This file defines the environment and dependencies required to run our machine learning project.
 
-- `docker-compose.yml`: The docker-compose.yml file is used to configure the Docker service so that we can quickly start our development environment. It contains configurations for Docker services, volumes, and networks.
+- [docker-compose.yml](./docker-compose.yml): The docker-compose.yml file is used to configure the Docker service so that we can quickly start our development environment. It contains configurations for Docker services, volumes, and networks.
 
-- `requirements.txt`: This file lists all the Python dependencies required for our machine learning project. These dependencies will be installed when the Docker image is created.
+- [requirements.txt](./requirements.txt): This file lists all the Python dependencies required for our machine learning project. These dependencies will be installed when the Docker image is created.
 
-- `data/`: This folder should contain all the training and test data required for the machine learning project. Make sure the data is accessible within the Docker container.
+- [data/](./data): This folder should contain all the training and test data required for the machine learning project. Make sure the data is accessible within the Docker container.
 
-- `src/`: In this folder, you may want to place our development scripts that we will use during the project. These can be mounted inside the Docker container for execution and editing.
+- [src/](./src): In this folder, you may want to place our development scripts that we will use during the project. These can be mounted inside the Docker container for execution and editing.
 
 ## Usage
 
