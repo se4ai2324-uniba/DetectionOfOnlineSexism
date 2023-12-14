@@ -1,3 +1,12 @@
+"""
+Module: corpus_endpoint
+Description: This module contains the functions and dictionaries 
+            for the api calls and their validation using Pydantic.
+Authors: Francesco Brescia
+        Maria Elena Zaza
+        Grazia Perna
+Date: 2023-12-14
+"""
 from pydantic import BaseModel, ValidationError
 from typing import List, Optional
 import pickle
@@ -68,7 +77,12 @@ main_description = {
     "title": "Detection of Online Sexism",
     "description": "An NLP model used to detect sexist messages and the type of sexism.",
     "version": "1.0",
-    "available_endpoints": ["/task", "/task/A", "/task/A/metrics", "/task/A/preprocessing", "/task/B", "/task/B/metrics", "/task/B/preprocessing"]
+    "available_endpoints": ["/task", "/task/A", 
+                            "/task/A/metrics", 
+                            "/task/A/preprocessing", 
+                            "/task/B", 
+                            "/task/B/metrics", 
+                            "/task/B/preprocessing"]
 }
 
 task = {
@@ -102,7 +116,8 @@ preprocessing_A = {
 
 task_B = {
     "title": "Task B",
-    "description": "Category of Sexism: for assigning to each of the sexist texts a category (threats, derogation, animosity, prejudiced discussions",
+    "description": "Category of Sexism: for assigning to each of the sexist texts a category " +
+                    "(threats, derogation, animosity, prejudiced discussions",
     "model": models,
     "metrics": "/task/B/metrics"
 }
@@ -122,72 +137,66 @@ preprocessing_B = {
     "lemmatizer": "No",
 }
 
-message_not_sexist= {
+
+message_prediction= {
+    "message": "null",
     "prediction": "not_sexist"
 }
 
-message_sexist= {
-    "prediction": "sexist"
-}
-
-message_prejudiced_discussions = {
-    "prediction": "1"
-}
-
-message_animosity = {
-    "prediction": "2"
-}
-
-message_derogation = {
-    "prediction": "3"
-}
-
-message_threats = {
-    "prediction": "4"
-}
-
-
 #example of validation error
 try:
-    #in this case "MoreInformation" should be a list 
+    #in this case "MoreInformation" should be a list
     invalid_task_data = {
         "title": "Invalid Task",
         "description": "Invalid Description",
         "pipeline": "Invalid Pipeline",
         "more_information": "Invalid Information"  
     }
-    
+
     invalid_task_model = TaskModel(**invalid_task_data)
 except ValidationError as e:
     print(e.json())
 
 
+def changeMessagePrediction(message, prediction):
+    message_prediction["message"] = message
+    message_prediction["prediction"] = prediction
+
 def predict_sexism(message):
-    print
+    global messageToPrint
+    messageToPrint = message
     predicted_label = sexism_model.predict([message])[0]
     if predicted_label == "not sexist":
-        return  message_not_sexist
+        changeMessagePrediction(message, "not_sexist")
+        return  message_prediction
     else:
-        return  message_sexist
+        changeMessagePrediction(message, "sexist")
+        return  message_prediction
 
 def predict_category(message):
+
     predicted_label = category_model.predict([message])[0]
     if predicted_label == "1. threats, plans to harm and incitement":
-        return message_threats
+        changeMessagePrediction(message, "threats")
+        return message_prediction
     if predicted_label == "2. derogation":
-        return  message_derogation
+        changeMessagePrediction(message, "derogation")
+        return  message_prediction
     if predicted_label == "3. animosity":
-        return  message_animosity
+        changeMessagePrediction(message, "animosity")
+        return  message_prediction
     if predicted_label == "4. prejudiced discussions":
-        return  message_prejudiced_discussions
-    
+        changeMessagePrediction(message, "prejudiced_discussions")
+        return  message_prediction
+
+
 #validation of right endpoints
-message_not_sexist_model = PredictionModel(**message_not_sexist)
-message_sexist_model = PredictionModel(**message_sexist)
-message_sexist_model = PredictionModel(**message_prejudiced_discussions)
-message_sexist_model = PredictionModel(**message_animosity)
-message_sexist_model = PredictionModel(**message_derogation)
-message_sexist_model = PredictionModel(**message_threats)
+message_not_sexist_model = PredictionModel(**message_prediction)
+message_sexist_model = PredictionModel(**message_prediction)
+message_sexist_model = PredictionModel(**message_prediction)
+message_sexist_model = PredictionModel(**message_prediction)
+message_sexist_model = PredictionModel(**message_prediction)
+message_sexist_model = PredictionModel(**message_prediction)
 main_description_model = MainDescriptionModel(**main_description)
 task_model = TaskModel(**task)
 task_A_model = SubTaskModel(**task_A)
