@@ -12,6 +12,8 @@ Docker is a lightweight virtualization tool that allows us to isolate the develo
 
 - `data/`: This folder should contain all the training and test data required for the machine learning project. Make sure the data is accessible within the Docker container.
 
+- `src/`: In this folder, you may want to place our development scripts that we will use during the project. These can be mounted inside the Docker container for execution and editing.
+
 ## Usage
 
 To use this Docker environment for our machine learning project, follow these steps:
