@@ -47,7 +47,7 @@ You can now start working inside the container.
 
 5. Access the Docker development environment and begin working on our machine learning projects. In our case, we can se the following dashboard:
 
-![Docker Dashboard](./references/images_doc/DockerDashboard.png)
+![Docker Dashboard](../images_doc/DockerDashboard.png)
 
 6. When you're done, you can stop the Docker container with the following command:
 
