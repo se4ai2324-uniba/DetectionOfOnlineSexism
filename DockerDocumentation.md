@@ -1,6 +1,8 @@
+# Docker
+
 Docker is a lightweight virtualization tool that allows us to isolate the development environment and ensure the reproducibility of our experiments.
 
-## Docker Components Contents
+## Components
 
 - `Dockerfile`: The Dockerfile contains instructions for creating the Docker image. This file defines the environment and dependencies required to run our machine learning project.
 
@@ -10,7 +12,7 @@ Docker is a lightweight virtualization tool that allows us to isolate the develo
 
 - `data/`: This folder should contain all the training and test data required for the machine learning project. Make sure the data is accessible within the Docker container.
 
-- `notebooks/`: In this folder, you may want to place Jupyter notebooks or other development scripts that we will use during the project. These can be mounted inside the Docker container for execution and editing.
+- `src/`: In this folder, you may want to place our development scripts that we will use during the project. These can be mounted inside the Docker container for execution and editing.
 
 ## Usage
 
@@ -43,7 +45,9 @@ docker-compose up --build
 
 You can now start working inside the container.
 
-5. Access the Docker development environment and begin working on our machine learning projects.
+5. Access the Docker development environment and begin working on our machine learning projects. In our case, we can se the following dashboard:
+
+![Docker Dashboard](./references/images_doc/DockerDashboard.png)
 
 6. When you're done, you can stop the Docker container with the following command:
 
