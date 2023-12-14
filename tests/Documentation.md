@@ -20,6 +20,9 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
 This type of test creates messages with distinct tokens and use the predictive models of task A and B to obtain the predicted labels for these messages. The primary objective is to assert that the predicted labels for messages featuring different tokens are not identical. So this test is designed to verify that the model can distinguish between specific tokens and generate varying predictions based on the token used in the input message.
 
+#### Model A
+[image](./references/images_doc/DirectionalTest_model_a.png)
+
 ### Invariance Test
 
 The objective of this test is to ensure that the model's classification of a message is not influenced by the choice of synonyms like "send" or "give." The test aims to confirm that the model maintains its ability to recognize and categorize messages consistently even when variations in language are introduced. This evaluation is essential for assessing the robustness of the model's discriminatory language detection across different expressions with similar meanings.
