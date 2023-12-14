@@ -108,7 +108,7 @@ def treebank_word_tokenizer(sentence):
     return lemmatized_tokens
 
 try:
-    with EmissionsTracker(project_name="Train_B_Emission", output_file="output_train_b.csv") as tracker:
+    with EmissionsTracker(project_name="Train_B_Emission", output_file="output_codecarbon/output_train_b.csv") as tracker:
         vector_no_lemma = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         dft = read_csv('../../data/Raw/train_category.csv')
