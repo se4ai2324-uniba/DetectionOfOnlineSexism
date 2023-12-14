@@ -1,6 +1,8 @@
+# Docker
+
 Docker is a lightweight virtualization tool that allows us to isolate the development environment and ensure the reproducibility of our experiments.
 
-## Docker Components Contents
+## Components
 
 - `Dockerfile`: The Dockerfile contains instructions for creating the Docker image. This file defines the environment and dependencies required to run our machine learning project.
 
@@ -9,8 +11,6 @@ Docker is a lightweight virtualization tool that allows us to isolate the develo
 - `requirements.txt`: This file lists all the Python dependencies required for our machine learning project. These dependencies will be installed when the Docker image is created.
 
 - `data/`: This folder should contain all the training and test data required for the machine learning project. Make sure the data is accessible within the Docker container.
-
-- `notebooks/`: In this folder, you may want to place Jupyter notebooks or other development scripts that we will use during the project. These can be mounted inside the Docker container for execution and editing.
 
 ## Usage
 
