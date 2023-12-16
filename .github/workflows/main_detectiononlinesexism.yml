@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_266b0402e98448838b4694e5856af35d }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_a20c353542a24a2e8cd89226b7a7c2ee }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_4bb4a28fee3b42328c4d7fd8f08cef05 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_46d70736a6874612ade3e7070487a704 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_266b0402e98448838b4694e5856af35d }}/Test:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_4bb4a28fee3b42328c4d7fd8f08cef05 }}/francebrescia / detectiononlinesexism:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'detectiononlinesexism'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a95d0682f3734b6c868ce79b2b242310 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_266b0402e98448838b4694e5856af35d }}/Test:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ccf243226bc54b92bb703acdd0b18b87 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_4bb4a28fee3b42328c4d7fd8f08cef05 }}/francebrescia / detectiononlinesexism:${{ github.sha }}'
