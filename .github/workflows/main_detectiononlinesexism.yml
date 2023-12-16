@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_46d9ab6514c74e8184ca854d721e764f }}/francebrescia / detectiononlinesexism_backend:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_46d9ab6514c74e8184ca854d721e764f }}/francebrescia / detectiononlinesexism:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'detectiononlinesexism'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_af58e23be602483d8bd5aa8197c0c3e3 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_46d9ab6514c74e8184ca854d721e764f }}/francebrescia / detectiononlinesexism_backend:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_46d9ab6514c74e8184ca854d721e764f }}/francebrescia / detectiononlinesexism:${{ github.sha }}'
