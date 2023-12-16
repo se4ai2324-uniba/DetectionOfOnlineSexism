@@ -3,13 +3,13 @@ version: '3.4'
 services:
   backend:
     build: .
-    image: detectiononlinesexism_backend
+    image: francebrescia/detectiononlinesexism_backend
     ports:
       - "8000:8000"
   
   frontend:
     build: 
       context: frontend
-    image: detectiononlinesexism_frontend
+    image: francebrescia/detectiononlinesexism_frontend
     ports:
       - "8080:8080"
