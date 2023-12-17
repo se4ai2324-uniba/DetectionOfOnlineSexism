@@ -9,7 +9,9 @@ services:
   
   frontend:
     build: 
-      context: frontend
+      context: ./frontend
+      dockerfile: Dockerfile
     image: detectiononlinesexism_frontend
     ports:
       - "8080:8080"
+    depends_on: [backend]
