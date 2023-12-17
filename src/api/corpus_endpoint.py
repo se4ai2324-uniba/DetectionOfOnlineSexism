@@ -1,21 +1,27 @@
 """
-Module: corpus_endpoint
-Description: This module contains the functions and dictionaries 
-            for the api calls and their validation using Pydantic.
-Authors: Francesco Brescia
-        Maria Elena Zaza
-        Grazia Perna
-Date: 2023-12-14
+    Module: corpus_endpoint
+    Description: This module contains the functions and dictionaries 
+                for the api calls and their validation using Pydantic.
+    Authors: Francesco Brescia
+            Maria Elena Zaza
+            Grazia Perna
+    Date: 2023-12-14
 """
-from pydantic import BaseModel, ValidationError
-from typing import List, Optional
+#pylint: disable=wrong-import-position
+#pylint: disable=import-error
+#pylint: disable=unused-import
 import pickle
 import os
 import sys
-
+from typing import List, Optional
 sys.path.append(os.getcwd()+"/src/models/")
 import train_a
 import train_b
+from pydantic import BaseModel, ValidationError
+
+
+
+
 
 # Percorso alla cartella genitore della cartella corrente
 parent_directory = os.path.dirname(os.path.dirname(os.getcwd()))
@@ -38,27 +44,65 @@ with open(category_model_path, 'rb') as file:
 
 
 class PredictionModel(BaseModel):
+    """
+    Class: PredictionModel
+    Description: This class contains:
+    - prediction: str
+    """
     prediction: str
 
 class MainDescriptionModel(BaseModel):
+    """
+    Class: PredictionModel
+    Description: This class contains:
+    - title: str
+    - description: str
+    - version: str
+    - available_endpoints: List[str]
+    """
     title: str
     description: str
     version: str
     available_endpoints: List[str]
 
 class TaskModel(BaseModel):
+    """
+    Class: PredictionModel
+    Description: This class contains:
+    - title: str
+    - description: str
+    - pipeline: str
+    - more_information: List[str]
+    """
     title: str
     description: str
     pipeline: str
     more_information: List[str]
 
 class SubTaskModel(BaseModel):
+    """
+    Class: PredictionModel
+    Description: This class contains:
+    - title: str
+    - description: str
+    - model: List[str]
+    - metrics: str
+    """
     title: str
     description: str
     model: List[str]
     metrics: str
 
 class MetricsModel(BaseModel):
+    """
+    Class: PredictionModel
+    Description: This class contains:
+    - title: str
+    - model: str
+    - f1: float
+    - recall: float
+    - precision: float
+    """
     title: str
     model: str
     f1: float
@@ -66,6 +110,14 @@ class MetricsModel(BaseModel):
     precision: float
 
 class PreprocessingModel(BaseModel):
+    """
+    Class: PredictionModel
+    Description: This class contains:
+    - title: str
+    - tokenizer: str
+    - vectorizer: str
+    - lemmatizer: Optional[str] = None
+    """
     title: str
     tokenizer: str
     vectorizer: str
@@ -158,36 +210,45 @@ except ValidationError as e:
     print(e.json())
 
 
-def changeMessagePrediction(message, prediction):
+def change_message_prediction(message, prediction):
+    """
+    Function: changeMessagePrediction(message, prediction)
+    Description: This function allows to change the te message
+                prediction dictonary according to its parameter
+    """
     message_prediction["message"] = message
     message_prediction["prediction"] = prediction
 
+
 def predict_sexism(message):
-    global messageToPrint
-    messageToPrint = message
+    """
+    Function: predict_sexism(message)
+    Description: This function allows to predict if a message is sexist or not
+    """
     predicted_label = sexism_model.predict([message])[0]
     if predicted_label == "not sexist":
-        changeMessagePrediction(message, "not_sexist")
-        return  message_prediction
+        change_message_prediction(message, "not_sexist")
     else:
-        changeMessagePrediction(message, "sexist")
-        return  message_prediction
+        change_message_prediction(message, "sexist")
+    return  message_prediction
+
 
 def predict_category(message):
-
+    """
+    Function: predict_sexism(message)
+    Description: This function allows to predict the category of sexism
+                of a message
+    """
     predicted_label = category_model.predict([message])[0]
     if predicted_label == "1. threats, plans to harm and incitement":
-        changeMessagePrediction(message, "threats")
-        return message_prediction
-    if predicted_label == "2. derogation":
-        changeMessagePrediction(message, "derogation")
-        return  message_prediction
-    if predicted_label == "3. animosity":
-        changeMessagePrediction(message, "animosity")
-        return  message_prediction
-    if predicted_label == "4. prejudiced discussions":
-        changeMessagePrediction(message, "prejudiced_discussions")
-        return  message_prediction
+        change_message_prediction(message, "threats")
+    elif predicted_label == "2. derogation":
+        change_message_prediction(message, "derogation")
+    elif predicted_label == "3. animosity":
+        change_message_prediction(message, "animosity")
+    elif predicted_label == "4. prejudiced discussions":
+        change_message_prediction(message, "prejudiced_discussions")
+    return  message_prediction
 
 
 #validation of right endpoints

@@ -4,9 +4,7 @@ Description: This module contains functions for testing model a.
 Authors: Francesco Brescia
         Maria Elena Zaza
         Grazia Perna
-Date: 2023-11-03
 """
-
 from pandas import read_csv
 import mlflow
 import mlflow.sklearn
@@ -18,7 +16,6 @@ dfs = read_csv('../../data/Raw/test_sexist.csv')
 x_test = dfs['text']
 y_test= dfs['label_sexist']
 dfs.set_index('ID')
-
 signature = infer_signature(x_test, y_test)
 print("TEST: \n", y_test.value_counts(), end="\n\n")
 

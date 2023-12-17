@@ -1,7 +1,16 @@
+"""
+    Module: make_dataset
+    Authors: Francesco Brescia
+            Maria Elena Zaza
+            Grazia Perna
+    Date: 2023-12-17
+"""
 # -*- coding: utf-8 -*-
-import click
+#pylint: disable=unused-argument
+#pylint: disable=no-value-for-parameter
 import logging
 from pathlib import Path
+import click
 from dotenv import find_dotenv, load_dotenv
 
 
@@ -17,8 +26,8 @@ def main(input_filepath, output_filepath):
 
 
 if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
+    LOG_FMT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    logging.basicConfig(level=logging.INFO, format=LOG_FMT)
 
     # not used in this stub but often useful for finding various files
     project_dir = Path(__file__).resolve().parents[2]

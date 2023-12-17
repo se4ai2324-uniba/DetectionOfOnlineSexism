@@ -12,7 +12,6 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
 from train_a import pipe_sexism, x_train, y_train, n_cpu
-from codecarbon import EmissionsTracker
 
 
 def evaluation_metrics(x, y, pipe):
