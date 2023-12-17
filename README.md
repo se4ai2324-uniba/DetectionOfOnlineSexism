@@ -117,7 +117,14 @@ Project Organization
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
     │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    ├── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    └── ── .github         <- Folder containing all the yaml files for the GitHub Actions
+            └── workflows
+                ├── fastapi_check.yaml
+                ├── main_detectionononlinesexixsm.yml
+                ├── pydantic_check.yaml
+                └── pylint_check.yaml
+
 
 
 --------
