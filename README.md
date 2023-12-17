@@ -118,12 +118,12 @@ Project Organization
     │       └── visualize.py
     │
     ├── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-    └── ── .github         <- Folder containing all the yaml files for the GitHub Actions
-            └── workflows
-                ├── fastapi_check.yaml
-                ├── main_detectionononlinesexixsm.yml
-                ├── pydantic_check.yaml
-                └── pylint_check.yaml
+    └── .github         <- Folder containing all the yaml files for the GitHub Actions
+         └── workflows
+             ├── fastapi_check.yaml
+             ├── main_detectionononlinesexixsm.yml
+             ├── pydantic_check.yaml
+             └── pylint_check.yaml
 
 
 
