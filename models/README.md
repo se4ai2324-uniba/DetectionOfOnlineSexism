@@ -154,7 +154,9 @@ We tested our two models with CodeCarbon in order to trace our carbon footprint.
 These are the results:
 
 The first image is for the first model, used to detect if a message is sexist or not.
+
 ![Emission_model_a](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/blob/main/src/models/output_codecarbon/Emission_model_a.png)
 
 The first image is for the second model, used to specify the type of sexism.
+
 ![Emission_model_b](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/blob/main/src/models/output_codecarbon/Emission_model_b.png)

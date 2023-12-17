@@ -1,9 +1,22 @@
-import pytest
-import sys, os
+"""
+Module: test_minimum_functionality_model_b
+Description: This module contains functions for doing the minimum
+functionality test on the task b
+Authors: Francesco Brescia
+        Maria Elena Zaza
+        Grazia Perna
+"""
+#pylint: disable=import-error
+#pylint: disable=unused-import
+#pylint: disable=wrong-import-position
+
+import os
+import sys
 import pickle
-from pandas import read_csv
+import pytest
 sys.path.append(os.getcwd()+"/src/models/")
 import train_b
+from pandas import read_csv
 from validation_b import evaluation_metrics
 
 os.chdir(os.getcwd() + '/../../models/')
@@ -13,38 +26,72 @@ with open(os.getcwd() + '/validation_b.pkl', 'rb') as file:
 VALUE = 0.40
 
 def test_threats_sexism():
+    """
+    Function: test_threats_sexism.
+    The test checks if the model correctly labels a message
+    as "1. threats, plans to harm and incitement" 
+    for the given input, using the pipe_category.
+    """
+
     message = "You should've hit her."
     predicted_label = pipe_category.predict([message])[0]
     if predicted_label == "1. threats, plans to harm and incitement":
-        assert True, f"The message has been categorized as a threat."
+        assert True, "The message has been categorized as a threat."
     else:
         pytest.skip("Message is not classified as threats.")
 
 def test_derogation_sexism():
+    """
+    Function: test_derogation_sexism.
+    The test checks if the model correctly labels a message as "2. derogation" 
+    for the given input, using the pipe_category.
+    """
+
     message = "If we won't fuck their women, what will they jerk off to?"
     predicted_label = pipe_category.predict([message])[0]
     if predicted_label == "2. derogation":
-        assert True, f"The message has been categorized as a derogation."
+        assert True, "The message has been categorized as a derogation."
     else:
         pytest.skip("Message is not classified as derogation.")
 
 def test_animosity_sexism():
-    message = "If it's reciprocal then it's fine... But women are just not like that so don't cuck for these thots."
+    """
+    Function: test_animosity_sexism.
+    The test checks if the model correctly labels a message as "3. animosity" 
+    for the given input, using the pipe_category.
+    """
+
+    message = "If it's reciprocal then it's fine... But women are just not"\
+        "like that so don't cuck for these thots."
     predicted_label = pipe_category.predict([message])[0]
     if predicted_label == "3. animosity":
-        assert True, f"The message has been categorized as animosity."
+        assert True, "The message has been categorized as animosity."
     else:
         pytest.skip("Message is not classified as animosity.")
 
 def test_prejudiced_discussions_sexism():
-    message = "I did. You have to have the bravery to escalate, touch her boobs etc, and work on escalating it further."
+    """
+    Function: test_prejudiced_discussions_sexism.
+    The test checks if the model correctly labels a message as "4. prejudiced discussions"
+    for the given input, using the pipe_category.
+    """
+
+    message = "I did. You have to have the bravery to escalate,"\
+        "touch her boobs etc, and work on escalating it further."
     predicted_label = pipe_category.predict([message])[0]
     if predicted_label == "4. prejudiced discussions":
-        assert True, f"The message has been categorized as a prejudiced discussions."
+        assert True, "The message has been categorized as a prejudiced discussions."
     else:
         pytest.skip("Message is not classified as prejudiced discussions.")
 
 def test_evaluation_metrics():
+    """
+    Function: test_evaluation_metrics.
+    This test evaluates precision, recall, and F1 score for the category
+    sexism prediction model using a test dataset.
+    It asserts that the obtained metrics are greater than a predefined value.
+    """
+
     dfs = read_csv('../data/Raw/test_category.csv')
 
     x1_test = dfs['text']

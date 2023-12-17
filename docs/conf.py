@@ -1,3 +1,18 @@
+"""
+Module: conf
+Description: This is the configuration file for Sphinx documentation.
+It specifies various settings for building documentation, such as the
+project name, version, theme, and output formats. Additionally, it
+includes configurations for HTML, LaTeX, and Texinfo output.
+The file also contains commented-out options that can be uncommented
+and customized as needed for the specific documentation requirements.
+Authors: Francesco Brescia
+        Maria Elena Zaza
+        Grazia Perna
+"""
+
+#pylint: disable=invalid-name
+
 # -*- coding: utf-8 -*-
 #
 # Detection Of Online Sexism documentation build configuration file, created by
@@ -10,9 +25,6 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-
-import os
-import sys
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -41,7 +53,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Detection Of Online Sexism'
+project = 'Detection Of Online Sexism'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -185,8 +197,8 @@ latex_elements = {
 latex_documents = [
     ('index',
      'Detection Of Online Sexism.tex',
-     u'Detection Of Online Sexism Documentation',
-     u"Ugur Turhan", 'manual'),
+     'Detection Of Online Sexism Documentation',
+     "Grazia Perna, Maria Elena Zaza, Francesco Brescia", 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -215,8 +227,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'Detection Of Online Sexism', u'Detection Of Online Sexism Documentation',
-     [u"Ugur Turhan"], 1)
+    ('index', 'Detection Of Online Sexism', 'Detection Of Online Sexism Documentation',
+     ["Grazia Perna", "Maria Elena Zaza", "Francesco Brescia"], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -229,8 +241,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'Detection Of Online Sexism', u'Detection Of Online Sexism Documentation',
-     u"Ugur Turhan", 'Detection Of Online Sexism',
+    ('index', 'Detection Of Online Sexism', 'Detection Of Online Sexism Documentation',
+     "Grazia Perna, Maria Elena Zaza, Francesco Brescia", 'Detection Of Online Sexism',
      'A model used for detection of online sexism.', 'Miscellaneous'),
 ]
 

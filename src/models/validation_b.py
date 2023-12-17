@@ -7,7 +7,6 @@ Authors: Francesco Brescia
 Date: 2023-11-03
 """
 import pickle
-import os
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
