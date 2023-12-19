@@ -38,9 +38,6 @@ def test_task_endpoint():
     response = client.get("/task")
     assert response.status_code == 200
     assert response.request.method == 'GET'
-    print(response.json())
-    print("ciao")
-    print(task)
     assert response.json() == task
 
 def test_task_a_endpoint():

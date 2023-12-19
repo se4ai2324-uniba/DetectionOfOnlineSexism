@@ -53,7 +53,7 @@ class PredictionModel(BaseModel):
 
 class MainDescriptionModel(BaseModel):
     """
-    Class: PredictionModel
+    Class: MainDescriptionModel
     Description: This class contains:
     - title: str
     - description: str
@@ -67,7 +67,7 @@ class MainDescriptionModel(BaseModel):
 
 class TaskModel(BaseModel):
     """
-    Class: PredictionModel
+    Class: TaskModel
     Description: This class contains:
     - title: str
     - description: str
@@ -81,7 +81,7 @@ class TaskModel(BaseModel):
 
 class SubTaskModel(BaseModel):
     """
-    Class: PredictionModel
+    Class: SubTaskModel
     Description: This class contains:
     - title: str
     - description: str
@@ -95,7 +95,7 @@ class SubTaskModel(BaseModel):
 
 class MetricsModel(BaseModel):
     """
-    Class: PredictionModel
+    Class: MetricsModel
     Description: This class contains:
     - title: str
     - model: str
@@ -111,7 +111,7 @@ class MetricsModel(BaseModel):
 
 class PreprocessingModel(BaseModel):
     """
-    Class: PredictionModel
+    Class: PreprocessingModel
     Description: This class contains:
     - title: str
     - tokenizer: str
