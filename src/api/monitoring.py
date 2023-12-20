@@ -88,7 +88,7 @@ def prediction_result_metric(
     METRIC.labels("sexist_prejudiced")
 
     def instrumentation(info: Info) -> None:
-        if info.modified_handler == "/predict":
+        if info.modified_handler == "/prediction_sexism":
             prediction_type = info.response.headers.get("X-message-prediction-type")
             if prediction_type:
                 METRIC.labels(prediction_type).observe(1.0)

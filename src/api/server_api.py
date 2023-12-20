@@ -19,7 +19,6 @@ from src.api.corpus_endpoint import main_description, task, task_A, metrics_A, p
 from src.api.corpus_endpoint import task_B, metrics_B, preprocessing_B
 from src.api.corpus_endpoint import predict_sexism, predict_category
 from src.api.monitoring import instrumentator
-import logging
 
 
 
@@ -36,9 +35,8 @@ app = FastAPI(
     title="DetectionOfOnlineSexism")
 
 instrumentator.instrument(app).expose(app, include_in_schema=False, should_gzip=True)
-logging.basicConfig(level=logging.DEBUG)
 origins = [
-    "http://localhost:8080",
+    "http://localhost:8000",
 ]
 
 app.add_middleware(
