@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://detectiononlinesexismcontainer.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_7aae2c7ab4be423bab36a5f4298a0e53 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_6ee6f3ae9d494edc979d17e23b2b94e2 }}
+        registry: https://index.docker.io/v1/
+        username: ${{ secrets.AzureAppService_ContainerUsername_3045c2507ece4c97813ec5b34131b5d6 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_0c26901ef9d54fa1a6f61807b0f679c8 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: detectiononlinesexismcontainer.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_7aae2c7ab4be423bab36a5f4298a0e53 }}/backend:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_3045c2507ece4c97813ec5b34131b5d6 }}/francebrescia / detectiononlinesexism_backend:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'detectiononlinesexismbackend'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_481a5045f92b44fd80a46589b524cdbb }}
-        images: 'detectiononlinesexismcontainer.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_7aae2c7ab4be423bab36a5f4298a0e53 }}/backend:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_310f7d51797a48fda357af2738e4def1 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_3045c2507ece4c97813ec5b34131b5d6 }}/francebrescia / detectiononlinesexism_backend:${{ github.sha }}'
