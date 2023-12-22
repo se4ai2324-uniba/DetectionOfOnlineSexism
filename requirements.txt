@@ -25,7 +25,9 @@ great-expectations==0.18.1
 fastapi
 uvicorn
 pydantic
+prometheus_client
 python-multipart
+prometheus-fastapi-instrumentator
 
 #CODECARBON
 codecarbon
