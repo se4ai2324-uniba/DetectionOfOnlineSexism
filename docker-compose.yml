@@ -6,6 +6,8 @@ services:
     image: detectiononlinesexism_backend
     ports:
       - "8000:8000"
+    expose:
+      - "8000"  # Expose the port for Prometheus to scrape
   
   frontend:
     build: 
@@ -14,3 +16,12 @@ services:
     ports:
       - "8080:8080"
     depends_on: [backend]
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - backend
