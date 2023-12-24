@@ -1,11 +1,23 @@
+"""
+Module: redoc
+Description: This script serves an API using FastAPI
+providing documentation with ReDoc.
+Authors: Francesco Brescia
+        Maria Elena Zaza
+        Grazia Perna
+Date: 2023-11-03
+"""
 import uvicorn
 from server_api import app
-
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse
 
-# Funzione per ottenere la documentazione OpenAPI
 def custom_openapi():
+    """
+    Function: custom_openapi.
+    This function customizes the OpenAPI schema for the FastAPI application,
+    specifying title, version, and description for documentation.
+    """
     if app.openapi_schema:
         return app.openapi_schema
     openapi_schema = get_openapi(
@@ -19,9 +31,12 @@ def custom_openapi():
 
 app.openapi = custom_openapi
 
-# Rotta per restituire la documentazione HTML di Redoc
 @app.get("/docs", response_class=HTMLResponse)
 async def redoc_html():
+    """
+    Function: redoc_html.
+    This function generates and returns an HTML document for ReDoc.
+    """
     return """
     <!DOCTYPE html>
     <html>
@@ -43,8 +58,6 @@ async def redoc_html():
     </body>
     </html>
     """
-
-# ... Aggiungi altre route ...
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)

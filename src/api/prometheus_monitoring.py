@@ -1,6 +1,12 @@
+"""
+Module: monitoring
+Description: This module contains functions for prometheus
+Authors: Francesco Brescia
+        Maria Elena Zaza
+        Grazia Perna
+"""
 import os
 from typing import Callable
-
 from prometheus_client import Histogram
 from prometheus_fastapi_instrumentator import Instrumentator, metrics
 from prometheus_fastapi_instrumentator.metrics import Info
@@ -14,7 +20,7 @@ instrumentator = Instrumentator(
     should_instrument_requests_inprogress=True,
     excluded_handlers=["/metrics"],
     inprogress_name="fastapi_inprogress",
-    inprogress_labels=True,
+    inprogress_labels=True
 )
 
 # Metrics
@@ -71,7 +77,12 @@ def prediction_result_metric(
     metric_subsystem: str = "",
     buckets=(0, 1),
 ) -> Callable[[Info], None]:
-    METRIC = Histogram(
+    """
+    Function: prediction_result_metric.
+    This function creates a Prometheus Histogram metric for tracking 
+    prediction outcomes in a classification model with specific label categories.
+    """
+    metric = Histogram(
         metric_name,
         metric_doc,
         labelnames=["prediction_type"],
@@ -79,19 +90,24 @@ def prediction_result_metric(
         namespace=metric_namespace,
         subsystem=metric_subsystem,
     )
-    
-    METRIC.labels("non_sexist")
-    METRIC.labels("sexist")
-    METRIC.labels("sexist_animosity")
-    METRIC.labels("sexist_threats")
-    METRIC.labels("sexist_derogation")
-    METRIC.labels("sexist_prejudiced")
+
+    metric.labels("non_sexist")
+    metric.labels("sexist")
+    metric.labels("sexist_animosity")
+    metric.labels("sexist_threats")
+    metric.labels("sexist_derogation")
+    metric.labels("sexist_prejudiced")
 
     def instrumentation(info: Info) -> None:
+        """
+        Function: instrumentation.
+        This function observes prediction outcomes for a sexism classification 
+        model and updates the corresponding Prometheus metric.
+        """
         if info.modified_handler == "/prediction_sexism":
             prediction_type = info.response.headers.get("X-message-prediction-type")
             if prediction_type:
-                METRIC.labels(prediction_type).observe(1.0)
+                metric.labels(prediction_type).observe(1.0)
 
     return instrumentation
 

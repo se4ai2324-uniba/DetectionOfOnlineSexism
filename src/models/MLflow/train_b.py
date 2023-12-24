@@ -27,7 +27,6 @@ mlflow.start_run(run_name="Experiment_4_TaskB")
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
 
-# Custom transformer using spaCy
 class Predictors(TransformerMixin):
     """
     A custom transformer class for text preprocessing using scikit-learn's TransformerMixin.
@@ -68,7 +67,6 @@ class Predictors(TransformerMixin):
         """
         return {}
 
-# Basic function to clean the text
 def clean_text(text):
     """
     This function takes a text as input, 
@@ -82,7 +80,6 @@ def clean_text(text):
         str: The cleaned and preprocessed text.
 
     """
-    # Removing spaces and converting text into lowercase
     translator = str.maketrans("", "", string.punctuation)
     text_without_punctuation = text.translate(translator)
     return text_without_punctuation.lower()
@@ -103,10 +100,8 @@ def treebank_word_tokenizer(sentence):
     tokenizer = TreebankWordTokenizer()
     lemmatizer = WordNetLemmatizer()
 
-    # Tokenize the sentence
     tokens = tokenizer.tokenize(sentence)
 
-    # Lemmatize each token
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
 
     return lemmatized_tokens
@@ -114,7 +109,6 @@ def treebank_word_tokenizer(sentence):
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 
-#vector that uses TreebankWordTokenizer without lemmatization
 vector_no_lemma = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 dft = read_csv('../../data/Raw/train_category.csv')
@@ -126,7 +120,7 @@ mlflow.log_param("max_iter", 10000)
 mlflow.log_param("class_weight", 'balanced')
 mlflow.log_param("C", 0.2)
 classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C=0.2)
-# Create the pipeline
+
 pipe_category = Pipeline([("cleaner", Predictors()),
 ('vectorizer', vector_no_lemma),
 ('classifier', classifier)])
