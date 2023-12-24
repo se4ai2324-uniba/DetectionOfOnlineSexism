@@ -7,6 +7,7 @@ Authors: Francesco Brescia
 Date: 2023-11-03
 """
 #pylint: disable=no-member
+#pylint: disable=unused-argument
 import string
 import pickle
 import os
@@ -23,7 +24,6 @@ import pynvml
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
 
-# Custom transformer using spaCy
 class Predictors(TransformerMixin):
     """
     A custom transformer class for text preprocessing using scikit-learn's TransformerMixin.
@@ -42,7 +42,7 @@ class Predictors(TransformerMixin):
         """
         return [clean_text(text) for text in x]
 
-    def fit(self, x, y=None, **fit_params): # pylint: disable=unused-argument
+    def fit(self, x, y=None, **fit_params):
         """
         Fit the transformer (no operation).
 
@@ -55,7 +55,7 @@ class Predictors(TransformerMixin):
         """
         return self
 
-    def get_params(self, deep=True): # pylint: disable=unused-argument
+    def get_params(self, deep=True):
         """
         Get the parameters of the transformer (empty dictionary).
 
@@ -64,7 +64,6 @@ class Predictors(TransformerMixin):
         """
         return {}
 
-# Basic function to clean the text
 def clean_text(text):
     """
     This function takes a text as input, 
@@ -78,7 +77,6 @@ def clean_text(text):
         str: The cleaned and preprocessed text.
 
     """
-    # Removing spaces and converting text into lowercase
     translator = str.maketrans("", "", string.punctuation)
     text_without_punctuation = text.translate(translator)
     return text_without_punctuation.lower()
@@ -99,10 +97,8 @@ def treebank_word_tokenizer(sentence):
     tokenizer = TreebankWordTokenizer()
     lemmatizer = WordNetLemmatizer()
 
-    # Tokenize the sentence
     tokens = tokenizer.tokenize(sentence)
 
-    # Lemmatize each token
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
 
     return lemmatized_tokens
@@ -118,7 +114,7 @@ try:
         dft.set_index('ID')
         print("TRAIN: \n", y1_train.value_counts(), end="\n\n")
         classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C=0.2)
-        # Create the pipeline
+
         pipe_category = Pipeline([("cleaner", Predictors()),
         ('vectorizer', vector_no_lemma),
         ('classifier', classifier)])

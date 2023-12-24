@@ -72,7 +72,7 @@ class Predictors(TransformerMixin):
 def clean_text(text):
     """
     This function takes a text as input, 
-    removes punctuation characters, 
+    removes punctuation characters
     and converts the text to lowercase.
 
     Args:

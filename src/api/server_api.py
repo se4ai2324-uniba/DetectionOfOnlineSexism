@@ -41,10 +41,10 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Elenco degli origini consentiti
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Consenti tutti i metodi, inclusi POST e OPTIONS
-    allow_headers=["*"],  # Consenti tutti gli headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")

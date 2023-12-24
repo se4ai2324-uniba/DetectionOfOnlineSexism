@@ -54,7 +54,7 @@ def test_empty_message():
     """
     message = ""
     predicted_label = pipe_sexism.predict([message])[0]
-    assert predicted_label == "not sexist"  # Sostituisci con il comportamento desiderato
+    assert predicted_label == "not sexist"
 
 def test_evaluation_metrics():
     """

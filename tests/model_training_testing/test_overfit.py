@@ -27,7 +27,6 @@ def setup_training():
     y_train = dft['label_sexist']
     dft.set_index('ID')
 
-    # Create the pipeline
     pipe_sexism = Pipeline([("cleaner", Predictors()),
     ('vectorizer', vector),
     ('classifier', classifier)])
