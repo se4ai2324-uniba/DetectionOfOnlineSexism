@@ -6,10 +6,15 @@ Authors: Francesco Brescia
         Grazia Perna
 """
 import os
+import sys
+sys.path.append(os.getcwd()+"/src/models/")
+import train_a
+import train_b
 from datetime import datetime
 import string
 import pandas as pd
-from alibi_detect.cd import KSDrift
+import pickle
+from alibi_detect.cd import ClassifierDrift
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
 from sklearn.feature_extraction.text import CountVectorizer
@@ -17,10 +22,14 @@ from sklearn.base import TransformerMixin
 
 
 
+
 COLUMN_DATA = 'text'
 SEXISM_TRAIN_DATA_PATH = "data/Raw/train_sexist.csv"
 SEXISM_TEST_DATA_PATH = "data/Raw/test_sexist.csv"
 SEXISM_VALIDATION_DATA_PATH = "data/Raw/dev_sexist.csv"
+
+SEXISM_MODEL_PATH = "models/validation_a.pkl"
+CATEGORY_MODEL_PATH = "models/validation_b.pkl"
 
 CATEGORY_TRAIN_DATA_PATH = "data/Raw/train_category.csv"
 CATEGORY_TEST_DATA_PATH = "data/Raw/test_category.csv"
@@ -132,7 +141,7 @@ def data_preprocessing(data_path):
     return Predictors().transform(texts)
 
 
-def detect_drift(train_features, test_features, validation_features):
+def detect_drift(train_features, test_features, validation_features, model):
     """
     Detect drift between train, test, and validation features.
 
@@ -146,15 +155,15 @@ def detect_drift(train_features, test_features, validation_features):
     """
 
     drift_results_train_test = create_and_perform_drift_detection(
-        train_features, test_features)
+        train_features, test_features, model)
 
     drift_results_train_validation = create_and_perform_drift_detection(
-        train_features, validation_features)
+        train_features, validation_features, model)
 
     return drift_results_train_test, drift_results_train_validation
 
 
-def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, threshold=0.1):
+def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, model, threshold=0.4):
     """
     Create and perform drift detection between two sets of features.
 
@@ -166,7 +175,9 @@ def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, thr
     Returns:
     dict: Drift detection results.
     """
-    drift_detector = KSDrift(feature_of_drift, p_val=threshold)
+   # drift_detector = KSDrift(feature_of_drift, p_val=threshold)
+    drift_detector = ClassifierDrift(p_val=threshold, model=model)
+
     drift_results = drift_detector.predict(
         feature_to_compare,
         drift_type='batch',
@@ -211,6 +222,12 @@ def log_drift_results(log_file, model_name, dataset_name, drift_results, drift_t
 
 if __name__ == "__main__":
 
+    with open(SEXISM_MODEL_PATH, 'rb') as file:
+        sexism_model = pickle.load(file)
+
+    with open(CATEGORY_MODEL_PATH, 'rb') as file:
+        category_model = pickle.load(file)
+
     sexism_train, sexism_test, sexism_validation = compute_features(
         SEXISM_TRAIN_DATA_PATH, SEXISM_TEST_DATA_PATH, SEXISM_VALIDATION_DATA_PATH
     )
@@ -219,14 +236,21 @@ if __name__ == "__main__":
         CATEGORY_TRAIN_DATA_PATH, CATEGORY_TEST_DATA_PATH, CATEGORY_VALIDATION_DATA_PATH
     )
 
+    # model_sexism_drift_results_test, model_sexism_drift_results_validation = detect_drift(
+    #     sexism_train, sexism_test, sexism_validation
+    # )
+
+    # model_category_drift_results_test, model_category_drift_results_validation = detect_drift(
+    #     category_train, category_test, category_validation
+    # )
+
     model_sexism_drift_results_test, model_sexism_drift_results_validation = detect_drift(
-        sexism_train, sexism_test, sexism_validation
+        sexism_train, sexism_test, sexism_validation, model=sexism_model
     )
 
     model_category_drift_results_test, model_category_drift_results_validation = detect_drift(
-        category_train, category_test, category_validation
+        category_train, category_test, category_validation, model=category_model
     )
-
     print("Model Sexism - Drift Detected (Test Set):",
           model_sexism_drift_results_test['data']['is_drift'])
     print("Model Sexism - Drift Detected (Validation Set):",
