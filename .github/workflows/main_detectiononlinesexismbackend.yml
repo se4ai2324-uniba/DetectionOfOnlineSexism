@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy container app to Azure Web App - detectiononlinesexism
+name: Build and deploy container app to Azure Web App - detectiononlinesexismbackend
 
 on:
   push:
@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://onlinesexismregistry.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_1cf641efa1094e0aa46d5f2a81074340 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_a6972cfc124243df8b2027e80093a819 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_ca78554dddf84cc481c3b0f1f0837298 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_faa85ec3c4ee422bbc196c0fcf84825a }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: onlinesexismregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_1cf641efa1094e0aa46d5f2a81074340 }}/frontend:${{ github.sha }}
+        tags: onlinesexismregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ca78554dddf84cc481c3b0f1f0837298 }}/onlinesexismregistry/backend:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -45,7 +45,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'detectiononlinesexism'
+        app-name: 'detectiononlinesexismbackend'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e95a7acc0304458486e5dd16015cd6b9 }}
-        images: 'onlinesexismregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_1cf641efa1094e0aa46d5f2a81074340 }}/frontend:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5ba31665d0b046058131e73c1ed72d70 }}
+        images: 'onlinesexismregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ca78554dddf84cc481c3b0f1f0837298 }}/onlinesexismregistry/backend:${{ github.sha }}'
