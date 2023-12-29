@@ -1,7 +1,7 @@
 async function classifyText() {
     const text = document.getElementById('textInput').value;
     const apiChoice = document.getElementById('apiSelection').value;
-    const apiUrl = `http://localhost:8080/${apiChoice}`;
+    const apiUrl = `/api/${apiChoice}`;  // Endpoint del reverse proxy
 
     const response = await fetch(apiUrl, {
         method: 'POST',

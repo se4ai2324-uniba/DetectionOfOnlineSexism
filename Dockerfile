@@ -17,3 +17,6 @@ EXPOSE 8000
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["uvicorn", "src.api.server_api:app", "--host", "0.0.0.0", "--port", "8000"]
+
+
+

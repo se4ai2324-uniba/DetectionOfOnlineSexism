@@ -1,9 +1,11 @@
-FROM nginx
+# Usa l'immagine base di Nginx
+FROM nginx:latest
 
 WORKDIR /frontend
 
-COPY nginx.conf /etc/nginx/conf.d/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY . /var/www/html/
 
-EXPOSE 8080
+EXPOSE 80
+
 
