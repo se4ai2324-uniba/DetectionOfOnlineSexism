@@ -7,6 +7,7 @@ Authors: Francesco Brescia
 """
 import os
 import sys
+import numpy as np
 sys.path.append(os.getcwd()+"/src/models/")
 import train_a
 import train_b
@@ -14,7 +15,7 @@ from datetime import datetime
 import string
 import pandas as pd
 import pickle
-from alibi_detect.cd import ClassifierDrift
+from alibi_detect.cd import KSDrift, ClassifierDrift
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
 from sklearn.feature_extraction.text import CountVectorizer
@@ -24,20 +25,21 @@ from sklearn.base import TransformerMixin
 
 
 COLUMN_DATA = 'text'
-SEXISM_TRAIN_DATA_PATH = "data/Raw/train_sexist.csv"
-SEXISM_TEST_DATA_PATH = "data/Raw/test_sexist.csv"
-SEXISM_VALIDATION_DATA_PATH = "data/Raw/dev_sexist.csv"
+SEXISM_TRAIN_DATA_PATH = "../../data/Raw/train_sexist.csv"
+SEXISM_TEST_DATA_PATH = "../../data/Raw/test_sexist.csv"
+SEXISM_VALIDATION_DATA_PATH = "../../data/Raw/dev_sexist.csv"
 
-SEXISM_MODEL_PATH = "models/validation_a.pkl"
-CATEGORY_MODEL_PATH = "models/validation_b.pkl"
+SEXISM_MODEL_PATH = "../../models/validation_a.pkl"
+CATEGORY_MODEL_PATH = "../../models/validation_b.pkl"
 
-CATEGORY_TRAIN_DATA_PATH = "data/Raw/train_category.csv"
-CATEGORY_TEST_DATA_PATH = "data/Raw/test_category.csv"
-CATEGORY_VALIDATION_DATA_PATH = "data/Raw/dev_category.csv"
+CATEGORY_TRAIN_DATA_PATH = "../../data/Raw/train_category.csv"
+CATEGORY_TEST_DATA_PATH = "../../data/Raw/test_category.csv"
+CATEGORY_VALIDATION_DATA_PATH = "../../data/Raw/dev_category.csv"
 
-SEXISM_LOG_FILE = "data/alibi_detect_logs/model_sexism.txt"
-CATEGORY_LOG_FILE = "data/alibi_detect_logs/model_category.txt"
+SEXISM_LOG_FILE = "../../data/alibi_detect_logs/model_sexism.txt"
+CATEGORY_LOG_FILE = "../../data/alibi_detect_logs/model_category.txt"
 
+DRIFT_THRESHOLD = 0.4
 
 
 class Predictors(TransformerMixin):
@@ -163,7 +165,7 @@ def detect_drift(train_features, test_features, validation_features, model):
     return drift_results_train_test, drift_results_train_validation
 
 
-def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, model, threshold=0.4):
+def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, model, threshold=DRIFT_THRESHOLD):
     """
     Create and perform drift detection between two sets of features.
 
@@ -175,8 +177,9 @@ def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, mod
     Returns:
     dict: Drift detection results.
     """
-   # drift_detector = KSDrift(feature_of_drift, p_val=threshold)
-    drift_detector = ClassifierDrift(p_val=threshold, model=model)
+    x_ref = np.random.rand(100, 1)
+    #drift_detector = KSDrift(feature_of_drift, p_val=threshold)
+    drift_detector = ClassifierDrift(x_ref =x_ref, p_val=threshold, model=model)
 
     drift_results = drift_detector.predict(
         feature_to_compare,
@@ -187,7 +190,7 @@ def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, mod
     return drift_results
 
 
-def log_drift_results(log_file, model_name, dataset_name, drift_results, drift_threshold=0.1):
+def log_drift_results(log_file, model_name, dataset_name, drift_results, drift_threshold=DRIFT_THRESHOLD):
     """
     Log drift detection results to a file and print a message if drift is detected.
 
