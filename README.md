@@ -41,7 +41,7 @@ Uptime Monitoring
 ------------
 We use Better Uptime to monitor the status of our website. You can check the current status and past incidents at our Better Uptime status page:
 
--Link: https://detectiononlinesexism.betteruptime.com
+- Link: https://detectiononlinesexism.betteruptime.com
 
 Project Organization
 ------------
@@ -80,7 +80,6 @@ Project Organization
     │   │
     │   ├── api            <- Scripts to crate Api using FastAPI
     │   │   ├── corpus_endpoint.py
-    │   │   ├── redoc.py
     │   │   └── server_api.py
     │   │
     │   ├── data           <- Scripts to download or generate data
@@ -146,8 +145,6 @@ Project Organization
     │   └── script.js
     └── references      <- Data dictionaries, manuals, and all other explanatory materials.
             | 
-            ├── api_doc
-            │   └── Api Documentation.html
             ├── docker_doc
             │   └── README.md
             ├── great_expectations_doc
