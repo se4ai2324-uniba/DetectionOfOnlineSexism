@@ -134,7 +134,6 @@ Project Organization
     ├── .github         <- Folder containing all the yaml files for the GitHub Actions
     │    └── workflows
     │        ├── fastapi_check.yaml
-    │        ├── main_detectionononlinesexixsm.yml
     │        ├── pydantic_check.yaml
     │        └── pylint_check.yaml
     ├── dashboards
