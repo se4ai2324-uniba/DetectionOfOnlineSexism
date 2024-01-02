@@ -35,19 +35,19 @@ http://127.0.0.1:8000/docs
 ```
 Here is showed the main window of the UI.
 
-![SwaggerUI](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/blob/main/src/api/SwaggerUI.png)
+![SwaggerUI](../../references/images_doc/SwaggerUI.png)
 
 As we can see in the picture there are two endpoint used to make the prediction of a given message. 
 
 Here there is an example of the `/prediction_sexism` endpoint.
 
-![Sexism1](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/blob/main/src/api/Sexism1.png)
+![Sexism1](../../references/images_doc/Sexism1.png)
 
 In the response body is showned the message that has been inserted from the user and the prediction.
 
-![Sexism2](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/blob/main/src/api/Sexism2.png)
+![Sexism2](../../references/images_doc/Sexism2.png)
 
 Instead here we have an example  of the `/prediction_category` endpoint. The user has to insert the message and then it will be displayed the result.
 
-![Category1](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/blob/main/src/api/Category1.png)
+![Category1](../../references/images_doc/Category1.png)
 
