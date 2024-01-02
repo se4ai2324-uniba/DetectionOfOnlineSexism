@@ -82,7 +82,6 @@ Project Organization
     │   │
     │   ├── api            <- Scripts to crate Api using FastAPI
     │   │   ├── corpus_endpoint.py
-    │   │   ├── redoc.py
     │   │   └── server_api.py
     │   │
     │   ├── data           <- Scripts to download or generate data
