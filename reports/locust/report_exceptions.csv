@@ -1,1 +1,82 @@
 Count,Message,Traceback,Nodes
+13,"list indices must be integers or slices, not str","  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 113, in prediction_category
+    input = message_category[""message""]
+",local
+3,Metrics computation failed for task A,"  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 52, in get_metrics_task_A
+    raise Exception(""Metrics computation failed for task A"")
+",local
+2,Metrics computation failed for task B,"  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 62, in get_metrics_task_B
+    raise Exception(""Metrics computation failed for task B"")
+",local
+7,Failed to get the task B description,"  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 42, in task_B_description
+    raise Exception(""Failed to get the task B description"")
+",local
+6,"list indices must be integers or slices, not str","  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 98, in prediction_sexism
+    input = message_sexism[""message""]
+",local
+2,Failed to get the task B preprocessing description,"  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 82, in task_B_preprocessing
+    raise Exception(""Failed to get the task B preprocessing description"")
+",local
+2,Failed to get the main task description,"  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 22, in main_endpoint_description
+    raise Exception(""Failed to get the main task description"")
+",local
+3,Failed to get the task A preprocessing description,"  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 72, in task_A_preprocessing
+    raise Exception(""Failed to get the task A preprocessing description"")
+",local
+2,Failed to get the main endpoint description,"  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 343, in run
+    self.execute_next_task()
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 376, in execute_next_task
+    self.execute_task(self._task_queue.pop(0))
+  File ""C:\Users\Utente\AppData\Local\Programs\Python\Python38\lib\site-packages\locust\user\task.py"", line 497, in execute_task
+    task(self.user)
+  File ""C:\Users\Utente\Desktop\DetectionOfOnlineSexism\locustfile.py"", line 11, in test_main_endpoint
+    raise Exception(""Failed to get the main endpoint description"")
+",local

@@ -1,1 +1,10 @@
 Method,Name,Error,Occurrences
+GET,/task,RemoteDisconnected('Remote end closed connection without response'),2
+GET,/task/B/preprocessing,RemoteDisconnected('Remote end closed connection without response'),2
+GET,/,RemoteDisconnected('Remote end closed connection without response'),2
+GET,/task/A/preprocessing,RemoteDisconnected('Remote end closed connection without response'),3
+GET,/task/B,RemoteDisconnected('Remote end closed connection without response'),7
+POST,/prediction_category,RemoteDisconnected('Remote end closed connection without response'),13
+GET,/task/B/metrics,RemoteDisconnected('Remote end closed connection without response'),2
+GET,/task/A/metrics,RemoteDisconnected('Remote end closed connection without response'),3
+POST,/prediction_sexism,RemoteDisconnected('Remote end closed connection without response'),6
