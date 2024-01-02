@@ -7,6 +7,8 @@ Detection Of Online Sexism
 
 The system, developed by Grazia Perna, Maria Elena Zaza, and Francesco Brescia, addresses the SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS) challenge hosted on CodaLab. The primary aim of this initiative is to create and implement models capable of identifying and analyzing sexist content in online textual data. This documentation provides an overview of the methodologies employed, including data preprocessing techniques and the application of advanced machine learning models, to tackle the challenge effectively. The project underscores the importance of developing tools to foster a more inclusive and respectful online environment.
 
+Project Description
+------------
 The initial phase of the project involved the preprocessing of the dataset. This step was crucial to ensure the effectiveness of the models. The preprocessing techniques included:
 - Removing Extra Spaces: Ensuring that the text data is free from unnecessary spaces which could affect the model's interpretation.
 - Converting Text to Lowercase: Standardizing the text data by converting all characters to lowercase to maintain uniformity.
@@ -27,6 +29,19 @@ The challenge have two hierarchical tasks:
 To conclude, for both task the system utilizes the SVM model in order to compute the two tasks and to evaluate the performance of the models the GriSearchCV was employed for performing the hyperparameter tuning in order to determine the optimal values of the models. It uses the Cross-Validation method, fixed to 10.
 
 The project, the paper and a simple demo are available at: https://github.com/graziaperna/NLP-project.
+
+Web-App Links
+------------
+The Machine Learning system was deployed by using the Microsoft Azure provider. You can access the frontend and backend of the application using the following links:
+
+- Frontend: http://4.232.4.159
+- Backend: http://4.232.4.159:8000
+
+Uptime Monitoring
+------------
+We use Better Uptime to monitor the status of our website. You can check the current status and past incidents at our Better Uptime status page:
+
+-Link: https://detectiononlinesexism.betteruptime.com
 
 Project Organization
 ------------
