@@ -33,9 +33,9 @@ jobs:
       run: |
         mkdir -p ../../data/Raw
         cp data/Raw/train_sexist.csv ../../data/Raw
-        mkdir -p models
-        cp models/validation_a.pkl models
-        cp models/validation_b.pkl models
+        mkdir -p ../../../../models
+        cp models/validation_a.pkl ../../../../models
+        cp models/validation_b.pkl ../../../../models
 
     - name: Run Pytest
       run: |
