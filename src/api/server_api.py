@@ -18,10 +18,7 @@ sys.path.append(os.getcwd()+"/DetectionOfOnlineSexism")
 from src.api.corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A
 from src.api.corpus_endpoint import task_B, metrics_B, preprocessing_B
 from src.api.corpus_endpoint import predict_sexism, predict_category
-from src.api.monitoring import instrumentator
-
-
-
+from src.api.prometheus_monitoring import instrumentator
 
 class Message(BaseModel):
     """
