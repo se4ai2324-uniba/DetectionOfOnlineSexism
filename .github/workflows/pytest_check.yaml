@@ -17,9 +17,9 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - name: Clean Python cache files
-        run: |
-          find . -type f -name "__pycache__" -exec rm -r {} +
-          find . -type f -name "*.pyc" -exec rm -f {} +
+      run: |
+        find . -type f -name "__pycache__" -exec rm -r {} +
+        find . -type f -name "*.pyc" -exec rm -f {} +
 
 
     - name: Install dependencies
