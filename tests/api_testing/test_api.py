@@ -125,7 +125,7 @@ def message_sexism():
     """
     return {"message": "When a girl gives you shit test, scare the shit out of her."}
 
-@pytest.mark.xfail
+@pytest.mark.skip(reason="no way of currently testing this as github action")
 def test_prediction_sexism_endpoint():
     """
     Function: test_prediction_sexism_endpoint.
@@ -147,7 +147,7 @@ def message_category():
     return {"message": "Fuck Claire McCaskill, she is a super twat." +
             "I am voting against her, and everyone else in Missouri should too."}
 
-@pytest.mark.xfail
+@pytest.mark.skip(reason="no way of currently testing this as github action")
 def test_prediction_category_endpoint():
     """
     Function: test_prediction_sexism_endpoint.
