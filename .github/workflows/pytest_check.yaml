@@ -32,7 +32,7 @@ jobs:
 
     - name: Run Pytest
       run: |
-        python -m pytest -v -s | true
+        python -m pytest -v -s
 
     - name: Upload Pytest Artifact
 
