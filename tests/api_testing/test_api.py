@@ -123,7 +123,6 @@ def message_sexism():
     Function: message_sexism.
     This function is used for giving a sample of a sexist message for the task A.
     """
-    # Inserisci qui un esempio di messaggio valido per i tuoi test
     return {"message": "When a girl gives you shit test, scare the shit out of her."}
 
 def test_prediction_sexism_endpoint(message):

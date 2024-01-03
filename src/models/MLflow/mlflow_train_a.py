@@ -6,7 +6,7 @@ Authors: Francesco Brescia
         Grazia Perna
 Date: 2023-11-03
 """
-
+import os
 import string
 import pickle
 import os
@@ -109,8 +109,13 @@ nltk.download('wordnet')
 nltk.download('omw-1.4')
 
 vector = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-dft = read_csv('../../data/Raw/train_sexist.csv')
+
+file_dir = os.path.dirname(__file__)
+
+PATH = os.path.join(file_dir, '..//../data/Raw/train_sexist.csv')
+
+dft = read_csv(PATH)
+
 x_train = dft['text']
 y_train = dft['label_sexist']
 dft.set_index('ID')

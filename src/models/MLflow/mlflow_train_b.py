@@ -110,8 +110,12 @@ nltk.download('wordnet')
 nltk.download('omw-1.4')
 
 vector_no_lemma = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-dft = read_csv('../../data/Raw/train_category.csv')
+
+
+file_dir = os.path.dirname(__file__)
+PATH = os.path.join(file_dir, '..//../data/Raw/train_category.csv')
+dft = read_csv(PATH)
+
 x1_train = dft['text']
 y1_train = dft['label_category']
 dft.set_index('ID')

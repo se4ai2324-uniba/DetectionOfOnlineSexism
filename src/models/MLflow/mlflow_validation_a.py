@@ -6,7 +6,7 @@ Authors: Francesco Brescia
         Grazia Perna
 Date: 2023-11-03
 """
-
+import os
 import pickle
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
@@ -40,7 +40,10 @@ def evaluation_metrics(x, y, pipe):
 
     return precision_value, recall_value, f1_value
 
-dfv = read_csv('../../data/Raw/dev_sexist.csv')
+file_dir = os.path.dirname(__file__)
+PATH = os.path.join(file_dir, '..//../data/Raw/dev_sexist.csv')
+dfv = read_csv(PATH)
+
 x_val = dfv['text']
 y_val = dfv['label_sexist']
 dfv.set_index('ID')

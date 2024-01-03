@@ -6,14 +6,19 @@ Authors: Francesco Brescia
         Grazia Perna
 Date: 2023-11-03
 """
-
+import os
 from pandas import read_csv
 import mlflow
 import mlflow.sklearn
 from mlflow.models import infer_signature
 from validation_b import pipe_category,evaluation_metrics
 
-dfs = read_csv('../../data/Raw/test_category.csv')
+
+file_dir = os.path.dirname(__file__)
+
+PATH = os.path.join(file_dir, '..//../data/Raw/test_category.csv')
+
+dfs = read_csv(PATH)
 
 x1_test = dfs['text']
 y1_test= dfs['label_category']
