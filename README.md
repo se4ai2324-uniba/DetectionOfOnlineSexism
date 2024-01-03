@@ -32,7 +32,11 @@ The project, the paper and a simple demo are available at: https://github.com/gr
 
 Web-App Links
 ------------
+<<<<<<< HEAD
 You can access the frontend and backend of the application using the following links:
+=======
+The Machine Learning system was deployed by using the Microsoft Azure provider. You can access the frontend and backend of the application using the following links:
+>>>>>>> Monitoring
 
 - Frontend: http://4.232.4.159
 - Backend: http://4.232.4.159:8000
@@ -41,7 +45,11 @@ Uptime Monitoring
 ------------
 We use Better Uptime to monitor the status of our website. You can check the current status and past incidents at our Better Uptime status page:
 
+<<<<<<< HEAD
 https://detectiononlinesexism.betteruptime.com
+=======
+- Link: https://detectiononlinesexism.betteruptime.com
+>>>>>>> Monitoring
 
 Project Organization
 ------------
@@ -67,8 +75,6 @@ Project Organization
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │                         the creator's initials, and a short `-` delimited description, e.g.
     │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     │   └── figures        <- Generated graphics and figures to be used in reporting
@@ -132,13 +138,78 @@ Project Organization
     │       └── visualize.py
     │
     ├── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-    └── .github         <- Folder containing all the yaml files for the GitHub Actions
-         └── workflows
-             ├── fastapi_check.yaml
-             ├── main_detectionononlinesexixsm.yml
-             ├── pydantic_check.yaml
-             └── pylint_check.yaml
-
+    ├── .github         <- Folder containing all the yaml files for the GitHub Actions
+    │    └── workflows
+    │        ├── fastapi_check.yaml
+    │        ├── pydantic_check.yaml
+    │        └── pylint_check.yaml
+    ├── dashboards
+    │   └── grafana.json
+    ├── frontend
+    │   ├── images
+    │   │   └── logo.png
+    │   ├── Dockerfile
+    │   ├── nginx.conf
+    │   └── script.js
+    └── references      <- Data dictionaries, manuals, and all other explanatory materials.
+            | 
+            ├── docker_doc
+            │   └── README.md
+            ├── great_expectations_doc
+            │   ├── expectations
+            │   │   ├── default_data_asset_name
+            │   │   │   └── warning.html
+            │   │   ├── my_datasource
+            │   │   │   └── training.html             
+            │   │   ├── testing_expectations_model_a.html
+            │   │   ├── testing_expectations_model_b.html
+            │   │   ├── training_expectations_model_a.html
+            │   │   ├── training_expectations_model_b.html
+            │   │   ├── validation_expectations_model_a.html
+            │   │   ├── validation_expectations_model_b.html
+            │   ├── static
+            │   │   ├── fonts
+            │   │   │   └── HKGrotesk     
+            │   │   │       ├── HKGrotesk-Bold.otf
+            │   │   │       ├── HKGrotesk-BoldItalic.otf
+            │   │   │       ├── HKGrotesk-Italic.otf
+            │   │   │       ├── HKGrotesk-Light.otf
+            │   │   │       ├── HKGrotesk-LightItalic.otf
+            │   │   │       ├── HKGrotesk-Medium.otf
+            │   │   │       ├── HKGrotesk-MediumItalic.otf
+            │   │   │       ├── HKGrotesk-Regular.otf
+            │   │   │       ├── HKGrotesk-SemiBold.otf
+            │   │   │       └── HKGrotesk-SemiBoldItalic.
+            │   │   ├── images
+            │   │   │   ├── favicon.ico
+            │   │   │   ├── glossary_scroller.gif
+            │   │   │   ├── iterative-dev-loop.png
+            │   │   │   ├── logo-long-vector.svg
+            │   │   │   ├── logo-long.png
+            │   │   │   ├── short-logo-vector.svg
+            │   │   │   ├── short-logo.png
+            │   │   │   └── validation_failed_unexpected_values.gif
+            │   │   ├── styles
+            │   │   │   ├── data_docs_custom_styles_template.css
+            │   │   │   └── data_docs_default_styles.css
+            │   └── index.html
+            └── images_doc
+                ├── ApiTest.png
+                ├── DatasetTest_model_a_1.png
+                ├── DatasetTest_model_a_2.png
+                ├── DatasetTest_model_a_3.png
+                ├── DatasetTest_model_b_1.png
+                ├── DatasetTest_model_b_2.png
+                ├── DatasetTest_model_b_3.png
+                ├── DirectionalTest_model_a.png
+                ├── DirectionalTest_model_b.png
+                ├── DockerDashboard.png
+                ├── InvarianceTest_model_a.png
+                ├── InvarianceTest_model_b.png
+                ├── MinimumTest_model_a.png
+                ├── MinimumTest_model_b.png
+                ├── PreprocessingTest.png
+                └── TrainingTest.png
 
 
 --------

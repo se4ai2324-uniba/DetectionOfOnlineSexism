@@ -18,6 +18,10 @@ sys.path.append(os.getcwd()+"/DetectionOfOnlineSexism")
 from src.api.corpus_endpoint import main_description, task, task_A, metrics_A, preprocessing_A
 from src.api.corpus_endpoint import task_B, metrics_B, preprocessing_B
 from src.api.corpus_endpoint import predict_sexism, predict_category
+from src.api.monitoring import instrumentator
+
+
+
 
 class Message(BaseModel):
     """
@@ -28,6 +32,7 @@ class Message(BaseModel):
     message: str
 
 app = FastAPI()
+instrumentator.instrument(app).expose(app, include_in_schema=False, should_gzip=True)
 
 app.add_middleware(
     CORSMiddleware,

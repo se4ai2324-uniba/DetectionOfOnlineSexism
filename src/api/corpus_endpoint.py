@@ -23,21 +23,15 @@ from pydantic import BaseModel, ValidationError
 
 
 
-# Percorso alla cartella genitore della cartella corrente
 parent_directory = os.path.dirname(os.path.dirname(os.getcwd()))
-
-# Percorso alla cartella 'models' che si trova al livello superiore rispetto a 'src'
 models_path = os.path.join(parent_directory, 'models')
 
-# Aggiungi il percorso alla cartella 'models' al sys.path
 sys.path.append(models_path)
 
-# Carica il file validation_a.pkl
 sexism_model_path = os.path.join(models_path, 'validation_a.pkl')
 with open(sexism_model_path, 'rb') as file:
     sexism_model = pickle.load(file)
 
-# Carica il file validation_b.pkl
 category_model_path = os.path.join(models_path, 'validation_b.pkl')
 with open(category_model_path, 'rb') as file:
     category_model = pickle.load(file)
@@ -197,7 +191,6 @@ message_prediction= {
 
 #example of validation error
 try:
-    #in this case "MoreInformation" should be a list
     invalid_task_data = {
         "title": "Invalid Task",
         "description": "Invalid Description",

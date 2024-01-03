@@ -143,7 +143,7 @@ def message_category():
     Function: message_category.
     This function is used for giving a sample of a sexist message for the task B.
     """
-    # Inserisci qui un esempio di messaggio valido per i tuoi test
+
     return {"message": "Fuck Claire McCaskill, she is a super twat." +
             "I am voting against her, and everyone else in Missouri should too."}
 

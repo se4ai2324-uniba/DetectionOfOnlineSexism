@@ -1,0 +1,30 @@
+[2023-12-29 10:26:33] Model: Model Sexism, Dataset: Test Set
+  Drift Detected: 0
+  p-value: [1. 1. 1. ... 1. 1. 1.]
+  distance: [7.1428571e-05 7.1428571e-05 7.1428571e-05 ... 1.4285714e-04 7.1428571e-05
+ 7.1428571e-05]
+[2023-12-29 10:26:33] Model: Model Sexism, Dataset: Validation Set
+  Drift Detected: 0
+  p-value: [1. 1. 1. ... 1. 1. 1.]
+  distance: [9.2857145e-04 7.1428571e-05 7.1428571e-05 ... 1.4285714e-04 7.1428571e-05
+ 7.1428571e-05]
+[2023-12-30 14:08:11] Model: Model Sexism, Dataset: Test Set
+  Drift Detected: 0
+  p-value: [1. 1. 1. ... 1. 1. 1.]
+  distance: [7.1428571e-05 7.1428571e-05 7.1428571e-05 ... 1.4285714e-04 7.1428571e-05
+ 7.1428571e-05]
+[2023-12-30 14:08:11] Model: Model Sexism, Dataset: Validation Set
+  Drift Detected: 0
+  p-value: [1. 1. 1. ... 1. 1. 1.]
+  distance: [9.2857145e-04 7.1428571e-05 7.1428571e-05 ... 1.4285714e-04 7.1428571e-05
+ 7.1428571e-05]
+[2024-01-02 18:58:23] Model: Model Sexism, Dataset: Test Set
+  Drift Detected: 0
+  p-value: [1. 1. 1. ... 1. 1. 1.]
+  distance: [7.1428571e-05 7.1428571e-05 7.1428571e-05 ... 1.4285714e-04 7.1428571e-05
+ 7.1428571e-05]
+[2024-01-02 18:58:23] Model: Model Sexism, Dataset: Validation Set
+  Drift Detected: 0
+  p-value: [1. 1. 1. ... 1. 1. 1.]
+  distance: [9.2857145e-04 7.1428571e-05 7.1428571e-05 ... 1.4285714e-04 7.1428571e-05
+ 7.1428571e-05]
