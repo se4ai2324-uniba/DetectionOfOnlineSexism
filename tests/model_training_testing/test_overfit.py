@@ -6,6 +6,7 @@ Authors: Francesco Brescia
         Maria Elena Zaza
         Grazia Perna
 """
+import os
 import pytest
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
@@ -22,7 +23,11 @@ def setup_training():
     comprising a cleaner, vectorizer, and classifier.
     The pipeline is returned along with the training data.
     """
-    dft = read_csv('../../data/Raw/train_sexist.csv')
+
+    file_dir = os.path.dirname(__file__)
+    PATH = os.path.join(file_dir, '..//../data/Raw/train_sexist.csv')
+    dft = read_csv(PATH)
+
     x_train = dft['text']
     y_train = dft['label_sexist']
     dft.set_index('ID')

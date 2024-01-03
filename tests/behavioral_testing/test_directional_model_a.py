@@ -19,8 +19,10 @@ import pytest
 
 
 
-os.chdir(os.getcwd() + '/../../models/')
-with open(os.getcwd() + '/validation_a.pkl', 'rb') as file:
+file_dir = os.path.dirname(__file__)
+FILE_PATH_BASE_MODEL = os.path.join(file_dir, "..//../models/validation_a.pkl")
+
+with open(FILE_PATH_BASE_MODEL, 'rb') as file:
     pipe_sexism = pickle.load(file)
 
 def test_directional():

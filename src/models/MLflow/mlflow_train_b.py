@@ -1,6 +1,6 @@
 """
-Module: train_a
-Description: This module contains functions for training model a.
+Module: train_b
+Description: This module contains functions for training model b.
 Authors: Francesco Brescia
         Maria Elena Zaza
         Grazia Perna
@@ -22,7 +22,8 @@ import dagshub
 import mlflow
 
 dagshub.init("DetectionOfOnlineSexism", "se4ai2324-uniba", mlflow=True)
-mlflow.start_run(run_name="Experiment_4_TaskA")
+mlflow.start_run(run_name="Experiment_4_TaskB")
+
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
 
@@ -108,23 +109,26 @@ def treebank_word_tokenizer(sentence):
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 
-vector = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-dft = read_csv('../../data/Raw/train_sexist.csv')
-x_train = dft['text']
-y_train = dft['label_sexist']
+vector_no_lemma = CountVectorizer(tokenizer = treebank_word_tokenizer, ngram_range=(1,2))
+
+
+file_dir = os.path.dirname(__file__)
+PATH = os.path.join(file_dir, '..//../data/Raw/train_category.csv')
+dft = read_csv(PATH)
+
+x1_train = dft['text']
+y1_train = dft['label_category']
 dft.set_index('ID')
-print("TRAIN: \n", y_train.value_counts(), end="\n\n")
+print("TRAIN: \n", y1_train.value_counts(), end="\n\n")
 mlflow.log_param("max_iter", 10000)
 mlflow.log_param("class_weight", 'balanced')
 mlflow.log_param("C", 0.2)
-classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C= 0.2)
+classifier = svm.LinearSVC(max_iter = 10000, class_weight= 'balanced', C=0.2)
 
-pipe_sexism = Pipeline([("cleaner", Predictors()),
-('vectorizer', vector),
+pipe_category = Pipeline([("cleaner", Predictors()),
+('vectorizer', vector_no_lemma),
 ('classifier', classifier)])
 
-pipe_sexism.fit(x_train, y_train)
-
-with open('../../models/train_A.pkl', 'wb') as file_train_a:
-    pickle.dump(pipe_sexism, file_train_a)
+pipe_category.fit(x1_train, y1_train)
+with open('../../models/train_B.pkl', 'wb') as file_train_b:
+    pickle.dump(pipe_category, file_train_b)

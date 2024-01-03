@@ -123,15 +123,14 @@ def message_sexism():
     Function: message_sexism.
     This function is used for giving a sample of a sexist message for the task A.
     """
-    # Inserisci qui un esempio di messaggio valido per i tuoi test
     return {"message": "When a girl gives you shit test, scare the shit out of her."}
 
-def test_prediction_sexism_endpoint(message):
+def test_prediction_sexism_endpoint():
     """
     Function: test_prediction_sexism_endpoint.
     This function is used for testing the endpoint for the prediction of sexist messages.
     """
-    response = client.post("/prediction_sexism", data=message)
+    response = client.post("/prediction_sexism", json=message_sexism)
 
     assert response.status_code == 200
     assert response.request.method == 'POST'
@@ -147,13 +146,13 @@ def message_category():
     return {"message": "Fuck Claire McCaskill, she is a super twat." +
             "I am voting against her, and everyone else in Missouri should too."}
 
-def test_prediction_category_endpoint(message):
+def test_prediction_category_endpoint():
     """
     Function: test_prediction_sexism_endpoint.
     This function is used for testing the endpoint
     for the prediction of the categoy of sexism of a message.
     """
-    response = client.post("/prediction_category", data=message)
+    response = client.post("/prediction_category", json=message_category)
 
     assert response.status_code == 200
     assert response.request.method == 'POST'

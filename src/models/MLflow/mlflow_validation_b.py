@@ -1,18 +1,18 @@
 """
 Module: validation_a
-Description: This module contains functions for validating model a.
+Description: This module contains functions for validating model b.
 Authors: Francesco Brescia
         Maria Elena Zaza
         Grazia Perna
 Date: 2023-11-03
 """
-
+import os
 import pickle
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
 from pandas import read_csv
 import mlflow
-from train_a import pipe_sexism, x_train, y_train, n_cpu
+from train_b import pipe_category, x1_train, y1_train, n_cpu
 
 def evaluation_metrics(x, y, pipe):
     """
@@ -40,14 +40,17 @@ def evaluation_metrics(x, y, pipe):
 
     return precision_value, recall_value, f1_value
 
-dfv = read_csv('../../data/Raw/dev_sexist.csv')
-x_val = dfv['text']
-y_val = dfv['label_sexist']
+file_dir = os.path.dirname(__file__)
+PATH = os.path.join(file_dir, '..//../data/Raw/dev_category.csv')
+dfv = read_csv(PATH)
+
+x1_val = dfv['text']
+y1_val = dfv['label_category']
 dfv.set_index('ID')
-print("VALIDATION: \n", y_val.value_counts(), end="\n\n")
+print("VALIDATION: \n", y1_val.value_counts(), end="\n\n")
 
 #evaluation metrics for the validation data
-precision, recall, f1 = evaluation_metrics(x_val, y_val, pipe_sexism)
+precision, recall, f1 = evaluation_metrics(x1_val, y1_val, pipe_category)
 
 mlflow.log_metric("precision_val", precision)
 mlflow.log_metric("recall_val", recall)
@@ -56,15 +59,15 @@ mlflow.log_metric("f1_val", f1)
 params = {'vectorizer__ngram_range': [(1,1),(1,2)],
           'classifier__C': [0.2, 0.4, 1],
           'classifier__class_weight': ['balanced', None]}
-pipe_optimized = GridSearchCV(pipe_sexism,param_grid=params,cv=10,
-                              scoring=make_scorer(f1_score, average="macro"),
-                              n_jobs=n_cpu-1,refit=True)
-pipe_optimized.fit(x_train, y_train)
-print("Migliori iperparametri:",pipe_optimized.best_params_)
-best_params = pipe_optimized.best_params_
-pipe_sexism.set_params(**best_params)
 
-pipe_sexism.fit(x_train, y_train)
+pipe1_optimized = GridSearchCV(pipe_category,param_grid=params,cv=10,
+                               scoring=make_scorer(f1_score, average="macro"),
+                               n_jobs=n_cpu-1,refit=True)
+pipe1_optimized.fit(x1_train, y1_train)
+print("Migliori iperparametri:",pipe1_optimized.best_params_)
+best_params = pipe1_optimized.best_params_
+pipe_category.set_params(**best_params)
+pipe_category.fit(x1_train, y1_train)
 
-with open('../../models/validation_A.pkl', 'wb') as file_validation_a:
-    pickle.dump(pipe_sexism, file_validation_a)
+with open('../../models/validation_B.pkl', 'wb') as file_validation_b:
+    pickle.dump(pipe_category, file_validation_b)

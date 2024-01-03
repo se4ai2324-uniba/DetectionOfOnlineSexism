@@ -7,12 +7,16 @@ Authors: Francesco Brescia
         Grazia Perna
 """
 #pylint: disable=import-error
+import os
 from pandas import read_csv
 from great_expectations.dataset import PandasDataset
 
-TRAINING_SOURCE_PATH = 'data/Raw/train_category.csv'
-VALIDATION_SOURCE_PATH = 'data/Raw/dev_category.csv'
-TESTING_SOURCE_PATH = 'data/Raw/test_category.csv'
+file_dir = os.path.dirname(__file__)
+
+TRAINING_SOURCE_PATH = os.path.join(file_dir, '..//../data/Raw/train_category.csv')
+VALIDATION_SOURCE_PATH = os.path.join(file_dir, '..//../data/Raw/dev_category.csv')
+TESTING_SOURCE_PATH = os.path.join(file_dir, '..//../data/Raw/test_category.csv')
+
 
 tags = ["1. threats, plans to harm and incitement",
         "2. derogation",

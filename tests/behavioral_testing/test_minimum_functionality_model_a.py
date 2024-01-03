@@ -19,8 +19,10 @@ import train_a
 from pandas import read_csv
 from validation_a import evaluation_metrics
 
-os.chdir(os.getcwd() + '/../../models/')
-with open(os.getcwd() + '/validation_a.pkl', 'rb') as file:
+file_dir = os.path.dirname(__file__)
+FILE_PATH_BASE_MODEL = os.path.join(file_dir, "..//../models/validation_a.pkl")
+
+with open(FILE_PATH_BASE_MODEL, 'rb') as file:
     pipe_sexism = pickle.load(file)
 
 VALUE = 0.70
@@ -63,7 +65,8 @@ def test_evaluation_metrics():
     model using a test dataset.
     It asserts that the obtained metrics are greater than a predefined value.
     """
-    dfs = read_csv('../data/Raw/test_sexist.csv')
+    PATH = os.path.join(file_dir, '..//../data/Raw/test_sexist.csv')
+    dfs = read_csv(PATH)
 
     x_test = dfs['text']
     y_test= dfs['label_sexist']

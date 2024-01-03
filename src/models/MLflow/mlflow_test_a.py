@@ -5,13 +5,18 @@ Authors: Francesco Brescia
         Maria Elena Zaza
         Grazia Perna
 """
+import os
 from pandas import read_csv
 import mlflow
 import mlflow.sklearn
 from mlflow.models import infer_signature
 from validation_a import pipe_sexism,evaluation_metrics
 
-dfs = read_csv('../../data/Raw/test_sexist.csv')
+file_dir = os.path.dirname(__file__)
+
+PATH = os.path.join(file_dir, '..//../data/Raw/test_sexist.csv')
+
+dfs = read_csv(PATH)
 
 x_test = dfs['text']
 y_test= dfs['label_sexist']
