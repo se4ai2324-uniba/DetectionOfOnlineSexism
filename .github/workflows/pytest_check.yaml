@@ -22,11 +22,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Copy data file
+      run: |
+        mkdir -p data/Raw
+        cp data/Raw/train_sexist.csv data/Raw/
+
     - name: Run Pytest
       run: |
         python -m pytest -v -s
 
     - name: Upload Pylint Artifact
+
       uses: actions/upload-artifact@v3
       with:
         name: pytest-report
