@@ -19,11 +19,10 @@ import pytest
 
 
 file_dir = os.path.dirname(__file__)
-FILE_PATH_BASE_MODEL = os.path.join(file_dir, "..//../models/")
+FILE_PATH_BASE_MODEL = os.path.join(file_dir, "..//../models/validation_b.pkl")
 
-os.chdir(FILE_PATH_BASE_MODEL)
-with open('/validation_b.pkl', 'rb') as file:
-    pipe_category = pickle.load(file)
+with open(FILE_PATH_BASE_MODEL, 'rb') as file:
+     pipe_category = pickle.load(file)
 
 def test_directional():
     """

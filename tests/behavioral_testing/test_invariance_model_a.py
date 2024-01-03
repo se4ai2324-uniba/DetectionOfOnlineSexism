@@ -18,8 +18,9 @@ sys.path.append(os.getcwd()+"/src/models/")
 import train_a
 
 file_dir = os.path.dirname(__file__)
-FILE_PATH_BASE_MODEL = os.path.join(file_dir, "..//../models/")
-with open('/validation_a.pkl', 'rb') as file:
+FILE_PATH_BASE_MODEL = os.path.join(file_dir, "..//../models/validation_a.pkl")
+
+with open(FILE_PATH_BASE_MODEL, 'rb') as file:
     pipe_sexism = pickle.load(file)
 
 def test_non_sexist_message():
