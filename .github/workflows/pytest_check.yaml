@@ -32,7 +32,7 @@ jobs:
     - name: Copy data file
       run: |
         mkdir -p ../../data/Raw
-        cp data/Raw/train_sexist.csv ../../models/
+        cp data/Raw/train_sexist.csv ../../data/Raw
         mkdir -p ../../models
         cp models/validation_a.pkl ../../models
         mkdir -p ../../models
