@@ -21,8 +21,6 @@ from src.api.corpus_endpoint import predict_sexism, predict_category
 from src.api.prometheus_monitoring import instrumentator
 
 
-
-
 class Message(BaseModel):
     """
     Class: Message
