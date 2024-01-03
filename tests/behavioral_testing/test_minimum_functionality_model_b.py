@@ -93,8 +93,9 @@ def test_evaluation_metrics():
     sexism prediction model using a test dataset.
     It asserts that the obtained metrics are greater than a predefined value.
     """
-
-    dfs = read_csv('../data/Raw/test_category.csv')
+    
+    PATH = os.path.join(file_dir, '..//../data/Raw/test_category.csv')
+    dfs = read_csv(PATH)
 
     x1_test = dfs['text']
     y1_test = dfs['label_category']
