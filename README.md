@@ -32,11 +32,7 @@ The project, the paper and a simple demo are available at: https://github.com/gr
 
 Web-App Links
 ------------
-<<<<<<< HEAD
-You can access the frontend and backend of the application using the following links:
-=======
 The Machine Learning system was deployed by using the Microsoft Azure provider. You can access the frontend and backend of the application using the following links:
->>>>>>> Monitoring
 
 - Frontend: http://4.232.4.159
 - Backend: http://4.232.4.159:8000
@@ -45,11 +41,7 @@ Uptime Monitoring
 ------------
 We use Better Uptime to monitor the status of our website. You can check the current status and past incidents at our Better Uptime status page:
 
-<<<<<<< HEAD
-https://detectiononlinesexism.betteruptime.com
-=======
 - Link: https://detectiononlinesexism.betteruptime.com
->>>>>>> Monitoring
 
 Project Organization
 ------------
