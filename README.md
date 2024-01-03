@@ -32,10 +32,11 @@ The project, the paper and a simple demo are available at: https://github.com/gr
 
 Web-App Links
 ------------
-The Machine Learning system was deployed by using the Microsoft Azure provider. You can access the frontend and backend of the application using the following links:
+The Machine Learning system was deployed by using the Microsoft Azure provider. You can access the frontend and backend of the application using and prometheus dashboard the following links:
 
-- Frontend: http://4.232.4.159
-- Backend: http://4.232.4.159:8000
+- Frontend: http://4.232.4.253
+- Backend: http://4.232.4.253:8000
+- Prometheus: https://prometheusonlinesexism.azurewebsites.net
 
 Uptime Monitoring
 ------------
