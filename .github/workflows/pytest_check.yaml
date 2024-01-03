@@ -34,13 +34,9 @@ jobs:
       run: |
         mkdir -p ../../data/Raw
         cp data/Raw/train_sexist.csv ../../data/Raw
-        mkdir -p $GITHUB_WORKSPACE/../../models
-        cp models/validation_a.pkl $GITHUB_WORKSPACE/../../models
-        cp models/validation_b.pkl $GITHUB_WORKSPACE/../../models
-
-    - name: List current directory
-      run: |
-        ls -R
+        mkdir -p $GITHUB_WORKSPACE/models
+        cp models/validation_a.pkl $GITHUB_WORKSPACE/models
+        cp models/validation_b.pkl $GITHUB_WORKSPACE/models
 
     - name: Run Pytest
       run: |

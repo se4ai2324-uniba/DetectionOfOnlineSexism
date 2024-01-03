@@ -17,8 +17,9 @@ import pytest
 sys.path.append(os.getcwd()+"/src/models/")
 import train_b
 
-os.chdir(os.getcwd() + '/../../models/')
-with open(os.getcwd() + '/validation_b.pkl', 'rb') as file:
+file_dir = os.path.dirname(__file__)
+FILE_PATH_BASE_MODEL = os.path.join(file_dir, "..//../models/")
+with open('/validation_b.pkl', 'rb') as file:
     pipe_category = pickle.load(file)
 
 def test_invariance_category():
