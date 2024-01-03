@@ -24,7 +24,7 @@ jobs:
 
     - name: Run Pytest
       run: |
-        coverage run -m pytest  -v -s  
+        run -m pytest  -v -s  
 
     - name: Upload Pylint Artifact
       uses: actions/upload-artifact@v3
