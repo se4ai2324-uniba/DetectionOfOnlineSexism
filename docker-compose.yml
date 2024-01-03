@@ -4,13 +4,11 @@ services:
   frontend:
     build: 
       context: ./frontend
-    image: onlinesexismregistry.azurecr.io/frontend
     ports:
       - "80:80"
 
   backend:
     build: .
-    image: onlinesexismregistry.azurecr.io/backend
     ports:
       - "8000:8000"
 
