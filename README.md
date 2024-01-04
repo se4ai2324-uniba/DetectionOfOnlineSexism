@@ -50,8 +50,11 @@ Project Organization
 ------------
 
     ├── LICENSE
+    │
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
+    │
+    ├── README.md          <- The top-level README for developers using this project
+    │
     ├── data
     │   ├── Raw            <- Datasets used for training, validation and test.
     │   │    ├── dev_category.csv
@@ -78,17 +81,25 @@ Project Organization
     │                         generated with `pip freeze > requirements.txt`
     │
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
+    │
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
     │   ├── api            <- Scripts to crate Api using FastAPI
     │   │   ├── corpus_endpoint.py
+    │   │   ├── dashboards
+    │   │   │   └── grafana.json
+    │   │   │
+    │   │   ├── prometheus_monitoring.py
+    │   │   ├── README.md
     │   │   └── server_api.py
     │   │
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
     │   │
     │   ├── features       <- Scripts to turn raw data into features for modeling
+    │   │   ├── drift_detection.py
+    │   │   ├── README.md
     │   │   └── build_features.py
     │   │
     │   ├── models         <- Scripts to train models and then use trained models to make
@@ -100,13 +111,21 @@ Project Organization
     │   │   ├── validation_a.py
     │   │   ├── validation_b.py
     │   │   ├── mlruns
-    │   │   └── MLflow
+    │   │   ├── output_codecarbon
+    │   │   │   ├── output_train_a.csv
+    │   │   │   ├── output_train_a.csv.bak
+    │   │   │   ├── output_train_b.csv
+    │   │   │   ├── output_train_b.csv.bak
+    │   │   │   └── README.md
+    │   │   │
+    │   │   └── MLflow
     │   │       ├── test_a.py
     │   │       ├── test_b.py
     │   │       ├── train_a.py
     │   │       ├── train_b.py
     │   │       ├── validation_a.py
     │   │       └── validation_b.py
+    │   │
     │   ├── tests         <- Scripts to test using Pytest
     │   │   ├── api_testing
     │   │   │   └── test_api.py
@@ -132,79 +151,54 @@ Project Organization
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
     │
-    ├── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    ├── tox.ini         <- tox file with settings for running tox; see tox.readthedocs.io
+    │
     ├── .github         <- Folder containing all the yaml files for the GitHub Actions
     │    └── workflows
     │        ├── fastapi_check.yaml
     │        ├── pydantic_check.yaml
-    │        └── pylint_check.yaml
-    ├── dashboards
-    │   └── grafana.json
+    │        ├── alibi-detect_check.yaml    
+    │        ├── pylint_check.yaml
+    │        └── README.md
+    │
     ├── frontend
     │   ├── images
     │   │   └── logo.png
     │   ├── Dockerfile
     │   ├── nginx.conf
     │   └── script.js
+    │
     └── references      <- Data dictionaries, manuals, and all other explanatory materials.
             | 
             ├── docker_doc
             │   └── README.md
+            │
             ├── great_expectations_doc
             │   ├── expectations
             │   │   ├── default_data_asset_name
-            │   │   │   └── warning.html
+            │   │   │
             │   │   ├── my_datasource
-            │   │   │   └── training.html             
+            │   │   │   └── training.html  
+            │   │   │     
             │   │   ├── testing_expectations_model_a.html
             │   │   ├── testing_expectations_model_b.html
             │   │   ├── training_expectations_model_a.html
             │   │   ├── training_expectations_model_b.html
             │   │   ├── validation_expectations_model_a.html
             │   │   ├── validation_expectations_model_b.html
+            │   │   │
             │   ├── static
             │   │   ├── fonts
-            │   │   │   └── HKGrotesk     
-            │   │   │       ├── HKGrotesk-Bold.otf
-            │   │   │       ├── HKGrotesk-BoldItalic.otf
-            │   │   │       ├── HKGrotesk-Italic.otf
-            │   │   │       ├── HKGrotesk-Light.otf
-            │   │   │       ├── HKGrotesk-LightItalic.otf
-            │   │   │       ├── HKGrotesk-Medium.otf
-            │   │   │       ├── HKGrotesk-MediumItalic.otf
-            │   │   │       ├── HKGrotesk-Regular.otf
-            │   │   │       ├── HKGrotesk-SemiBold.otf
-            │   │   │       └── HKGrotesk-SemiBoldItalic.
+            │   │   │   └── HKGrotesk
+            │   │   │
             │   │   ├── images
-            │   │   │   ├── favicon.ico
-            │   │   │   ├── glossary_scroller.gif
-            │   │   │   ├── iterative-dev-loop.png
-            │   │   │   ├── logo-long-vector.svg
-            │   │   │   ├── logo-long.png
-            │   │   │   ├── short-logo-vector.svg
-            │   │   │   ├── short-logo.png
-            │   │   │   └── validation_failed_unexpected_values.gif
             │   │   ├── styles
             │   │   │   ├── data_docs_custom_styles_template.css
             │   │   │   └── data_docs_default_styles.css
+            │   │   │
             │   └── index.html
+            │
             └── images_doc
-                ├── ApiTest.png
-                ├── DatasetTest_model_a_1.png
-                ├── DatasetTest_model_a_2.png
-                ├── DatasetTest_model_a_3.png
-                ├── DatasetTest_model_b_1.png
-                ├── DatasetTest_model_b_2.png
-                ├── DatasetTest_model_b_3.png
-                ├── DirectionalTest_model_a.png
-                ├── DirectionalTest_model_b.png
-                ├── DockerDashboard.png
-                ├── InvarianceTest_model_a.png
-                ├── InvarianceTest_model_b.png
-                ├── MinimumTest_model_a.png
-                ├── MinimumTest_model_b.png
-                ├── PreprocessingTest.png
-                └── TrainingTest.png
 
 
 --------
