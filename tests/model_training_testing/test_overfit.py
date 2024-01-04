@@ -50,14 +50,14 @@ def compute_accuracy_on_batch(pipe, x_batch, y_batch):
     accuracy = accuracy_score(y_batch, y_pred)
     return accuracy
 
-def test_decreasing_loss(setup):
+def test_decreasing_loss(setup_training):
     """
     Module: test_decreasing_loss
     Description: This test, utilizing a training setup function,
     checks if the accuracy of the sexism prediction model on
     the training data is approximately 95%, allowing for a 5% margin of error.
     """
-    pipe_sexism, x_train, y_train = setup
+    pipe_sexism, x_train, y_train = setup_training
 
     accuracy = compute_accuracy_on_batch(pipe_sexism, x_train, y_train)
     assert accuracy == pytest.approx(0.95, abs=0.05)

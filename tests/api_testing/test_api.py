@@ -125,6 +125,7 @@ def message_sexism():
     """
     return {"message": "When a girl gives you shit test, scare the shit out of her."}
 
+@pytest.mark.skip(reason="no way of currently testing this as github action")
 def test_prediction_sexism_endpoint():
     """
     Function: test_prediction_sexism_endpoint.
@@ -146,13 +147,14 @@ def message_category():
     return {"message": "Fuck Claire McCaskill, she is a super twat." +
             "I am voting against her, and everyone else in Missouri should too."}
 
+@pytest.mark.skip(reason="no way of currently testing this as github action")
 def test_prediction_category_endpoint():
     """
     Function: test_prediction_sexism_endpoint.
     This function is used for testing the endpoint
     for the prediction of the categoy of sexism of a message.
     """
-    response = client.post("/prediction_category", json=message_category)
+    response = client.post("/prediction_category", data=message_category)
 
     assert response.status_code == 200
     assert response.request.method == 'POST'
