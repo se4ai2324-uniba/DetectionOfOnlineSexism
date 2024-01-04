@@ -4,6 +4,7 @@ Detection Of Online Sexism
 ![pydantic](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/actions/workflows/pydantic_check.yaml/badge.svg)
 ![fastapi](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/actions/workflows/fastapi_check.yaml/badge.svg)
 ![pytest](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/actions/workflows/pytest_check.yaml/badge.svg)
+![drift-detection](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/actions/workflows/alibi-detect_check.yaml/badge.svg)
 
 
 The system, developed by Grazia Perna, Maria Elena Zaza, and Francesco Brescia, addresses the SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS) challenge hosted on CodaLab. The primary aim of this initiative is to create and implement models capable of identifying and analyzing sexist content in online textual data. This documentation provides an overview of the methodologies employed, including data preprocessing techniques and the application of advanced machine learning models, to tackle the challenge effectively. The project underscores the importance of developing tools to foster a more inclusive and respectful online environment.
