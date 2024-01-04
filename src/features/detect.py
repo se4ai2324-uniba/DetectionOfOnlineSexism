@@ -5,30 +5,44 @@ Authors: Francesco Brescia
         Maria Elena Zaza
         Grazia Perna
 """
+#pylint: disable=import-error
+#pylint: disable=unused-import
+#pylint: disable=wrong-import-position
+
 import os
+import sys
 from datetime import datetime
+import pickle
 import string
+sys.path.append(os.getcwd()+"/src/models/")
+import train_a
+import train_b
 import pandas as pd
 from alibi_detect.cd import KSDrift
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TreebankWordTokenizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.base import TransformerMixin
+from faker import Faker
 
 
+SEXISM_MODEL_PATH = os.path.join(os.path.dirname(__file__),
+                                    '..//..//models/validation_a.pkl')
+CATEGORY_MODEL_PATH = os.path.join(os.path.dirname(__file__),
+                                   '..//..//models/validation_b.pkl')
 
+NUMBER_OF_FAKE_DATA = 5000
 
 COLUMN_DATA = 'text'
-SEXISM_TRAIN_DATA_PATH = "data/Raw/train_sexist.csv"
-SEXISM_TEST_DATA_PATH = "data/Raw/test_sexist.csv"
-SEXISM_VALIDATION_DATA_PATH = "data/Raw/dev_sexist.csv"
+SEXISM_TRAIN_DATA_PATH = os.path.join(os.path.dirname(__file__),
+                                      '..//../data/Raw/train_sexist.csv')
+CATEGORY_TRAIN_DATA_PATH = os.path.join(os.path.dirname(__file__),
+                                        '..//../data/Raw/train_category.csv')
 
-CATEGORY_TRAIN_DATA_PATH = "data/Raw/train_category.csv"
-CATEGORY_TEST_DATA_PATH = "data/Raw/test_category.csv"
-CATEGORY_VALIDATION_DATA_PATH = "data/Raw/dev_category.csv"
-
-SEXISM_LOG_FILE = "data/alibi_detect_logs/model_sexism.txt"
-CATEGORY_LOG_FILE = "data/alibi_detect_logs/model_category.txt"
+SEXISM_LOG_PATH = os.path.join(os.path.dirname(__file__),
+                               '..//../data/alibi_detect_logs/model_sexism.txt')
+CATEGORY_LOG_PATH = os.path.join(os.path.dirname(__file__),
+                                 '..//../data/alibi_detect_logs/model_category.txt')
 
 DRIFT_THRESHOLD = 0.4
 
@@ -93,70 +107,88 @@ def clean_text(text):
     return lemmatized_tokens
 
 
-def compute_features(train_data_path, test_data_path, validation_data_path):
+def generate_fake_data(label_column_name, model, num_samples = NUMBER_OF_FAKE_DATA):
+    """
+    Generate fake data with predicted labels using a pre-trained model.
+
+    Args:
+        label_column_name (str): Name of the label column.
+        model: Pre-trained model for making predictions.
+        num_samples (int): Number of fake data samples to generate.
+
+    Returns:
+        pd.DataFrame: DataFrame containing generated fake data.
+    """
+
+    fake = Faker()
+    fake_data = pd.DataFrame({
+        'ID': range(num_samples),
+        'text': [fake.sentence() for _ in range(num_samples)],
+    })
+    fake_data[label_column_name] = model.predict(fake_data['text'])
+
+    return fake_data
+
+def compute_features(train_data_path, fake_data):
     """
     Compute features using CountVectorizer.
 
     Parameters:
     - train_data_path (str): Path to the training data CSV file.
-    - test_data_path (str): Path to the test data CSV file.
-    - validation_data_path (str): Path to the validation data CSV file.
+    - fake_data (pd.DataFrame): DataFrame containing fake data.
 
     Returns:
-    tuple: A tuple containing three arrays - train_features, test_features, and validation_features.
+    tuple: A tuple containing two arrays - train_features and fake_features.
            Each array contains the computed features using CountVectorizer.
     """
-    vectorizer = CountVectorizer(tokenizer=lambda x: x.split(), ngram_range=(1, 2))
 
-    train_features = vectorizer.fit_transform(data_preprocessing(train_data_path)).toarray()
-    validation_features =  vectorizer.transform(data_preprocessing(validation_data_path)).toarray()
-    test_features = vectorizer.transform(data_preprocessing(test_data_path)).toarray()
+    vectorizer = CountVectorizer(tokenizer=lambda x: x.split(), ngram_range=(1, 2))
+    training_data = pd.read_csv(train_data_path)
+    train_features = vectorizer.fit_transform(data_preprocessing(training_data)).toarray()
+    fake_features = vectorizer.transform(data_preprocessing(fake_data)).toarray()
 
     print("Train Features shape:", train_features.shape)
-    print("Test Features shape:", test_features.shape)
-    print("Validation Features shape:", validation_features.shape)
+    print("Fake Features shape:", fake_features.shape)
 
-    return train_features, test_features, validation_features
+    return train_features, fake_features
 
-
-def data_preprocessing(data_path):
+def data_preprocessing(data):
     """
-    Preprocess the text data from the specified CSV file.
+    Preprocess the text data from the specified DataFrame.
 
     Parameters:
-    - data_path (str): Path to the CSV file containing the text data.
+    - data (pd.DataFrame): DataFrame containing the text data.
 
     Returns:
     list: A list of preprocessed text data using the Predictors transformer.
     """
-    data = pd.read_csv(data_path)
+
     texts = data[COLUMN_DATA]
     return Predictors().transform(texts)
 
 
-def detect_drift(train_features, test_features, validation_features):
+def detect_drift(train_features, fake_features):
     """
-    Detect drift between train, test, and validation features.
+    Detect drift between train and fake features.
 
     Parameters:
-    - train_features (ndarray)
-    - test_features (ndarray)
-    - validation_features (ndarray)
+    - train_features (ndarray): Features from the training data.
+    - fake_features (ndarray): Features from the generated fake data.
 
     Returns:
-    tuple: Drift results for train vs test and train vs validation.
+    dict: Drift detection results for train vs fake.
     """
 
-    drift_results_train_test = create_and_perform_drift_detection(
-        train_features, test_features)
-
-    drift_results_train_validation = create_and_perform_drift_detection(
-        train_features, validation_features)
-
-    return drift_results_train_test, drift_results_train_validation
+    drift_results_fake_test = create_and_perform_drift_detection(
+        train_features, fake_features)
 
 
-def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, threshold=DRIFT_THRESHOLD):
+    return drift_results_fake_test
+
+
+def create_and_perform_drift_detection(feature_of_drift,
+                                       feature_to_compare,
+                                       threshold=DRIFT_THRESHOLD):
     """
     Create and perform drift detection between two sets of features.
 
@@ -168,6 +200,7 @@ def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, thr
     Returns:
     dict: Drift detection results.
     """
+
     drift_detector = KSDrift(feature_of_drift, p_val=threshold)
 
     drift_results = drift_detector.predict(
@@ -179,82 +212,75 @@ def create_and_perform_drift_detection(feature_of_drift, feature_to_compare, thr
     return drift_results
 
 
-def log_drift_results(log_file, model_name, dataset_name, drift_results, drift_threshold=DRIFT_THRESHOLD):
+def log_drift_results(log_file, model_name, drift_results):
     """
     Log drift detection results to a file and print a message if drift is detected.
 
     Parameters:
     - log_file (str): Path to the log file.
     - model_name (str): Name of the model.
-    - dataset_name (str): Name of the dataset.
     - drift_results (dict): Drift detection results.
-    - drift_threshold (float): Threshold for drift detection. Default is 0.1.
     """
+
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     log_dir = os.path.dirname(log_file)
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 
-    with open(log_file, 'a', encoding='utf-8') as log:
-        log.write(f"[{current_time}] Model: {model_name}, Dataset: {dataset_name}\n")
+    with open(log_file, 'wb') as log:
+        log.write(f"[{current_time}] Model: {model_name}\n")
         log.write(f"  Drift Detected: {drift_results['data']['is_drift']}\n")
         log.write(f"  p-value: {drift_results['data']['p_val']}\n")
         log.write(f"  distance: {drift_results['data']['distance']}\n")
         current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    drift_detected = drift_results['data']['is_drift']
-    distance = drift_results['data']['distance']
-
-    if drift_detected and max(distance) > drift_threshold:
-        print(f"Drift detected in {dataset_name}"+
-              "for {model_name}"+
-              "with distance {max(distance)}")
-
 
 if __name__ == "__main__":
 
-    sexism_train, sexism_test, sexism_validation = compute_features(
-        SEXISM_TRAIN_DATA_PATH, SEXISM_TEST_DATA_PATH, SEXISM_VALIDATION_DATA_PATH
+    #drift detection for sexism model
+    with open(SEXISM_MODEL_PATH, 'rb') as file:
+        sexism_model = pickle.load(file)
+
+    sexism_fake_data = generate_fake_data('label_sexist',
+                                          sexism_model)
+    print(sexism_fake_data.head())
+
+    sexism_feature, fake_sexism_feature = compute_features(
+        SEXISM_TRAIN_DATA_PATH, sexism_fake_data
     )
 
-    category_train,category_test, category_validation = compute_features(
-        CATEGORY_TRAIN_DATA_PATH, CATEGORY_TEST_DATA_PATH, CATEGORY_VALIDATION_DATA_PATH
+    model_sexism_drift_results = detect_drift(
+        sexism_feature, fake_sexism_feature
     )
 
-    model_sexism_drift_results_test, model_sexism_drift_results_validation = detect_drift(
-        sexism_train, sexism_test, sexism_validation
+
+    #drift detection for category model
+    with open(CATEGORY_MODEL_PATH, 'rb') as file:
+        category_model = pickle.load(file)
+
+    category_fake_data = generate_fake_data('label_category',
+                                            category_model)
+
+    print(category_fake_data.head())
+
+    category_feature, fake_category_feature = compute_features(
+        CATEGORY_TRAIN_DATA_PATH, category_fake_data
     )
 
-    model_category_drift_results_test, model_category_drift_results_validation = detect_drift(
-        category_train, category_test, category_validation
+    model_category_drift_results = detect_drift(
+        category_feature, fake_category_feature
     )
 
-    print("Model Sexism - Drift Detected (Test Set):",
-          model_sexism_drift_results_test['data']['is_drift'])
-    print("Model Sexism - Drift Detected (Validation Set):",
-          model_sexism_drift_results_validation['data']['is_drift'])
-    print("Model Category - Drift Detected (Test Set):",
-          model_category_drift_results_test['data']['is_drift'])
-    print("Model Category - Drift Detected (Validation Set):",
-          model_category_drift_results_validation['data']['is_drift'])
+    print("Model Sexism - Drift Detected:",
+          model_sexism_drift_results['data']['is_drift'])
+    print("Model Category - Drift Detected:",
+          model_category_drift_results['data']['is_drift'])
 
-    log_drift_results(SEXISM_LOG_FILE,
+    log_drift_results(SEXISM_LOG_PATH,
                       "Model Sexism",
-                      "Test Set",
-                      model_sexism_drift_results_test)
+                      model_sexism_drift_results)
 
-    log_drift_results(SEXISM_LOG_FILE,
-                      "Model Sexism",
-                      "Validation Set",
-                      model_sexism_drift_results_validation)
-
-    log_drift_results(CATEGORY_LOG_FILE,
+    log_drift_results(CATEGORY_LOG_PATH,
                       "Model Category",
-                      "Test Set",
-                      model_category_drift_results_test)
-
-    log_drift_results(CATEGORY_LOG_FILE,
-                      "Model Category",
-                      "Validation Set",
-                      model_category_drift_results_validation)
+                      model_category_drift_results)
