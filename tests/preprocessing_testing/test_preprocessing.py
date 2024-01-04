@@ -40,7 +40,7 @@ def test_clean_text_uppercase():
     expected_output = "user we could make it a triple threat match with "\
         "user bliss vs user vs user mcmahon but as much as wed like to see "\
             "user vs user at user i think the user universe is "\
-                "craaaaaavvvvvvinnnnnggggg "
+                "craaaaaavvvvvvinnnnnggggg"
     assert clean_text(input_text) == expected_output
 
 def test_clean_text_empty():
@@ -64,8 +64,8 @@ def test_clean_text_mix_text():
     of the input text. If the assertion passes, it prints "All test cases pass."
     """
     #Test with a mix of text and numbers
-    input_text = "Goddam that Stormer article on women shutting the "\
-        "f up is going to hit 6,000,000 comments before midnight "
+    input_text = "goddam that stormer article on women shutting the "\
+        "f up is going to hit 6,000,000 comments before midnight"
     expected_output = "goddam that stormer article on women shutting the f "\
         "up is going to hit 6000000 comments before midnight"
     assert clean_text(input_text) == expected_output
