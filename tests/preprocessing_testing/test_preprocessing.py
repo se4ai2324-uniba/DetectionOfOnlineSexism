@@ -33,13 +33,13 @@ def test_clean_text_uppercase():
     transformed accordingly. 
     """
     #Test with only uppercase text
-    input_text = "[USER] WE COULD MAKE IT A TRIPLE THREAT MATCH WITH"\
-        "[USER] BLISS VS [USER] VS [USER] McMAHON. BUT AS MUCH AS WE'D"\
-            "LIKE TO SEE [USER] VS [USER] AT [USER], I THINK THE [USER]"\
+    input_text = "[USER] WE COULD MAKE IT A TRIPLE THREAT MATCH WITH "\
+        "[USER] BLISS VS [USER] VS [USER] McMAHON. BUT AS MUCH AS WE'D "\
+            "LIKE TO SEE [USER] VS [USER] AT [USER], I THINK THE [USER] "\
                 "UNIVERSE IS CRAAAAAAVVVVVVINNNNNGGGGG!!!"
-    expected_output = "user we could make it a triple threat match with"\
-        "user bliss vs user vs user mcmahon but as much as wed like to see"\
-            "user vs user at user i think the user universe is"\
+    expected_output = "user we could make it a triple threat match with "\
+        "user bliss vs user vs user mcmahon but as much as wed like to see "\
+            "user vs user at user i think the user universe is "\
                 "craaaaaavvvvvvinnnnnggggg"
     assert clean_text(input_text) == expected_output
 
@@ -64,9 +64,9 @@ def test_clean_text_mix_text():
     of the input text. If the assertion passes, it prints "All test cases pass."
     """
     #Test with a mix of text and numbers
-    input_text = "Goddam that Stormer article on women shutting the"\
+    input_text = "goddam that stormer article on women shutting the "\
         "f up is going to hit 6,000,000 comments before midnight"
-    expected_output = "goddam that stormer article on women shutting the f"\
+    expected_output = "goddam that stormer article on women shutting the f "\
         "up is going to hit 6000000 comments before midnight"
     assert clean_text(input_text) == expected_output
 

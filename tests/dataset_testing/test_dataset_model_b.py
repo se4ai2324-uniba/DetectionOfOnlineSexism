@@ -10,6 +10,7 @@ Authors: Francesco Brescia
 import os
 from pandas import read_csv
 from great_expectations.dataset import PandasDataset
+import pytest
 
 file_dir = os.path.dirname(__file__)
 
@@ -23,7 +24,7 @@ tags = ["1. threats, plans to harm and incitement",
         "3. animosity",
         "4. prejudiced discussions"]
 
-def test_training_set(dataset):
+def test_training_set(setup_training):
     """
     Module: test_training_set
     Description: This test checks expectations such as column order, 
@@ -31,7 +32,7 @@ def test_training_set(dataset):
     string type for "text" column, and adherence to a predefined set of values for "label_category"
     """
 
-    train_dataset = PandasDataset(dataset)
+    train_dataset = PandasDataset(setup_training)
 
     train_dataset.expect_table_columns_to_match_ordered_list(
         column_list=["ID", "text", "label_category"])
@@ -42,7 +43,7 @@ def test_training_set(dataset):
     expectation_suite = train_dataset.get_expectation_suite(discard_failed_expectations=False)
     print(train_dataset.validate(expectation_suite=expectation_suite, only_return_failures=True))
 
-def test_validation_set(dataset):
+def test_validation_set(setup_validation):
     """
     Module: test_validation_set
     Description: This test checks expectations such as column order, 
@@ -50,7 +51,7 @@ def test_validation_set(dataset):
     string type for "text" column, and adherence to a predefined set of values for "label_category"
     """
 
-    validation_dataset = PandasDataset(dataset)
+    validation_dataset = PandasDataset(setup_validation)
 
     validation_dataset.expect_table_columns_to_match_ordered_list(
         column_list=["ID", "text", "label_category"])
@@ -62,7 +63,7 @@ def test_validation_set(dataset):
     print(validation_dataset.validate(expectation_suite=expectation_suite,
                                       only_return_failures=True))
 
-def test_test_set(dataset):
+def test_test_set(setup_test):
     """
     Module: test_test_set
     Description: This test checks expectations such as column order, 
@@ -70,7 +71,7 @@ def test_test_set(dataset):
     string type for "text" column, and adherence to a predefined set of values for "label_category"
     """
 
-    test_dataset = PandasDataset(dataset)
+    test_dataset = PandasDataset(setup_test)
     test_dataset.expect_table_columns_to_match_ordered_list(
         column_list=["ID", "text", "label_category"])
     test_dataset.expect_column_values_to_not_be_null(column="label_category")
@@ -80,11 +81,43 @@ def test_test_set(dataset):
     expectation_suite = test_dataset.get_expectation_suite(discard_failed_expectations=False)
     print(test_dataset.validate(expectation_suite=expectation_suite, only_return_failures=True))
 
-if __name__ == "__main__":
-    train = read_csv(TRAINING_SOURCE_PATH)
-    validation = read_csv(VALIDATION_SOURCE_PATH)
-    test = read_csv(TESTING_SOURCE_PATH)
+@pytest.fixture
+def setup_training():
+    """
+    Module: setup_dataset
+    Description: This function sets up training
+    dataset by reading a CSV file.
+    """
 
-    test_training_set(train)
-    test_validation_set(validation)
-    test_test_set(test)
+    dataset = read_csv(TRAINING_SOURCE_PATH)
+
+    return dataset
+
+@pytest.fixture
+def setup_validation():
+    """
+    Module: setup_dataset
+    Description: This function sets up validation
+    dataset by reading a CSV file.
+    """
+
+    dataset = read_csv(VALIDATION_SOURCE_PATH)
+
+    return dataset
+
+
+@pytest.fixture
+def setup_test():
+    """
+    Module: setup_dataset
+    Description: This function sets up test
+    dataset by reading a CSV file.
+    """
+
+    dataset = read_csv(TESTING_SOURCE_PATH)
+
+    return dataset
+
+if __name__ == "__main__":
+
+    pytest.main()

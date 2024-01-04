@@ -19,11 +19,11 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint
+        pip install --upgrade pylint
 
     - name: Running Pylint
       run: |
-        pylint src/ --output-format=json > pylint_report.json || true
+        pylint src --output-format=json > pylint_report.json || true
         
     - name: Upload Pylint Artifact
       uses: actions/upload-artifact@v3

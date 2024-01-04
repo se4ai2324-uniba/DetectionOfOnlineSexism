@@ -29,10 +29,12 @@ jobs:
         python -c "import nltk; nltk.download('wordnet')"
         python -c "import nltk; nltk.download('omw-1.4')"
         pip install -U pyopenssl cryptography
+        pip install pytest-xdist
+        pip install --upgrade dvc
 
     - name: Run Pytest
       run: |
-        python -m pytest -v -s | true
+        python -m pytest -v -s -vvv
 
     - name: Upload Pytest Artifact
 
