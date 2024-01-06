@@ -58,12 +58,7 @@ Instead here we have an example  of the `/prediction_category` endpoint. The use
 Prometheus scrapes metrics from the "backend" service, as specified in the configuration file. The collected metrics are stored locally in a time-series database.
 Prometheus provides a query language (PromQL) for querying and processing the collected metrics.
 
-In order to acquire the metrics, fastAPI and Prometheus have been connected using a docker compose file.
-The provided docker-compose.yml file defines the following services:
--  **backend**: A service representing the backend of the application. It is built from the current context (".") and the resulting image is tagged as "detectiononlinesexism_backend." It exposes port 8000 for requests and also exposes it to be scraped by Prometheus.
--  **frontend**: A service representing the frontend of the application. It is built from the context of the "./frontend" folder, and the resulting image is tagged as "detectiononlinesexism_frontend." It exposes port 8080 for requests. It depends on the "backend" service.
--  **prometheus**: Uses the "prom/prometheus" image. It mounts the "./prometheus.yml" file into the container at "/etc/prometheus/prometheus.yml." It exposes port 9090 for accessing the Prometheus web UI. It depends on the "backend" service.
--  **grafana**: Uses the "grafana/grafana" image. It exposes port 3000 for accessing the Grafana web UI. It depends on the "prometheus" service.
+In order to acquire the metrics, fastAPI and Prometheus have been connected using the `docker-compose.yml` file.
 
 ### Configuration
 The Prometheus configuration file (prometheus.yml) contains global settings and scrape configurations.

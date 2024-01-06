@@ -14,6 +14,15 @@ Docker is a lightweight virtualization tool that allows us to isolate the develo
 
 - [src/](../../src): In this folder, you may want to place our development scripts that we will use during the project. These can be mounted inside the Docker container for execution and editing.
 
+## Docker Compose Configuration
+
+The `docker-compose.yml` file defines the following services:
+
+-  **backend**: A service representing the backend of the application. It is built from the current context `.` and the resulting image is tagged as "detectiononlinesexism_backend." It exposes port 8000 for requests and also exposes it to be scraped by Prometheus.
+-  **frontend**: A service representing the frontend of the application. It is built from the context of the `./frontend` folder, and the resulting image is tagged as "detectiononlinesexism_frontend." It exposes port 80 for requests. It depends on the "backend" service.
+-  **prometheus**: Uses the `prom/prometheus` image. It mounts the `./prometheus.yml` file into the container at `/etc/prometheus/prometheus.yml.` It exposes port 9090 for accessing the Prometheus web UI. It depends on the "backend" service.
+-  **grafana**: Uses the `grafana/grafana` image. It exposes port 3000 for accessing the Grafana web UI. It depends on the "prometheus" service.
+
 ## Usage
 
 To use this Docker environment for our machine learning project, follow these steps:
@@ -33,12 +42,12 @@ docker build -t detectionofonlinesexism_frontend ./frontend
 
 These commands will create the Docker images based on their Dockerfile and with the dependencies specified in `requirements.txt`.
 
-4. Start the Docker container using docker-compose:
+4. Start the Docker container based on the `docker-compose.yml` configuration:
 ```bash
 docker-compose up
 ```
 
-This command activates the container based on the docker-compose.yml configuration. Alternatively, you can build and start the container in one step:
+Alternatively, you can build and start the container in one step:
 ```bash
 docker-compose up --build  
 ```
