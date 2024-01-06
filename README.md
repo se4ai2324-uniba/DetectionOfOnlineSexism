@@ -48,12 +48,14 @@ We use Better Uptime to monitor the status of our website. You can check the cur
 
 Project Organization
 ------------
-
-    ├── LICENSE
-    │
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    │
-    ├── README.md          <- The top-level README for developers using this project
+    ├── .dvc                <- Data Version Control configurations.
+    ├── .github             <- Folder containing all the yaml files for the GitHub Actions
+    │   └── workflows
+    │       ├── fastapi_check.yaml
+    │       ├── pydantic_check.yaml
+    │       ├── alibi-detect_check.yaml    
+    │       ├── pylint_check.yaml
+    │       └── README.md   <- GitHub Actions documentation
     │
     ├── data
     │   ├── Raw            <- Datasets used for training, validation and test.
@@ -68,39 +70,55 @@ Project Organization
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
+    ├── frontend          
+    │   ├── Dockerfile     <- Docker file for the frontend
+    |   ├── index.html     <- Frontend html
+    │   ├── logo.png       <- Web Page logo
+    │   ├── nginx.conf     <- Configuration file for nginx.
+    │   └── script.js      <- Frontend script
+    |
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │                         the creator's initials, and a short `-` delimited description, e.g.
     │                         `1.0-jqp-initial-data-exploration`.
+    |
+    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+    |   |
+    │   ├── deploy_doc
+    │   │   └── README.md 
+    |   ├
+    │   ├── docker_doc
+    │   │   └── README.md
+    │   │
+    │   ├── great_expectations_doc
+    │   │   ├── expectations
+    │   │   ├── static
+    │   │   └── index.html
+    │   │
+    │   └── images_doc
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     │
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
     │   ├── api            <- Scripts to crate Api using FastAPI
     │   │   ├── corpus_endpoint.py
-    │   │   ├── dashboards
-    │   │   │   └── grafana.json
-    │   │   │
     │   │   ├── prometheus_monitoring.py
     │   │   ├── README.md
-    │   │   └── server_api.py
+    │   │   ├── server_api.py
+    │   │   └── dashboards
+    │   │       └── grafana.json
     │   │
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
     │   │
     │   ├── features       <- Scripts to turn raw data into features for modeling
     │   │   ├── drift_detection.py
-    │   │   ├── README.md
-    │   │   └── build_features.py
+    │   │   ├── build_features.py
+    │   │   └── README.md 
     │   │
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
@@ -125,80 +143,51 @@ Project Organization
     │   │       ├── train_b.py
     │   │       ├── validation_a.py
     │   │       └── validation_b.py
-    │   │
-    │   ├── tests         <- Scripts to test using Pytest
-    │   │   ├── api_testing
-    │   │   │   └── test_api.py
-    │   │   │
-    │   │   ├── dataset_testing
-    │   │   │   ├── test_dataset_model_a.py
-    │   │   │   └── test_dataset_model_b.py
-    │   │   │
-    │   │   ├── model_training_testing
-    │   │   │    └── test_overfit.py
-    │   │   │
-    │   │   ├── preprocessing_testing
-    │   │   │    └── test_preprocessing.py
-    │   │   │
-    │   │   └── behavioral_testing
-    │   │       ├── test_directional_model_a.py
-    │   │       ├── test_directional_model_b.py
-    │   │       ├── test_invariance_model_a.py
-    │   │       ├── test_invariance_model_b.py
-    │   │       ├── test_minimum_funcionality_model_a.py
-    │   │       └── test_minimum_funcionality_model_b.py
     │   │  
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
-    │
-    ├── tox.ini         <- tox file with settings for running tox; see tox.readthedocs.io
-    │
-    ├── .github         <- Folder containing all the yaml files for the GitHub Actions
-    │    └── workflows
-    │        ├── fastapi_check.yaml
-    │        ├── pydantic_check.yaml
-    │        ├── alibi-detect_check.yaml    
-    │        ├── pylint_check.yaml
-    │        └── README.md
-    │
-    ├── frontend
-    │   ├── images
-    │   │   └── logo.png
-    │   ├── Dockerfile
-    │   ├── nginx.conf
-    │   └── script.js
-    │
-    └── references      <- Data dictionaries, manuals, and all other explanatory materials.
-            | 
-            ├── docker_doc
-            │   └── README.md
-            │
-            ├── great_expectations_doc
-            │   ├── expectations
-            │   │   ├── default_data_asset_name
-            │   │   │
-            │   │   ├── my_datasource
-            │   │   │   └── training.html  
-            │   │   │     
-            │   │   ├── testing_expectations_model_a.html
-            │   │   ├── testing_expectations_model_b.html
-            │   │   ├── training_expectations_model_a.html
-            │   │   ├── training_expectations_model_b.html
-            │   │   ├── validation_expectations_model_a.html
-            │   │   ├── validation_expectations_model_b.html
-            │   │   │
-            │   ├── static
-            │   │   ├── fonts
-            │   │   │   └── HKGrotesk
-            │   │   │
-            │   │   ├── images
-            │   │   ├── styles
-            │   │   │   ├── data_docs_custom_styles_template.css
-            │   │   │   └── data_docs_default_styles.css
-            │   │   │
-            │   └── index.html
-            │
-            └── images_doc
+    │   
+    ├── tests         <- Scripts to test using Pytest
+    │   ├── api_testing
+    │   │   └── test_api.py
+    │   │
+    │   ├── dataset_testing
+    │   │   ├── test_dataset_model_a.py
+    │   │   └── test_dataset_model_b.py
+    │   │
+    │   ├── model_training_testing
+    │   │    └── test_overfit.py
+    │   │
+    │   ├── preprocessing_testing
+    │   │    └── test_preprocessing.py
+    │   │
+    │   └── behavioral_testing
+    │       ├── test_directional_model_a.py
+    │       ├── test_directional_model_b.py
+    │       ├── test_invariance_model_a.py
+    │       ├── test_invariance_model_b.py
+    │       ├── test_minimum_funcionality_model_a.py
+    │       └── test_minimum_funcionality_model_b.py
+    |
+    ├── .dockerignore           <- Docker ignore file.
+    ├── .dvcignore              <- Data Version Control ignore file.
+    ├── .flake8                 <- Flake8 ignore file.
+    ├── .gitignore              <- Specifications of files to be ignored by Git.
+    ├── docker-compose.yaml     <- Docker Compose configuration.
+    ├── Dockerfile              <- Docker file for the backend.
+    ├── dvc.lock                <- Data Version Control record file.
+    ├── dvc.yaml                <- Data Version Control pipeline file.
+    ├── get-pip.py              <- Script to automatically install the latest version of pip
+    ├── LICENSE                 <- License as plain text.
+    ├── locustfile.py           <- Defines user behavior in load testing.
+    ├── Makefile                <- Makefile with commands like `make data` or `make train`
+    ├── prometheus.yml          <- Prometheus configuration file.
+    ├── README.md               <- The top-level README for developers using this project
+    ├── requirements.txt        <- The requirements file for production environment.
+    ├── setup.py                <- Makes project pip installable (pip install -e .) so src can be imported
+    ├── test_environment.py     <- Checks python version.
+    └── tox.ini                 <- tox file with settings for running tox; see tox.readthedocs.io
+    
 
 
 --------

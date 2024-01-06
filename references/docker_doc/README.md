@@ -24,26 +24,25 @@ To use this Docker environment for our machine learning project, follow these st
 
 3. Build the Docker images by running the following commands, which define the realtive images at the backend and the frontend respectively:
 
-```
+```bash
 docker build -t detectionofonlinesexism_backend .
 ```
-```
+```bash
 docker build -t detectionofonlinesexism_frontend ./frontend
 ```
 
 These commands will create the Docker images based on their Dockerfile and with the dependencies specified in `requirements.txt`.
 
 4. Start the Docker container using docker-compose:
-```
+```bash
 docker-compose up
 ```
 
-This command will launch the container with the configurations specified in `docker-compose.yml`. Otherwise you can compute all previous commands by using:
-```
+This command activates the container based on the docker-compose.yml configuration. Alternatively, you can build and start the container in one step:
+```bash
 docker-compose up --build  
 ```
-
-You can now start working inside the container.
+Once running, you can access the Docker development environment.
 
 5. Access the Docker development environment and begin working on our machine learning projects. In our case, we can se the following dashboard:
 
@@ -51,7 +50,7 @@ You can now start working inside the container.
 
 6. When you're done, you can stop the Docker container with the following command:
 
-```
+```bash
 docker-compose down
 ```
 
