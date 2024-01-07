@@ -7,7 +7,7 @@ Detection Of Online Sexism
 ![drift-detection](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism/actions/workflows/alibi-detect_check.yaml/badge.svg)
 
 
-The system, developed by Grazia Perna, Maria Elena Zaza, and Francesco Brescia, addresses the SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS) challenge hosted on CodaLab. The primary aim of this initiative is to create and implement models capable of identifying and analyzing sexist content in online textual data. This documentation provides an overview of the methodologies employed, including data preprocessing techniques and the application of advanced machine learning models, to tackle the challenge effectively. The project underscores the importance of developing tools to foster a more inclusive and respectful online environment.
+The system addresses the SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS) challenge hosted on CodaLab. The primary aim of this initiative is to create and implement models capable of identifying and analyzing sexist content in online textual data. This documentation provides an overview of the methodologies employed, including data preprocessing techniques and the application of advanced machine learning models, to tackle the challenge effectively. The project underscores the importance of developing tools to foster a more inclusive and respectful online environment.
 
 Project Description
 ------------
@@ -55,6 +55,7 @@ Project Organization
     │       ├── pydantic_check.yaml
     │       ├── alibi-detect_check.yaml    
     │       ├── pylint_check.yaml
+    │       ├── pytest_check.yaml
     │       └── README.md   <- GitHub Actions documentation
     │
     ├── data
@@ -64,13 +65,19 @@ Project Organization
     │   │    ├── test_sexist.csv
     │   │    ├── test_category.csv
     │   │    ├── train_sexist.csv
-    │   │    └── train_category.csv
+    │   │    ├── train_category.csv
+    │   │    ├── dev_category.csv.dvc
+    │   │    ├── dev_sexist.csv.dvc
+    │   │    ├── test_sexist.csv.dvc
+    │   │    ├── test_category.csv.dvc
+    │   │    ├── train_sexist.csv.dvc
+    │   │    └── train_category.csv.dvc
     │   │
     │   └── README.md      <- The README for developers using these datasets.
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
-    ├── frontend          
+    ├── frontend           <- All HTML, CSS, JS and configuration files about the frontend.
     │   ├── Dockerfile     <- Docker file for the frontend
     |   ├── index.html     <- Frontend html
     │   ├── logo.png       <- Web Page logo
@@ -78,6 +85,10 @@ Project Organization
     │   └── script.js      <- Frontend script
     |
     ├── models             <- Trained and serialized models, model predictions, or model summaries
+    │   ├── validation_a.pkl
+    │   ├── validation_b.pkl
+    │   ├── train_a.pkl
+    │   └── train_b.pkl
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │                         the creator's initials, and a short `-` delimited description, e.g.
@@ -96,9 +107,22 @@ Project Organization
     │   │   ├── static
     │   │   └── index.html
     │   │
+    │   ├── monitoring_doc
+    │   │   └── README.md
+    │   │
     │   └── images_doc
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+    │   ├── alibi_detect_logs            <- Logs generated after data drift analysis.
+    │   │    ├── model_category.txt
+    │   │    └── model_sexsism.txt
+    │   │
+    │   ├── locust            <- Logs generated after locust analysis.
+    │   │    ├── report_exceptions.csv
+    │   │    ├── report_stats_history.csv
+    │   │    ├── report_stats.csv
+    │   │    └── report_failures.csv
+    │   │
     │   └── figures        <- Generated graphics and figures to be used in reporting
     │
     ├── src                <- Source code for use in this project.

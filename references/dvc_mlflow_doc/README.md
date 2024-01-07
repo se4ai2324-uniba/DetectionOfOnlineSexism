@@ -1,6 +1,6 @@
 # DVC and MLflow Integration for Machine Learning Projects
 
-This README provides guidance on using DVC (Data Version Control) and MLflow for managing and tracking machine learning projects. DVC is an open-source version control system for data science and machine learning projects, while MLflow is an open-source platform for managing the end-to-end machine learning lifecycle.
+In order to manage and track our machine learning project we use DVC (Data Version Control) and MLflow. DVC is an open-source version control system for data science and machine learning projects, while MLflow is an open-source platform for managing the end-to-end machine learning lifecycle.
 
 ## Overview
 
@@ -28,12 +28,15 @@ pip install dvc mlflow
 1. **Initialize DVC in your Project**:
    ```bash
    dvc init
+   git status
+   git commit -m "Initialize DVC"
+
    ```
 
 2. **Add Data to DVC**:
    Track large datasets or models with DVC:
    ```bash
-   dvc add data/dataset.csv
+   dvc add data/Raw/dataset.csv
    git add data/.gitignore data/dataset.csv.dvc
    git commit -m "Add dataset to DVC"
    ```
@@ -63,7 +66,7 @@ pip install dvc mlflow
 Use DVC to manage data and models, and MLflow for experiment tracking. For example, use DVC to pull the latest data version before running an experiment with MLflow.
 
 ```bash
-dvc pull data/dataset.csv.dvc
+dvc pull data/Raw/dataset.csv.dvc
 python mlflow_experiment.py
 ```
 

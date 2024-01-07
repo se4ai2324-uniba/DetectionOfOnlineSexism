@@ -1,19 +1,20 @@
 # Test documentation
 
-In order to check the correctness of our project, we conducted several tests:
-- Behavioral testing
-- Dataset testing
-- Model training testing
-- Preprocessing testing
+## Introduction
 
-## Contributors
+In our commitment to ensuring the reliability and robustness of our project, we have implemented a comprehensive testing suite. This suite encompasses various forms of testing, each targeting specific components and functionalities of our system. Our aim is to maintain high standards of quality and correctness throughout the development lifecycle. 
 
-DetectionOfOnlineSexism team:
-- Grazia Perna
-- Maria Elena Zaza
-- Francesco Brescia
+The tests conducted are categorized as follows:
 
-For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism.git).
+- **Behavioral Testing**: These tests are designed to validate the functionality of our application against the expected behavior. By simulating user interactions and system processes, we ensure that the application performs as intended in real-world scenarios.
+
+- **Dataset Testing**: Given the critical role of data in our project, dataset tests focus on verifying the integrity, accuracy, and formatting of our datasets. These tests are crucial for ensuring that our data pipelines are reliable and our datasets are suitable for the tasks at hand.
+
+- **Model Training Testing**: In this category, we test the training processes of our machine learning models. This includes validation of training algorithms, hyperparameter tuning, and the overall effectiveness of the training phase. The goal is to ascertain that our models learn correctly and efficiently from our datasets.
+
+- **Preprocessing Testing**: These tests are aimed at the preprocessing steps of our data pipeline. We validate the methods used for cleaning, normalizing, and transforming data to ensure they are correctly implemented and contribute positively to the performance of our models.
+
+Through the use of `pytest`, a powerful testing framework, and `Great Expectations`, an advanced tool for validating and documenting data quality, we strive to build a project that is functional, dependable, and efficient. The subsequent sections will delve into each testing category, detailing their implementation and execution within our project.
 
 ## Behavioral tests
 ### Directional Test

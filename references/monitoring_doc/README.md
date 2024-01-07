@@ -2,7 +2,7 @@
 ## Detection of Online Sexism Load Testing
 
 ### Overview
-The file `locustfile.py` is a Python script for performing load testing on web services designed to detect online sexism. The script uses Locust, an open-source load testing tool, to simulate users accessing different endpoints and performing various tasks. The tests are designed to assess the robustness and responsiveness of the services under simulated traffic.
+The file [locustfile.py](../../locustfile.py) is a Python script for performing load testing on web services designed to detect online sexism. The script uses Locust, an open-source load testing tool, to simulate users accessing different endpoints and performing various tasks. The tests are designed to assess the robustness and responsiveness of the services under simulated traffic.
 
 ### Features
 * **Multiple Task Simulation**: Simulates various user tasks, including fetching main endpoint descriptions, task-specific details, preprocessing information, and sending prediction requests.

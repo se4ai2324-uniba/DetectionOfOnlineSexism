@@ -25,7 +25,7 @@ az acr login --name onlinesexismregistry
 ```
 
 ### Docker compose file
-Open `docker-compose.yaml` in a text editor and we write the following configuration:
+Open [docker-compose.yml](../../docker-compose.yml) in a text editor and we write the following configuration:
 
 ```bash
 version: '3.4'
@@ -101,7 +101,7 @@ docker compose down
 In this section, we provide a step-by-step demonstration of how the Prometheus dashboard is deployed on Azure. 
 
 ### Push image to container registry
-First of all, we create a new folder called `prometheus` where we go to insert our file `prometheus.yml` and define a new `Dockerfile`, as follows:
+First of all, we create a new folder called `prometheus` where we go to insert our file [prometheus.yml](../../prometheus.yml) and define a new `Dockerfile`, as follows:
 
 ```bash
 FROM prom/prometheus
