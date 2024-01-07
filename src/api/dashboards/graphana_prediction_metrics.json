@@ -1,0 +1,178 @@
+{
+  "datasource": {
+    "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+    "type": "prometheus"
+  },
+  "type": "piechart",
+  "title": "Panel Title",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 19,
+    "h": 12
+  },
+  "id": 1,
+  "targets": [
+    {
+      "refId": "A",
+      "expr": "fastapi_inprogress",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "B",
+      "expr": "fastapi_model_total_predictions_created",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "C",
+      "expr": "fastapi_model_total_predictions_total",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "D",
+      "expr": "fastapi_model_prediction_result_count",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "E",
+      "expr": "fastapi_model_prediction_response_size_count",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "F",
+      "expr": "fastapi_model_prediction_latency_count",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    }
+    ,
+    {
+      "refId": "G",
+      "expr": "fastapi_model_prediction_request_size_count",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    }
+  ],
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": []
+    },
+    "overrides": []
+  },
+  "pluginVersion": "10.2.3",
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "pieType": "pie",
+    "tooltip": {
+      "mode": "single",
+      "sort": "none"
+    },
+    "legend": {
+      "showLegend": false,
+      "displayMode": "hidden",
+      "placement": "right",
+      "calcs": [],
+      "values": []
+    },
+    "displayLabels": [
+      "percent"
+    ]
+  }
+}
