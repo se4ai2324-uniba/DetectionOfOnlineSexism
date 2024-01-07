@@ -149,15 +149,41 @@ By addressing these ethical considerations, this project to contribute responsib
 
 A very huge limitation is that the dataset considers the context in which the message are used. That can change consistently the results. In addition it works only with the english language so it can be used only in certain countries.
 
-## Codecarbon Footprint
+## Codecarbon 
+**CodeCarbon** is focused on measuring and mitigating the carbon footprint associated with software development.
+It takes a proactive approach to address the ecological impact of code creation.
+
+The primary goal of CodeCarbon is to raise awareness about the environmental consequences of software development and provide developers with the tools and insights needed to make environmentally conscious coding decisions. 
+For more detailed information, you can refer to the official [CodeCarbon documentation](https://mlco2.github.io/codecarbon/) or the [GithubRepo](https://github.com/mlco2/codecarbon).
+### Codecarbon configuration
+In this section, we'll explain the `[codecarbon]`configuration :
+```
+[codecarbon]
+log_level = DEBUG
+save_to_api = True
+experiment_id = 378897f8-000b-4825-bcc1-92059ab295fa
+gpu_tracking = False
+```
+- **log_level**: Specifies the level of logging. In this case, it's set to DEBUG, which means that more detailed information will be logged. 
+- **save_to_api**: A boolean flag indicating whether to save emission data to the CodeCarbon API. When set to True, the emissions data will be sent to the CodeCarbon platform for further analysis and tracking.
+- **experiment_id**: A unique identifier for the experiment. This ID helps in associating the emission data with a specific experiment or project. It should be unique to distinguish different experiments.
+- **gpu_tracking**: A boolean flag that determines whether GPU tracking is enabled.
+
+### Code explanation
 We tested our two models with CodeCarbon in order to trace our carbon footprint. Users need to know these details so they can make informed choices about how environmentally sustainable their machine learning operations are.
-These are the results:
+
+To do this, in both [train_a](../src/models/train_a.py) and [train_b](../src/models/train_b.py) files have been added `EmissionsTracker` which refers to a tool that records and monitors the carbon emissions associated with code execution:
+
+![tracker_A](../references/images_doc/tracker_A.png)
+
+### Results
+These are the results we obtained after the tracking phase.
 
 The first image is for the first model, used to detect if a message is sexist or not.
 
 ![Emission_model_a](../references/images_doc/Emission_model_a.png)
 
-The first image is for the second model, used to specify the type of sexism.
+The second image is for the second model, used to specify the type of sexism.
 
 ![Emission_model_b](../references/images_doc/Emission_model_b.png)
 
