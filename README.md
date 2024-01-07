@@ -82,13 +82,15 @@ Project Organization
     |   ├── index.html     <- Frontend html
     │   ├── logo.png       <- Web Page logo
     │   ├── nginx.conf     <- Configuration file for nginx.
-    │   └── script.js      <- Frontend script
+    │   ├── script.js      <- Frontend script
+    │   └── README.md      
     |
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     │   ├── validation_a.pkl
     │   ├── validation_b.pkl
     │   ├── train_a.pkl
-    │   └── train_b.pkl
+    │   ├── train_b.pkl
+    │   └── README.md      
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │                         the creator's initials, and a short `-` delimited description, e.g.
@@ -98,52 +100,50 @@ Project Organization
     |   |
     │   ├── deploy_doc
     │   │   └── README.md 
-    |   ├
     │   ├── docker_doc
     │   │   └── README.md
-    │   │
+    │   ├── dvc_mlflow_doc
+    │   │   └── README.md
     │   ├── great_expectations_doc
     │   │   ├── expectations
     │   │   ├── static
     │   │   └── index.html
-    │   │
     │   ├── monitoring_doc
     │   │   └── README.md
-    │   │
-    │   └── images_doc
+    │   ├── images_doc
+    │   └── READMME.md
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     │   ├── alibi_detect_logs            <- Logs generated after data drift analysis.
     │   │    ├── model_category.txt
     │   │    └── model_sexsism.txt
-    │   │
-    │   ├── locust            <- Logs generated after locust analysis.
+    │   ├── locust                       <- Logs generated after locust analysis.
     │   │    ├── report_exceptions.csv
     │   │    ├── report_stats_history.csv
     │   │    ├── report_stats.csv
     │   │    └── report_failures.csv
-    │   │
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    │   ├── output_codecarbon           <- Logs generated after code carbon analysis.
+    │   │    ├── output_train_a.csv
+    │   │    ├── output_train_a.csv.bak
+    │   │    ├── output_train_b.csv
+    │   │    └── output_train_b.csv.bak
+    │   ├── mlruns                      <- Logs generated after mlflow runs.
+    │   └── figures                     <- Generated graphics and figures to be used in reporting
     │
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
-    │   │
+    │   ├── README.md
     │   ├── api            <- Scripts to crate Api using FastAPI
     │   │   ├── corpus_endpoint.py
     │   │   ├── prometheus_monitoring.py
-    │   │   ├── README.md
     │   │   ├── server_api.py
     │   │   └── dashboards
     │   │       └── grafana.json
-    │   │
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
-    │   │
     │   ├── features       <- Scripts to turn raw data into features for modeling
     │   │   ├── drift_detection.py
-    │   │   ├── build_features.py
-    │   │   └── README.md 
-    │   │
+    │   │   └── build_features.py
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
     │   │   ├── test_a.py
@@ -152,50 +152,38 @@ Project Organization
     │   │   ├── train_b.py
     │   │   ├── validation_a.py
     │   │   ├── validation_b.py
-    │   │   ├── mlruns
-    │   │   ├── output_codecarbon
-    │   │   │   ├── output_train_a.csv
-    │   │   │   ├── output_train_a.csv.bak
-    │   │   │   ├── output_train_b.csv
-    │   │   │   ├── output_train_b.csv.bak
-    │   │   │   └── README.md
-    │   │   │
+    │   │   ├── .codecarbon.config
     │   │   └── MLflow
-    │   │       ├── test_a.py
-    │   │       ├── test_b.py
-    │   │       ├── train_a.py
-    │   │       ├── train_b.py
-    │   │       ├── validation_a.py
-    │   │       └── validation_b.py
-    │   │  
+    │   │       ├── mlflow_test_a.py
+    │   │       ├── mlflow_test_b.py
+    │   │       ├── mlflow_train_a.py
+    │   │       ├── mlflow_train_b.py
+    │   │       ├── mlflow_validation_a.py
+    │   │       └── mlflow_validation_b.py
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
     │   
     ├── tests         <- Scripts to test using Pytest
     │   ├── api_testing
     │   │   └── test_api.py
-    │   │
     │   ├── dataset_testing
     │   │   ├── test_dataset_model_a.py
     │   │   └── test_dataset_model_b.py
-    │   │
     │   ├── model_training_testing
     │   │    └── test_overfit.py
-    │   │
     │   ├── preprocessing_testing
     │   │    └── test_preprocessing.py
-    │   │
-    │   └── behavioral_testing
-    │       ├── test_directional_model_a.py
-    │       ├── test_directional_model_b.py
-    │       ├── test_invariance_model_a.py
-    │       ├── test_invariance_model_b.py
-    │       ├── test_minimum_funcionality_model_a.py
-    │       └── test_minimum_funcionality_model_b.py
+    │   ├── behavioral_testing
+    │   │   ├── test_directional_model_a.py
+    │   │   ├── test_directional_model_b.py
+    │   │   ├── test_invariance_model_a.py
+    │   │   ├── test_invariance_model_b.py
+    │   │   ├── test_minimum_funcionality_model_a.py
+    │   │   └── test_minimum_funcionality_model_b.py
+    │   └── README.md
     |
     ├── .dockerignore           <- Docker ignore file.
     ├── .dvcignore              <- Data Version Control ignore file.
-    ├── .flake8                 <- Flake8 ignore file.
     ├── .gitignore              <- Specifications of files to be ignored by Git.
     ├── docker-compose.yaml     <- Docker Compose configuration.
     ├── Dockerfile              <- Docker file for the backend.

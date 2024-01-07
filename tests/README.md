@@ -14,7 +14,27 @@ The tests conducted are categorized as follows:
 
 - **Preprocessing Testing**: These tests are aimed at the preprocessing steps of our data pipeline. We validate the methods used for cleaning, normalizing, and transforming data to ensure they are correctly implemented and contribute positively to the performance of our models.
 
-Through the use of `pytest`, a powerful testing framework, and `Great Expectations`, an advanced tool for validating and documenting data quality, we strive to build a project that is functional, dependable, and efficient. The subsequent sections will delve into each testing category, detailing their implementation and execution within our project.
+## Tools
+
+In our project, we place a strong emphasis on the reliability and quality of our software and data. To achieve this, we utilize two key tools: `Pytest` and `Great Expectations`. These tools form the backbone of our testing and validation framework, ensuring that our project meets high standards of functionality, dependability, and efficiency.
+
+### Pytest
+
+`Pytest` is a powerful and flexible testing framework for Python. It is used extensively for writing simple unit tests as well as complex functional tests. It offers features such as:
+
+* A simple syntax for writing tests.
+* The ability to run tests in parallel, significantly improving test execution time.
+* Extensive support for fixtures, allowing for reusable test configurations.
+* Easy integration with other tools and services for enhanced testing capabilities.
+
+### Great Expectations
+
+`Great Expectations` is an advanced tool that plays a crucial role in validating, documenting, and profiling our data quality. Great Expectations helps us by:
+
+* Validating data against a predefined set of rules and criteria, ensuring that it meets the quality standards required for accurate analysis and modeling.
+* Creating clear and understandable documentation of our data.
+* Profiling data to provide insights into its characteristics, distribution, and structure of the data.
+
 
 ## Behavioral tests
 ### Directional Test
