@@ -128,7 +128,9 @@ main_description = {
                             "/task/A/preprocessing", 
                             "/task/B", 
                             "/task/B/metrics", 
-                            "/task/B/preprocessing"]
+                            "/task/B/preprocessing",
+                            "/prediction_sexism",
+                            "/prediction_category"]
 }
 
 task = {

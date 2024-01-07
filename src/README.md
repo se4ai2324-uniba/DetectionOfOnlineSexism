@@ -10,13 +10,24 @@ The API is built using [FastAPI](https://fastapi.tiangolo.com/), a modern, high-
 
 #### System Functionalities
 
-Our API supports two main tasks:
+This project has several endpoints with different tasks:
 
-1. **Sexism Detection Task**
-   - Endpoint: `/prediction_sexism`
+1. **`/task` Endpoint:** This endpoint is the main entry point for model activities. Through this, users can access general information about available tasks and the current version of the model.
 
-2. **Category Detection Task**
-   - Endpoint: `/prediction_category`
+2. **`/task/A` \ `/task/B` Endpoint:** This endpoint is useful to see in detail all the relevant information regarding the choosen task (A or B), in particular:
+   -  the description of the task
+   -  the models used for this task
+   -  the path of the metrics related to the task
+
+3. **`/task/A/metrics` \ `/task/B/metrics` Endpoint:** This endpoint provides evaluation metrics associated with the task choosen. Metrics include F1-score, recall and precision, offering an assessment of the model's performance.
+
+4. **`/task/A/preprocessing` \ `/task/B/preprocessing` Endpoint:** This endpoint regards the preprocessing steps associated with the specified task specified, in fact it includes information about the tokenizer, the type of vectorizer and whether a lemmatizer was applied.
+
+5. **`/prediction_sexism` Endpoint:** This endpoint is designed to predict whether a given message is sexist or not using a pre-trained model. The function takes a message as input and uses the model to predict the label, 
+
+6. **`/prediction_category` Endpoint:** This endpoint has the same aim of the `/prediction_sexism` endpoint but in this case the prediction regards the category of sexism of the message taken in input. 
+
+It uses HTTP GET requests for retrieving information through the first four endpoints, meanwhile the last two endpoints are set up to handle HTTP POST requests.
 
 #### Running the API
 
@@ -147,7 +158,20 @@ Alibi Detect is often used to continuously monitor models in production, ensurin
 
 ### Drift Detection
 
-In [drift_detection.py](./features/drift_detection.py)`, we used Alibi Detect's KSDrift method for drift detection. Drift detection helps identifying if there is a significant shift in the statistical distribution of features between the training data and new generated fake data.
+In [drift_detection.py](./features/drift_detection.py)`, we can find the entire implementation for the drift detection.
+
+The initial step involves loading the training datasets for both the models (sexism model and category model). Subsequently, a synthetic dataset is generated using the Faker library.
+
+![alibi_detect_fake_data](../references/images_doc/AlibiDetectFakeData.png)
+
+Both the training datasets and the artificially generated dataset are subjected to a preprocessing step using the same methodology employed in the preprocessing for the tasks A and B (tokenizer and vectorizer).
+
+![alibi_detect_preprocessing](../references/images_doc/AlibiDetectPreprocessing.png)
+
+The following code snippet shows the application of the KSDrift algorithm, that is employed to assess the distributional drift between the training dataset and the new fake generated dataset.
+After applying the KSDrift algorithm, the script proceeds to make predictions using the model on artificially generated fake data. This dual process provides insights into the model's robustness and performance under varying data distributions.
+
+![alibi_detect_KSDrift](../references/images_doc/AlibiDetectKSD.png)
 
 For tracking and recording drift detection results, we generated logs that contain valuable information about the drift detection process:
 
@@ -156,6 +180,8 @@ For tracking and recording drift detection results, we generated logs that conta
 -   **Drift Detected**: Indicates whether drift is detected
 -   **p-value**: The p-value associated with the drift detection, providing a statistical measure of significance
 -   **Distance**: The calculated distance representing the shift in the statistical distribution of features
+
+![alibi_detect_log](../references/images_doc/AlibiDetectLog.png)
 
 ### Results
 
