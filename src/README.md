@@ -55,6 +55,17 @@ In order to acquire the metrics, fastAPI and Prometheus have been connected usin
 
 #### Configuration
 The Prometheus configuration file [prometheus.yml](../prometheus.yml) contains global settings and scrape configurations.
+The provided `prometheus.yml` file configures Prometheus with the following settings:
+
+Global Configurations:
+- `scrape_interval`: Metrics are collected globally every 15 seconds.
+- `external_labels`: All collected metrics are labeled with 'monitor: codelab-monitor'.
+
+Job-specific Configuration:
+- Job Name: 'fastapi-it'
+  - `scrape_interval`: Metrics for this job are collected every 5 seconds.
+  - Target Configuration:
+    - Target: 'backend:8000' - Prometheus collects metrics from a service named 'backend' on port 8000.
 
 ![Prometheus_configuration](../references/images_doc/prometheus_configuration.png)
 
@@ -80,6 +91,51 @@ The file [grafana.json](./api/dashboards/graphana.json) represents the configura
 -  **Field Configuration (fieldConfig)**: Defines default settings and customizations for the panel's data field.
 -  **Datasource (datasource)**: Specifies the datasource type (in this case, Prometheus) and a unique identifier (uid).
 -  **Targets** represent different Prometheus metrics or expressions that the panel will display.
+
+We have created 3 dashboards to organize in a better way the relevant metrics:
+- Python Garbage Collection Metrics
+- Scrape Metrics
+- Sexism prediction Metrics
+
+The queries related to `Python Garbage Collection Metrics` are:
+- **python_gc_collections_total**:
+   - Represents the total number of garbage collections performed by the Python runtime.
+- **python_gc_objects_collected_total**:
+   - Displays the overall count of objects collected during garbage collection.
+- **python_gc_objects_uncollectable_total**:
+   - Indicates the total count of objects marked as uncollectable and not reclaimed by the garbage collector.
+
+![graphana_python](../references/images_doc/graphana_python.png)`
+
+The queries related to `Scrape Metrics` are:
+- **scrape_duration_seconds**:
+   - Measures the duration of Prometheus scraping operations.
+- **scrape_samples_post_metric_relabeling**:
+   - Represents the count of samples after metric relabeling during the scraping process.
+- **scrape_samples_scraped**:
+   - Indicates the count of samples successfully scraped by Prometheus.
+- **scrape_series_added**:
+   - Reflects the count of time series added during scraping.
+
+![graphana_scrape](../references/images_doc/graphana_scrape.png)`
+
+The queries related to `Sexism prediction Metrics` are:
+- **fastapi_inprogress**:
+   - Represents the number of in-progress requests in the FastAPI application.
+- **fastapi_model_total_predictions_created**:
+   - Displays the total count of predictions created by a machine learning model in the FastAPI application.
+- **fastapi_model_total_predictions_total**:
+   - Shows the overall total count of predictions made by the machine learning model in FastAPI.
+- **fastapi_model_prediction_result_count**:
+   - Indicates the count of results generated from the model predictions in FastAPI.
+- **fastapi_model_prediction_response_size_count**:
+   - Represents the count of response sizes resulting from the model predictions in FastAPI.
+- **fastapi_model_prediction_latency_count**:
+   - Measures the latency of message prediction, helping to assess the speed and responsiveness of the prediction process.
+- **fastapi_model_prediction_request_size_count**:
+   - Indicates the size of prediction requests, offering visibility into the volume of data processed during predictions.
+
+Dashboards were saved as json file and have been uploaded in [dashboards](api/dashboards)`.
 
 ## Drift Detection with Alibi Detect
 

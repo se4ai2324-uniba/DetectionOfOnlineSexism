@@ -25,8 +25,6 @@ import pynvml
 n_cpu = os.cpu_count()
 print("Number of CPUs in the system:", n_cpu)
 
-#tracker = EmissionsTracker(project_name="Train_A_Emission", output_file="output_train_a.csv")
-
 # Custom transformer using spaCy
 class Predictors(TransformerMixin):
     """
