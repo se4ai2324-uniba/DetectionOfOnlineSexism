@@ -86,7 +86,7 @@ Project Organization
     │   └── README.md      
     |
     ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │   ├── validation_a.pkl
+    │   ├── validation_a.pkl
     │   ├── validation_b.pkl
     │   ├── train_a.pkl
     │   ├── train_b.pkl
