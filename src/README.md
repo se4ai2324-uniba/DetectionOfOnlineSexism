@@ -10,13 +10,24 @@ The API is built using [FastAPI](https://fastapi.tiangolo.com/), a modern, high-
 
 #### System Functionalities
 
-Our API supports two main tasks:
+This project has several endpoints with different tasks:
 
-1. **Sexism Detection Task**
-   - Endpoint: `/prediction_sexism`
+1. **`/task` Endpoint:** This endpoint is the main entry point for model activities. Through this, users can access general information about available tasks and the current version of the model.
 
-2. **Category Detection Task**
-   - Endpoint: `/prediction_category`
+2. **`/task/A` \ `/task/B` Endpoint:** This endpoint is useful to see in detail all the relevant information regarding the choosen task (A or B), in particular:
+   -  the description of the task
+   -  the models used for this task
+   -  the path of the metrics related to the task
+
+3. **`/task/A/metrics` \ `/task/B/metrics` Endpoint:** This endpoint provides evaluation metrics associated with the task choosen. Metrics include F1-score, recall and precision, offering an assessment of the model's performance.
+
+4. **`/task/A/preprocessing` \ `/task/B/preprocessing` Endpoint:** This endpoint regards the preprocessing steps associated with the specified task specified, in fact it includes information about the tokenizer, the type of vectorizer and whether a lemmatizer was applied.
+
+5. **`/prediction_sexism` Endpoint:** This endpoint is designed to predict whether a given message is sexist or not using a pre-trained model. The function takes a message as input and uses the model to predict the label, 
+
+6. **`/prediction_category` Endpoint:** This endpoint has the same aim of the `/prediction_sexism` endpoint but in this case the prediction regards the category of sexism of the message taken in input. 
+
+It uses HTTP GET requests for retrieving information through the first four endpoints, meanwhile the last two endpoints are set up to handle HTTP POST requests.
 
 #### Running the API
 
