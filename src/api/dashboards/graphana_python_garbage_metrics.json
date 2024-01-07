@@ -1,0 +1,104 @@
+{
+  "datasource": {
+    "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+    "type": "prometheus"
+  },
+  "type": "stat",
+  "title": "Panel Title",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 19,
+    "h": 12
+  },
+  "id": 1,
+  "targets": [
+    {
+      "refId": "A",
+      "expr": "python_gc_collections_total",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "B",
+      "expr": "python_gc_objects_collected_total",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "C",
+      "expr": "python_gc_objects_uncollectable_total",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "a560b510-4932-4069-b1af-c8f1e4ce58cd",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "__auto",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    }
+  ],
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "unit": "short"
+    },
+    "overrides": []
+  },
+  "pluginVersion": "10.2.3",
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "auto",
+    "textMode": "auto",
+    "wideLayout": true,
+    "colorMode": "background",
+    "graphMode": "none",
+    "justifyMode": "auto"
+  }
+}
