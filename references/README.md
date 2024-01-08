@@ -1,4 +1,7 @@
-## Contributors
+# Detection of Online Sexism Documentation
+
+## Software Engineering for Al-enabled Systems A.A. 2023/24
+### Contributors
 
 DetectionOfOnlineSexism team:
 - Grazia Perna [g.perna4@studenti.uniba.it]
@@ -7,11 +10,230 @@ DetectionOfOnlineSexism team:
 
 For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/DetectionOfOnlineSexism.git).
 
-# Detection of Online Sexism
+## Summary
+1. [Model Card](#model-card)
 
-## Model Details 
-### Basic information about the model.
-The project described in this documentation has been developed for the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge on CodaLab by Grazia Perna and Maria Elena Zaza in which two models have been implemented.
+   1.1.   [Model Details](#model-details)
+   
+      1.1.2.   [Basic Information about the Model](#basic-information-about-the-model)
+
+   1.2.  [Intended Use](#intended-use)
+
+      1.2.1.  [Primary Intended Uses](#primary-intended-uses)
+
+      1.2.2.  [Primary Intended Users](#primary-intended-users)
+
+      1.2.3.  [Out-of-Scope](#out-of-scope)
+
+   1.3.  [Factors](#factors)
+
+   1.4.  [Metrics](#metrics)
+   
+   1.5.  [Evaluation Data](#evaluation-data)
+
+      1.5.1.   [Dataset](#dataset)
+
+      1.5.2.   [Motivation](#motivation)
+
+      1.5.3.   [Preprocessing](#preprocessing)
+
+   1.6.  [Ethical Considerations](#ethical-considerations)
+
+   1.7.  [Caveats and Recommendations](#caveats-and-recommendations)
+
+2. [Dataset Card](#dataset-card)
+
+   2.1. [Dataset Description](#dataset-description)
+
+   2.2. [Dataset Summary](#dataset-summary)
+
+   2.3.. [Languages](#languages)
+
+   2.4. [Dataset Structure](#dataset-structure)
+
+      2.4.1. [Data Instances](#data-instances)
+
+      4.4.2. [Data Splits](#data-splits)
+
+3. [DVC, MLflow, and DagsHub Integration for Machine Learning Projects](#dvc-mlflow-and-dagshub-integration-for-machine-learning-projects)
+
+   3.1. [Overview](#overview)
+
+   3.2. [Features](#features)
+
+   3.3. [Installation](#installation)
+
+   3.4. [Usage](#usage)
+
+      3.4.1. [Setting Up DVC](#setting-up-dvc)
+
+      3.4.2. [Integrating MLflow](#integrating-mlflow)
+
+   3.5. [Integrating with DagsHub](#integrating-with-dagshub)
+
+   3.6. [Combining DVC, MLflow, and DagsHub](#combining-dvc-mlflow-and-dagshub)
+
+   3.7. [Versioning Data and Models](#versioning-data-and-models)
+
+   3.8. [Experiment Tracking](#experiment-tracking)
+
+   3.9. [Model Deployment](#model-deployment)
+
+   3.10. [Best Practices](#best-practices)
+
+4. [Test](#test)
+
+   4.1.  [Introduction](#introduction)
+
+   4.2.  [Tools](#tools)
+
+      4.2.1.  [Pytest](#pytest)
+
+      4.2.2.   [Great Expectations](#great-expectations)
+
+   4.3.  [Behavioral tests](#behavioral-tests)
+
+      4.3.1.   [Directional Test](#directional-test)
+
+            4.3.1.1.   [Model A](#model-a)
+
+            4.3.1.2.   [Model B](#model-b)
+
+      4.3.2.   [Invariance Test](#invariance-test)
+
+            4.3.2.1.   [Model A](#model-a-1)
+
+            4.3.2.2.   [Model B](#model-b-1)
+
+      4.3.3.   [Minimum Functionality Test](#minimum-functionality-test)
+
+            4.3.3.1.   [Model A](#model-a-2)
+
+            4.3.3.2.   [Model B](#model-b-2)
+
+      4.3.4.   [Dataset tests](#dataset-tests)
+
+            4.3.4.1.   [Model A](#model-a-3)
+
+            4.3.4.2.   [Model B](#model-b-3)
+
+      4.3.5.   [Model training tests](#model-training-tests)
+
+      4.3.6.   [Preprocessing tests](#preprocessing-tests)
+
+5. [Source Code](#source-code)
+
+   5.1.  [Introduction](#introduction-1)
+
+   5.2.  [API with FastAPI](#api-with-fastapi)
+
+      5.2.1.  [System Functionalities](#system-functionalities)
+
+      5.2.2.  [Running the API](#running-the-api)
+
+      5.2.3.  [Swagger UI](#swagger-ui)
+
+   5.3.    [API tests](#api-tests)
+
+6. [Docker](#docker)
+
+   6.1   [Components](#components)
+
+   6.2   [Docker File Configuration](#docker-file-configuration)
+   
+   6.3   [Building and Running the Docker Container](#building-and-running-the-docker-container)
+
+   6.4   [Docker Compose Configuration](#docker-compose-configuration)
+
+   6.5   [Usage](#usage)
+
+7. [GitHub Actions](#github-actions)
+
+   7.1   [Introduction](#introduction-3)
+
+8. [System Deploy](#system-deploy)
+
+   8.1   [Introduction](#introduction-4)
+
+   8.2   [Azure](#azure)
+   
+   8.3   [Deploy a multi-container group using Docker Compose](#deploy-a-multi-container-group-using-docker-compose)
+
+      8.3.1 [Create and Log in to Azure container registry](#create-and-log-in-to-azure-container-registry)
+
+      8.3.2 [Docker compose file](#docker-compose-file)
+
+      8.3.3 [Run multi-container application locally](#run-multi-container-application-locally)
+
+      8.3.4 [Push image to container registry](#push-image-to-container-registry)
+
+      8.3.5 [Create Azure context](#create-azure-context)
+
+      8.3.6 [Deploy application to Azure Container Instances](#deploy-application-to-azure-container-instances)
+
+               8.3.1.6.1. [Frontend](#frontend)
+
+               8.3.1.6.2. [Backend](#backend)
+
+   8.4.   [Deploy the Prometheus dashboard creating a Web-App](#deploy-the-prometheus-dashboard-creating-a-web-app)
+
+      8.4.1.   [Push image to container registry](#push-image-to-container-registry-1)
+
+      8.4.2.   [Create Azure Web-App](#create-azure-web-app)
+
+9. [Codecarbon](#codecarbon)
+
+   9.1.  [Codecarbon configuration](#codecarbon-configuration)
+
+   9.2.  [Code explanation](#code-explanation)
+
+   9.3.  [Results](#results)
+
+
+10.   [Monitoring](#monitoring)
+
+   10.1. [Detection of Online Sexism Load Testing](#detection-of-online-sexism-load-testing)
+
+      10.1.1.  [Overview](#overview)
+
+      10.1.2.  [Features](#features)
+      
+      10.1.3.  [Installation](#installation)
+
+      10.1.4.  [Usage](#usage)
+
+      10.1.5.  [File Description](#file-description)
+
+   10.2. [BetterUpTime](#betteruptime)
+
+      10.2.1.  [Features](#features-1)
+  
+   10.3. [Monitoring with Prometheus and Grafana](#monitoring-with-prometheus-and-grafana)
+
+      10.3.1.  [Prometheus](#prometheus)
+
+         10.3.1.1.   [Configuration](#configuration)
+
+         10.3.1.2.   [How to execute docker-compose.yml](#how-to-execute-docker-composeyml)
+
+      10.3.2   [Grafana](#grafana)
+
+         10.3.2.1.   [Configuration](#configuration-1)
+
+11.   [Drift Detection with Alibi Detect](#drift-detection-with-alibi-detect)
+
+   11.1. [Alibi Detect](#alibi-detect)
+
+   11.2. [Drift Detection](#drift-detection-1)
+   
+   11.3. [Results](#results)
+
+
+
+## Model Card
+###  Model Details 
+####  Basic information about the model
+The project described in this  has been developed for the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge on CodaLab by Grazia Perna and Maria Elena Zaza in which two models have been implemented.
 
 Before training the models, the used data was preprocessed to remove spaces, convert text to lowercase and eliminate punctuation. Other techniques like tokenization and lemmatization (for task A) were also used here.
 The preprocessed text was then inserted into a CountVectorizer, which transformed the text into numerical features suitable for classification.
@@ -29,8 +251,8 @@ To evaluate the performance of the models the GriSearchCV was employed for perfo
 The project, the paper and a simple demo are available at: https://github.com/graziaperna/NLP-project.
 
 
-## Intended Use 
-### Primary intended uses
+### Intended Use 
+#### Primary intended uses
 
 The primary use case on which the model is trained on is to detect if a message is sexist or not and in a positive case it will understand the type of sexism it belongs. Words can be sexist or not according to the context.
 The models can be used in several domains:
@@ -39,21 +261,21 @@ The models can be used in several domains:
 - Journalism
 - Publishing
 
-### Primary intended users
+#### Primary intended users
 
 The primary intended users of this study caters primarily to researchers, practitioners and participants engaged in the field of natural language processing. This audience includes individuals and entities actively involved in the development and implementation of algorithms and models for the detection and categorization of online sexism.
 Additionally, participants and researchers involved in similar challenges or projects addressing nuanced language analysis and detection of sensitive content may find our work relevant and insightful.
 
-### Out-of-scope
+#### Out-of-scope
 
 This project is limited to the English language because of the used dataset. 
 Also it doesn't consider cultural factors. The dataset is related to the western geographical area but the challenge's website doesn't provide any additional information. 
 
-## Factors 
+### Factors 
 
 The accuracy of the results of these models can be influenced by several demographic factors, like the language, the culture, the age and the gender.
 
-## Metrics 
+### Metrics 
 
 The data were divided into three splits: train, validation and test. As a matter of fact, the models were trained using the train set.
 Then the validation set was used to assess their performance and make any necessary adjustments or tuning. Finally, the test set was employed to evaluate the models' generalization ability and obtain their final performance metrics.
@@ -79,17 +301,17 @@ In the following table the model performance measures computed on validation and
 The best SOTA results are related to the task A, while in the task B the results are not so promising due to the complexity of the problem.
 
 
-## Evaluation Data 
-### Dataset: 
+### Evaluation Data 
+#### Dataset: 
 The dataset is given by the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge and it has 19988 samples. 
-### Motivation: 
+#### Motivation: 
 This project was developed for this specific challenge. 
-### Preprocessing: 
+#### Preprocessing: 
 For Task A we implemented a custom text cleaning function to remove spaces, convert text to lowercase and eliminate punctuation. We used TreeBankTokenizer and the WordNetLemmatizer for lemmatization.
 The cleaned text was then fed into a CountVectorizer, which transformed the text into numerical features suitable for classification.
 Both individual words and word pairs (n-grams) were considered by the vectorizers.
 
-## Ethical Considerations
+### Ethical Considerations
 
 In this study ethical considerations were prioritized:
 - avoid perpetuating stereotypes and worked towards fair and unbiased representation in the detection and categorization of online sexism
@@ -97,13 +319,13 @@ In this study ethical considerations were prioritized:
 
 By addressing these ethical considerations, this project to contribute responsibly to the exploration of online sexism detection, recognizing the importance of maintaining integrity, fairness and respect for individuals throughout the research process.
 
-## Caveats and Recommendations
+### Caveats and Recommendations
 
 A very huge limitation is that the dataset considers the context in which the message are used. That can change consistently the results. In addition it works only with the english language so it can be used only in certain countries.
 
 
-# Dataset card
-## Dataset Description
+## Dataset card
+### Dataset Description
 
 - title = SemEval-2023 Task 10: Explainable Detection of Online Sexism,
 - url = http://arxiv.org/abs/2303.04222,
@@ -113,18 +335,18 @@ A very huge limitation is that the dataset considers the context in which the me
 - publisher = Association for Computational Linguistics,
 - year = 2023
 
-## Dataset Summary
+### Dataset Summary
 Online sexism is a widespread and harmful phenomenon. To address this issue "SemEval Task 10 on the Explainable Detection of Online Sexism" (EDOS) has been introduced. 
 Have been done two main contributions:
 - a novel hierarchical taxonomy of sexist content, which includes granular vectors of sexism to aid explainability; 
 
 - a new dataset of 20,000 social media comments with fine-grained labels, along with larger unlabelled datasets for model adaptation.
 
-## Languages
+#### Languages
 This task supports the development of English-language models for sexism detection that are more accurate as well as explainable.
 
-# Dataset Structure
-## Data Instances
+### Dataset Structure
+#### Data Instances
 The dataset has two columns: 
 - `rewire_id`: is the unique ID of each entry, as specified in the dev/test data;
 - `label_pred`: is the string label predicted by your model for each entry. The label names must exactly match those from the training data.
@@ -140,7 +362,7 @@ For Task B, label_pred must be one of four labels:
 3. `animosity`;
 4. `prejudiced discussions`.
 
-## Data Splits
+#### Data Splits
 
 The dataset has been splitted into validation, test and training set.
 The class distribution for
@@ -172,15 +394,15 @@ As regards task B, the class distribution was:
     - prejudiced discussions: 94
     - threats, plans to harm and incitement: 89
 
-# DVC, MLflow, and DagsHub Integration for Machine Learning Projects
+## DVC, MLflow, and DagsHub Integration for Machine Learning Projects
 
 This project employs DVC (Data Version Control), MLflow, and DagsHub to manage and track the machine learning lifecycle. DVC is an open-source version control system tailored for data science and machine learning projects. MLflow is an open-source platform that handles the end-to-end machine learning lifecycle. DagsHub complements these tools by providing a platform for collaboration on data science projects.
 
-## Overview
+### Overview
 
 The integration of DVC, MLflow, and DagsHub provides a comprehensive solution for dataset management, versioning, experiment tracking, and model deployment. This synergy enhances the reproducibility, monitoring, and collaboration of machine learning projects.
 
-## Features
+### Features
 
 - **Data Versioning with DVC**: Manages and version-controls large datasets and machine learning models, facilitating data sharing and collaboration.
 - **Experiment Tracking with MLflow**: Records and compares experiments, parameters, and results, streamlining the model development process.
@@ -188,11 +410,8 @@ The integration of DVC, MLflow, and DagsHub provides a comprehensive solution fo
 - **Collaboration with DagsHub**: Integrates with DVC and MLflow, offering a collaborative platform for team members to share, discuss, and track progress.
 - **Reproducibility**: Ensure experiments are reproducible with version-controlled data and models.
 
-## Installation
 
-Before starting, ensure Python is installed. Then, install DVC, MLflow, and the necessary dependencies:
-
-## Installation
+### Installation
 
 Before you begin, ensure you have Python installed on your system. Then, install DVC and MLflow using pip:
 
@@ -200,9 +419,9 @@ Before you begin, ensure you have Python installed on your system. Then, install
 pip install dvc mlflow
 ```
 
-## Usage
+### Usage
 
-### Setting Up DVC
+#### Setting Up DVC
 
 1. **Initialize DVC in your Project**:
    ```bash
@@ -219,7 +438,7 @@ pip install dvc mlflow
    git commit -m "Add dataset to DVC"
    ```
 
-### Integrating MLflow
+#### Integrating MLflow
 
 1. **Configure MLflow**:
    Set the tracking URI and specify the experiment name:
@@ -239,7 +458,7 @@ pip install dvc mlflow
        mlflow.log_artifact("path/to/artifact")
    ```
 
-## Integrating with DagsHub
+### Integrating with DagsHub
 DagsHub provides a platform for sharing experiments, data, and progress with team members, enhancing collaboration and transparency in the project. 
 Indeed its goal consists in reducing the friction by integrating all solutions in only one platform and avoid the constant switching between them
 
@@ -256,7 +475,7 @@ Create a repository on DagsHub and link it with your project.
 2. **Push Changes to DagsHub**:
 Commit and push your changes to the DagsHub repository to share your progress.
 
-## Combining DVC, MLflow, and DagsHub
+### Combining DVC, MLflow, and DagsHub
 
 Use DVC for data and model management, MLflow for experiment tracking, and DagsHub for collaboration:
 
@@ -272,30 +491,30 @@ git push origin main
 
 ![image](images_doc/PipelineB.png)
 
-## Versioning Data and Models
+### Versioning Data and Models
 
 DVC tracks changes in your data and models. Use `dvc push` and `dvc pull` commands to synchronize your large files with remote storage, ensuring consistency across environments.
 
 ![image](images_doc/RegisteredModels.png)
 
-## Experiment Tracking
+### Experiment Tracking
 
 MLflow tracks each experiment's parameters, metrics, and output models, making it easy to compare different runs and select the best model for deployment.
 ![image](images_doc/Mlflow.png)
 
-## Model Deployment
+### Model Deployment
 
 Utilize MLflow's model registry for deploying models to various production environments, ensuring a smooth transition from experimentation to deployment.
 
-## Best Practices
+### Best Practices
 
 - Regularly commit changes in data and code to ensure reproducibility.
 - Log all relevant experiment details in MLflow to facilitate analysis and comparison.
 - Use DVC remotes for backing up and sharing large datasets and models.
 
-# Test documentation
+## Test 
 
-## Introduction
+### Introduction
 
 In our commitment to ensuring the reliability and robustness of our project, we have implemented a comprehensive testing suite. This suite encompasses various forms of testing, each targeting specific components and functionalities of our system. Our aim is to maintain high standards of quality and correctness throughout the development lifecycle. 
 
@@ -309,11 +528,11 @@ The tests conducted are categorized as follows:
 
 - **Preprocessing Testing**: These tests are aimed at the preprocessing steps of our data pipeline. We validate the methods used for cleaning, normalizing, and transforming data to ensure they are correctly implemented and contribute positively to the performance of our models.
 
-## Tools
+### Tools
 
 In our project, we place a strong emphasis on the reliability and quality of our software and data. To achieve this, we utilize two key tools: `Pytest` and `Great Expectations`. These tools form the backbone of our testing and validation framework, ensuring that our project meets high standards of functionality, dependability, and efficiency.
 
-### Pytest
+#### Pytest
 
 `Pytest` is a powerful and flexible testing framework for Python. It is used extensively for writing simple unit tests as well as complex functional tests. It offers features such as:
 
@@ -322,17 +541,17 @@ In our project, we place a strong emphasis on the reliability and quality of our
 * Extensive support for fixtures, allowing for reusable test configurations.
 * Easy integration with other tools and services for enhanced testing capabilities.
 
-### Great Expectations
+#### Great Expectations
 
 `Great Expectations` is an advanced tool that plays a crucial role in validating, documenting, and profiling our data quality. Great Expectations helps us by:
 
 * Validating data against a predefined set of rules and criteria, ensuring that it meets the quality standards required for accurate analysis and modeling.
-* Creating clear and understandable documentation of our data.
+* Creating clear and understandable  of our data.
 * Profiling data to provide insights into its characteristics, distribution, and structure of the data.
 
 
-## Behavioral tests
-### Directional Test
+### Behavioral tests
+#### Directional Test
 
 This type of test creates messages with distinct tokens and use the predictive models of task A and B to obtain the predicted labels for these messages. The primary objective is to assert that the predicted labels for messages featuring different tokens are not identical. So this test is designed to verify that the model can distinguish between specific tokens and generate varying predictions based on the token used in the input message. [Path: [Directory](./behavioral_testing)]
 
@@ -344,35 +563,35 @@ The following images contain the directional tests for model A and model B respe
 
 
 The results obtained are shown below:
-#### Model A
+##### Model A
 ![image](images_doc/DirectionalTest_model_a.png)
 
-#### Model B
+##### Model B
 ![image](images_doc/DirectionalTest_model_b.png)
 
-### Invariance Test
+#### Invariance Test
 
 The objective of this test is to ensure that the model's classification of a message is not influenced by the choice of synonyms like "send" or "give." The test aims to confirm that the model maintains its ability to recognize and categorize messages consistently even when variations in language are introduced. This evaluation is essential for assessing the robustness of the model's discriminatory language detection across different expressions with similar meanings. [Path: [Directory](./behavioral_testing)]
 
 The scripts for both the models are the following:
 
-#### Model A
+##### Model A
 
 ![image](images_doc/TestInvarianceTaskA.png)
 
-#### Model B
+##### Model B
 
 ![image](images_doc/TestInvarianceTaskB.png)
 
 The results obtained are shown below:
 
-#### Model A
+##### Model A
 ![image](images_doc/InvarianceTest_model_a.png)
 
-#### Model B
+##### Model B
 ![image](images_doc/InvarianceTest_model_b.png)
 
-### Minimum Functionality Test
+#### Minimum Functionality Test
 
 This test serves as a comprehensive test suite for evaluating the performance of the two models of this project. The tests cover various scenarios, including different types of messages and the evaluation of model metrics. [Path: [Directory](./behavioral_testing)]
 
@@ -382,13 +601,13 @@ Here there is an example of minimum functionality test done for the Task A:
 
 The results obtained are shown below:
 
-#### Model A
+##### Model A
 ![image](images_doc/MinimumTest_model_a.png)
 
-#### Model B
+##### Model B
 ![image](images_doc/MinimumTest_model_b.png)
 
-## Dataset tests
+### Dataset tests
 
 This script utilizes the Great Expectations library to perform data validation on three datasets: training, validation and test sets. The primary goal is to ensure that the datasets meet certain expectations regarding structure and content. [Path: [Directory](./dataset_testing)]
 
@@ -398,17 +617,17 @@ Here there is an example of dataset test done on the training dataset of the Tas
 
 The results obtained are shown below:
 
-### Model A
+#### Model A
 ![image](images_doc/DatasetTest_model_a_1.png)
 ![image](images_doc/DatasetTest_model_a_2.png)
 ![image](images_doc/DatasetTest_model_a_3.png)
 
-### Model B
+#### Model B
 ![image](images_doc/DatasetTest_model_b_1.png)
 ![image](images_doc/DatasetTest_model_b_2.png)
 ![image](images_doc/DatasetTest_model_b_3.png)
 
-## Model training tests
+### Model training tests
 
 It validates the training accuracy ensuring the model approximates a specified threshold. By confirming conformity to performance expectations, the test contributes to reliable machine learning model development and the assurance of accurate message classification. [Path: [Directory](./model_training_testing)]
 
@@ -420,7 +639,7 @@ The results obtained are shown below:
 
 ![image](images_doc/TrainingTest.png)
 
-## Preprocessing tests
+### Preprocessing tests
 
 The tests cover scenarios such as punctuation removal, uppercase text transformation, empty input handling and processing mixed text and numbers. Successful execution confirms the effective preprocessing capability of the `clean_text` function. [Path: [Directory](./preprocessing_testing)]
 
@@ -432,15 +651,15 @@ The results obtained are shown below:
 
 ![image](images_doc/PreprocessingTest.png)
 
-# Source Code Documentation
+## Source Code 
 
-## Introduction
+### Introduction
 
-The `src` directory of our project includes two main components: the API and the feature-related code. The API is built using FastAPI, a high-performance web framework for building APIs with Python 3.7+. It's designed for automatic data validation and documentation generation, leveraging standard Python type hints. This section also covers the use of Docker Compose to launch a monitoring infrastructure with Prometheus and Grafana, along with a custom backend and frontend.
+The `src` directory of our project includes two main components: the API and the feature-related code. The API is built using FastAPI, a high-performance web framework for building APIs with Python 3.7+. It's designed for automatic data validation and  generation, leveraging standard Python type hints. This section also covers the use of Docker Compose to launch a monitoring infrastructure with Prometheus and Grafana, along with a custom backend and frontend.
 
-## API with FastAPI
+### API with FastAPI
 
-The API is built using [FastAPI](https://fastapi.tiangolo.com/), a modern, high-performance web framework for building APIs with Python 3.7+. FastAPI leverages standard Python type hints for automatic data validation and documentation generation.
+The API is built using [FastAPI](https://fastapi.tiangolo.com/), a modern, high-performance web framework for building APIs with Python 3.7+. FastAPI leverages standard Python type hints for automatic data validation and  generation.
 
 #### System Functionalities
 
@@ -491,7 +710,7 @@ Instead here we have an example  of the `/prediction_category` endpoint. The use
 
 ![Category1](images_doc/Category1.png)
 
-## API tests
+### API tests
 Tests concerning APIs implemented with FastAPI are crucial to ensure that the application is robust, reliable, and easy to maintain and develop over time to improve its efficiency. Tests ensure that all the application's functionalities work as expected, verifying that endpoints return the correct data and respond with the appropriate status codes. When changes are made to the code, tests help ensure that existing functionalities are not accidentally disrupted. Finally, by testing various scenarios, including behavior in abnormal conditions or the submission of invalid input, the application can be ensured to be secure and stable. [Path: [Directory](./api_testing)]
 
 The following script shows as example the test on the main endpoint:
@@ -502,11 +721,11 @@ The results obtained are shown below:
 
 ![image](images_doc/ApiTest.png)
 
-# Docker
+## Docker
 
 Docker is a lightweight virtualization tool that allows us to isolate the development environment and ensure the reproducibility of our experiments.
 
-## Components
+### Components
 
 - [Dockerfile](../Dockerfile): The Dockerfile contains instructions for creating the Docker image. This file defines the environment and dependencies required to run backend of our machine learning project.
 
@@ -520,7 +739,7 @@ Docker is a lightweight virtualization tool that allows us to isolate the develo
 
 - [prometheus.yml](../prometheus.yml): The Prometheus configuration file. This file includes settings for monitoring the application, such as scrape configurations for gathering metrics from different sources, including the backend service.
 
-## Docker File Configuration
+### Docker File Configuration
 
 The backend [Dockerfile](../Dockerfile) performs the following tasks:
 
@@ -532,7 +751,7 @@ The backend [Dockerfile](../Dockerfile) performs the following tasks:
 6. **Expose Port 8000**: Makes the port 8000 available to the outside world.
 7. **Command**: Sets the default command to run `uvicorn` for the web application on port 8000.
 
-## Building and Running the Docker Container
+### Building and Running the Docker Container
 
 To build and run this web application in a Docker container, follow these steps:
 
@@ -553,7 +772,7 @@ This command runs the container in detached mode and maps port 8000 of the conta
 Once the container is running, the backend of our web application should be accessible at http://localhost:8000
 
 
-## Docker Compose Configuration
+### Docker Compose Configuration
 
 The `docker-compose.yml` file defines the following services:
 
@@ -562,7 +781,7 @@ The `docker-compose.yml` file defines the following services:
 -  **prometheus**: Uses the `prom/prometheus` image. It mounts the `./prometheus.yml` file into the container at `/etc/prometheus/prometheus.yml.` It exposes port 9090 for accessing the Prometheus web UI. It depends on the "backend" service.
 -  **grafana**: Uses the `grafana/grafana` image. It exposes port 3000 for accessing the Grafana web UI. It depends on the "prometheus" service.
 
-## Usage
+### Usage
 
 To use this Docker environment for our machine learning project, follow these steps:
 
@@ -593,9 +812,9 @@ Once running, you can access the Docker development environment.
 docker-compose down
 ```
 
-# GitHub Actions Documentation
+## GitHub Actions 
 
-## Introduction
+### Introduction
 GitHub Actions is a feature provided by GitHub that enables the automation of software workflows directly within the GitHub environment.
 It can be used to build, test and deploy applications directly from the GitHub repository, reducing the need for external continuous integration services.
 
@@ -611,18 +830,18 @@ We developed GitHub Actions for integrating key tools and frameworks into our pr
 
 With these GitHub Actions in place, our development process is streamlined and we can confidently deliver robust and well-tested functionalities.
 
-# System Deploy documentation
+## System Deploy 
 
-## Introduction
+### Introduction
 
 This guide is tailored to provide you with a comprehensive understanding and step-by-step instructions for leveraging the powerful capabilities of Azure to host and manage your machine learning solutions. You will be equipped with the knowledge to effectively deploy and manage your machine learning system on Azure, ensuring a scalable, secure, and high-performing application. Let's begin your journey to harnessing the full potential of Azure for your machine learning needs.
 
-## Azure
+### Azure
 
 [Azure](https://azure.microsoft.com)  is a cloud computing service created by Microsoft for building, testing, deploying, and managing applications and services through Microsoft-managed data centers. It provides a range of cloud services, including those for computing, analytics, storage, and networking. Azure offers solutions for all industries through a comprehensive set of tools and frameworks, supporting various programming languages, tools, and frameworks, including both Microsoft-specific and third-party software and systems.
 
-## Deploy a multi-container group using Docker Compose
-### Create and Log in to Azure container registry
+### Deploy a multi-container group using Docker Compose
+#### Create and Log in to Azure container registry
 
 Before you create your container registry, you need a resource group to deploy it to. A resource group is a logical collection into which all Azure resources are deployed and managed.
 
@@ -637,7 +856,7 @@ az acr create --resource-group detectiononlinesexism_group --name onlinesexismre
 az acr login --name onlinesexismregistry
 ```
 
-### Docker compose file
+#### Docker compose file
 Open [docker-compose.yml](../docker-compose.yml) in a text editor and we write the following configuration:
 
 ```bash
@@ -657,7 +876,7 @@ services:
     ports:
       - "8000:8000"
 ```
-### Run multi-container application locally
+#### Run multi-container application locally
 Ater that, we run the following instruction, which uses docker-compose.yaml file to build the container image, create the images, and start the application:
 
 ```bash
@@ -669,13 +888,13 @@ After trying the local application, run docker-compose down to stop the applicat
 docker-compose down
 ```
 
-### Push image to container registry
+#### Push image to container registry
 To deploy the application to Azure Container Instances, we need to push the local images to our container registry:
 ```bash
 docker-compose push
 ```
 
-### Create Azure context
+#### Create Azure context
 To use Docker commands to run containers in Azure Container Instances, first we must log into Azure:
 ```bash
 docker login azure
@@ -685,7 +904,7 @@ Then, we create an ACI context. This context associates Docker with an Azure sub
 ```bash
 docker context create aci myacicontext
 ```
-### Deploy application to Azure Container Instances
+#### Deploy application to Azure Container Instances
 Next, change to the ACI context. Subsequent Docker commands run in this context.
 
 ```bash
@@ -698,10 +917,10 @@ docker compose up
 ```
 Below we can see the result:
 
-#### Frontend
+##### Frontend
 ![Frontend](images_doc/Frontend.png)
 
-#### Backend
+##### Backend
 ![Backend](images_doc/Backend.png)
 
 When we finish trying the application, stop the application and containers with:
@@ -709,11 +928,11 @@ When we finish trying the application, stop the application and containers with:
 docker compose down
 ```
 
-## Deploy the Prometheus dashboard creating a Web-App
+### Deploy the Prometheus dashboard creating a Web-App
 
 In this section, we provide a step-by-step demonstration of how the Prometheus dashboard is deployed on Azure. 
 
-### Push image to container registry
+#### Push image to container registry
 First of all, we create a new folder called `prometheus` where we go to insert our file [prometheus.yml](../prometheus.yml) and define a new `Dockerfile`, as follows:
 
 ```bash
@@ -738,7 +957,7 @@ docker tag prometheus onlinesexismregistry.azurecr.io/prometheus
 docker push onlinesexismregistry.azurecr.io/prometheus  
 ```
 
-### Create Azure Web-App
+#### Create Azure Web-App
 Using the Azure web interface, we create the `prometheusonlinesexism` Web-App filling the different required fields, taking care to select the option `Docker Container` as follows:
 
 ![WebApp](images_doc/PrometheusDeploy.png)
@@ -748,13 +967,13 @@ Once created the `prometheusonlinesexism` Web-App, we must select the field `Dep
 ![WebApp](images_doc/DeploymentCenter.png)
 
 
-## Codecarbon 
+### Codecarbon 
 **CodeCarbon** is focused on measuring and mitigating the carbon footprint associated with software development.
 It takes a proactive approach to address the ecological impact of code creation.
 
 The primary goal of CodeCarbon is to raise awareness about the environmental consequences of software development and provide developers with the tools and insights needed to make environmentally conscious coding decisions. 
-For more detailed information, you can refer to the official [CodeCarbon documentation](https://mlco2.github.io/codecarbon/) or the [GithubRepo](https://github.com/mlco2/codecarbon).
-### Codecarbon configuration
+For more detailed information, you can refer to the official [CodeCarbon ](https://mlco2.github.io/codecarbon/) or the [GithubRepo](https://github.com/mlco2/codecarbon).
+#### Codecarbon configuration
 In this section, we'll explain the `[codecarbon]`configuration :
 ```
 [codecarbon]
@@ -768,14 +987,14 @@ gpu_tracking = False
 - **experiment_id**: A unique identifier for the experiment. This ID helps in associating the emission data with a specific experiment or project. It should be unique to distinguish different experiments.
 - **gpu_tracking**: A boolean flag that determines whether GPU tracking is enabled.
 
-### Code explanation
+#### Code explanation
 We tested our two models with CodeCarbon in order to trace our carbon footprint. Users need to know these details so they can make informed choices about how environmentally sustainable their machine learning operations are.
 
 To do this, in both [train_a](../src/models/train_a.py) and [train_b](../src/models/train_b.py) files have been added `EmissionsTracker` which refers to a tool that records and monitors the carbon emissions associated with code execution:
 
 ![tracker_A](images_doc/tracker_A.png)
 
-### Results
+#### Results
 These are the results we obtained after the tracking phase.
 
 The first image is for the first model, used to detect if a message is sexist or not.
@@ -786,25 +1005,25 @@ The second image is for the second model, used to specify the type of sexism.
 
 ![Emission_model_b](images_doc/Emission_model_b.png)
 
-# Monitoring
-## Detection of Online Sexism Load Testing
+## Monitoring
+### Detection of Online Sexism Load Testing
 
-### Overview
+#### Overview
 The file [locustfile.py](../locustfile.py) is a Python script for performing load testing on web services designed to detect online sexism. The script uses Locust, an open-source load testing tool, to simulate users accessing different endpoints and performing various tasks. The tests are designed to assess the robustness and responsiveness of the services under simulated traffic.
 
-### Features
+#### Features
 * **Multiple Task Simulation**: Simulates various user tasks, including fetching main endpoint descriptions, task-specific details, preprocessing information, and sending prediction requests.
 * **Custom User Behavior**: Custom user class with tasks assigned different weights, representing the likelihood of each task being performed during testing.
 * **Error Handling**: Includes checks for response status codes and expected response content, raising exceptions in case of failure or unexpected responses.
 
-### Installation
+#### Installation
 1. Ensure that Python 3.6 or later is installed on your system.
 2. Install Locust using pip:
 ```bash
 pip install locust
 ```
 
-### Usage
+#### Usage
 1. Navigate to the directory containing the script.
 2. Execute the following command to start Locust with CSV reporting:
 ```bash
@@ -815,14 +1034,14 @@ locust -f locustfile.py --csv=report --csv-full-history
 5. Start the load test using the web interface and monitor the results.
 6. Upon completion, check the specified directory for report_stats.csv, report_stats_history.csv, report_failures.csv and report_exceptions.csv files containing the test results.
 
-### File Description
+#### File Description
 `locustfile.py`: The main Python script containing the definition of the Locust user class. This class includes various tasks that simulate user actions, such as accessing different endpoints and submitting data for prediction.
 
-## BetterUpTime
+### BetterUpTime
 
 BetterUpTime is a tool designed to monitor and improve the uptime of web applications. It provides real-time alerts, detailed reporting, and analytics to help teams maintain high availability and performance of their web services.
 
-### Features
+#### Features
 
 - **Real-Time Monitoring**: Continuously monitors web applications and services for downtime.
 - **Alert System**: Sends immediate notifications through email, SMS, or integrated chat applications when outages are detected.
@@ -831,14 +1050,14 @@ BetterUpTime is a tool designed to monitor and improve the uptime of web applica
 - **Multi-Service Support**: Capable of monitoring multiple services and endpoints simultaneously.
 - **Customizable Checks**: Define the frequency and conditions for uptime checks.
 
-## Monitoring with Prometheus and Grafana
-### Prometheus
+### Monitoring with Prometheus and Grafana
+#### Prometheus
 
 [Prometheus](https://prometheus.io/) is an open-source monitoring and alerting toolkit designed for reliability and scalability. It collects metrics from configured targets at specified intervals, evaluates rule expressions, and can trigger alerts if conditions are met. Prometheus scrapes metrics from the "backend" service, as specified in the configuration file. The collected metrics are stored locally in a time-series database. Prometheus provides a query language (PromQL) for querying and processing the collected metrics.
 
 In order to acquire the metrics, fastAPI and Prometheus have been connected using the `docker-compose.yml` file.
 
-#### Configuration
+##### Configuration
 The Prometheus configuration file [prometheus.yml](../prometheus.yml) contains global settings and scrape configurations.
 The provided `prometheus.yml` file configures Prometheus with the following settings:
 
@@ -854,7 +1073,7 @@ Job-specific Configuration:
 
 ![Prometheus_configuration](images_doc/prometheus_configuration.png)
 
-#### How to execute docker-compose.yml
+##### How to execute docker-compose.yml
 
 1. Ensure Docker is installed.
 2. Navigate to the directory containing the docker-compose.yml file.
@@ -864,10 +1083,10 @@ Job-specific Configuration:
    -  **Prometheus UI**: http://localhost:9090
    -  **Grafana UI**: http://localhost:3000 (default credentials: admin/admin)
 
-### Grafana
+#### Grafana
 Grafana is an open-source analytics and observability platform that allows users to visualize and monitor data from various sources in real-time. In the context of this setup, Grafana is integrated with Prometheus to create interactive dashboards for monitoring a FastAPI application.
 
-#### Configuration
+##### Configuration
 We have created 3 dashboards to organize in a better way the relevant metrics:
 - Python Garbage Collection Metrics
 - Scrape Metrics
@@ -922,15 +1141,15 @@ The queries related to `Sexism prediction Metrics` are:
 
 Dashboards were saved as json file and have been uploaded in [dashboards](../src/api/dashboards).
 
-## Drift Detection with Alibi Detect
+### Drift Detection with Alibi Detect
 
-### Alibi Detect
+#### Alibi Detect
 
 Alibi Detect is an open-source Python library designed for outlier and adversarial instance detection, concept drift monitoring and machine learning model interpretability. It provides a collection of algorithms and tools to assess and enhance the trustworthiness of machine learning models in production.
 
 Alibi Detect is often used to continuously monitor models in production, ensuring that they remain effective and reliable as the underlying data distribution evolves.
 
-### Drift Detection
+#### Drift Detection
 
 In [drift_detection.py](../src/features/drift_detection.py)`, we can find the entire implementation for the drift detection.
 
@@ -957,7 +1176,7 @@ For tracking and recording drift detection results, we generated logs that conta
 
 ![alibi_detect_log](images_doc/AlibiDetectLog.png)
 
-### Results
+#### Results
 
 ![model_sexism](images_doc/sexism_drift.png)
 
