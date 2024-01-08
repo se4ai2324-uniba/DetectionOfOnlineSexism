@@ -107,7 +107,13 @@ Utilize MLflow's model registry for deploying models to various production envir
 
 ## Collaboration and Sharing
 
-DagsHub provides a platform for sharing experiments, data, and progress with team members, enhancing collaboration and transparency in the project.
+DagsHub provides a platform for sharing experiments, data, and progress with team members, enhancing collaboration and transparency in the project. 
+Indeed its goal consists in reducing the friction by integrating all solutions in only one platform and avoid the constant switching between them
+
+Builds on top of:
+* Git: to track source code
+* DVC: to track data
+* MLflow: to track experiments
 
 ## Best Practices
 
