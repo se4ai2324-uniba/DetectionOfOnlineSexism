@@ -66,7 +66,15 @@ pip install dvc mlflow
    ```
 
 ## Integrating with DagsHub
-DagsHub seamlessly integrates with DVC and MLflow, offering a platform for hosting and visualizing DVC-tracked datasets and MLflow experiments. Create a DagsHub repository to push and share your DVC and MLflow configurations and results. [DagsHub Repository](https://dagshub.com/se4ai2324-uniba/DetectionOfOnlineSexism)
+DagsHub provides a platform for sharing experiments, data, and progress with team members, enhancing collaboration and transparency in the project. 
+Indeed its goal consists in reducing the friction by integrating all solutions in only one platform and avoid the constant switching between them
+
+Builds on top of:
+* Git: to track source code
+* DVC: to track data
+* MLflow: to track experiments
+
+So, we create a DagsHub repository to push and share your DVC and MLflow configurations and results. [DagsHub Repository](https://dagshub.com/se4ai2324-uniba/DetectionOfOnlineSexism)
 
 1. **Set Up a DagsHub Repository**:
 Create a repository on DagsHub and link it with your project.
@@ -104,16 +112,6 @@ MLflow tracks each experiment's parameters, metrics, and output models, making i
 ## Model Deployment
 
 Utilize MLflow's model registry for deploying models to various production environments, ensuring a smooth transition from experimentation to deployment.
-
-## Collaboration and Sharing
-
-DagsHub provides a platform for sharing experiments, data, and progress with team members, enhancing collaboration and transparency in the project. 
-Indeed its goal consists in reducing the friction by integrating all solutions in only one platform and avoid the constant switching between them
-
-Builds on top of:
-* Git: to track source code
-* DVC: to track data
-* MLflow: to track experiments
 
 ## Best Practices
 
