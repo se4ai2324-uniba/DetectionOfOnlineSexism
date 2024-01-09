@@ -13,33 +13,33 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 ## Summary
 1. [Model Card](#model-card)
 
-   1.1.   [Model Details](#model-details)
+   1.1. [Model Details](#model-details)
    
-      1.1.2.   [Basic Information about the Model](#basic-information-about-the-model)
+      - 1.1.1. [Basic Information about the Model](#basic-information-about-the-model)
 
-   1.2.  [Intended Use](#intended-use)
+   1.2. [Intended Use](#intended-use)
 
-      1.2.1.  [Primary Intended Uses](#primary-intended-uses)
+      - 1.2.1. [Primary Intended Uses](#primary-intended-uses)
 
-      1.2.2.  [Primary Intended Users](#primary-intended-users)
+      - 1.2.2. [Primary Intended Users](#primary-intended-users)
 
-      1.2.3.  [Out-of-Scope](#out-of-scope)
+      - 1.2.3. [Out-of-Scope](#out-of-scope)
 
-   1.3.  [Factors](#factors)
+   1.3. [Factors](#factors)
 
-   1.4.  [Metrics](#metrics)
+   1.4. [Metrics](#metrics)
    
-   1.5.  [Evaluation Data](#evaluation-data)
+   1.5. [Evaluation Data](#evaluation-data)
 
-      1.5.1.   [Dataset](#dataset)
+      - 1.5.1. [Dataset](#dataset)
 
-      1.5.2.   [Motivation](#motivation)
+      - 1.5.2. [Motivation](#motivation)
 
-      1.5.3.   [Preprocessing](#preprocessing)
+      - 1.5.3. [Preprocessing](#preprocessing)
 
-   1.6.  [Ethical Considerations](#ethical-considerations)
+   1.6. [Ethical Considerations](#ethical-considerations)
 
-   1.7.  [Caveats and Recommendations](#caveats-and-recommendations)
+   1.7. [Caveats and Recommendations](#caveats-and-recommendations)
 
 2. [Dataset Card](#dataset-card)
 
@@ -47,13 +47,13 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
    2.2. [Dataset Summary](#dataset-summary)
 
-   2.3.. [Languages](#languages)
+   2.3. [Languages](#languages)
 
    2.4. [Dataset Structure](#dataset-structure)
 
-      2.4.1. [Data Instances](#data-instances)
+      - 2.4.1. [Data Instances](#data-instances)
 
-      4.4.2. [Data Splits](#data-splits)
+      - 2.4.2. [Data Splits](#data-splits)
 
 3. [DVC, MLflow, and DagsHub Integration for Machine Learning Projects](#dvc-mlflow-and-dagshub-integration-for-machine-learning-projects)
 
@@ -65,9 +65,9 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
    3.4. [Usage](#usage)
 
-      3.4.1. [Setting Up DVC](#setting-up-dvc)
+      - 3.4.1. [Setting Up DVC](#setting-up-dvc)
 
-      3.4.2. [Integrating MLflow](#integrating-mlflow)
+      - 3.4.2. [Integrating MLflow](#integrating-mlflow)
 
    3.5. [Integrating with DagsHub](#integrating-with-dagshub)
 
@@ -83,150 +83,149 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
 4. [Test](#test)
 
-   4.1.  [Introduction](#introduction)
+   4.1. [Introduction](#introduction)
 
-   4.2.  [Tools](#tools)
+   4.2. [Tools](#tools)
 
-      4.2.1.  [Pytest](#pytest)
+      - 4.2.1. [Pytest](#pytest)
 
-      4.2.2.   [Great Expectations](#great-expectations)
+      - 4.2.2. [Great Expectations](#great-expectations)
 
-   4.3.  [Behavioral tests](#behavioral-tests)
+   4.3. [Behavioral tests](#behavioral-tests)
 
-      4.3.1.   [Directional Test](#directional-test)
+      - 4.3.1. [Directional Test](#directional-test)
 
-            4.3.1.1.   [Model A](#model-a)
+         - 4.3.1.1. [Model A](#model-a)
 
-            4.3.1.2.   [Model B](#model-b)
+         - 4.3.1.2. [Model B](#model-b)
 
-      4.3.2.   [Invariance Test](#invariance-test)
+      - 4.3.2. [Invariance Test](#invariance-test)
 
-            4.3.2.1.   [Model A](#model-a-1)
+         - 4.3.2.1. [Model A](#model-a-1)
 
-            4.3.2.2.   [Model B](#model-b-1)
+         - 4.3.2.2. [Model B](#model-b-1)
 
-      4.3.3.   [Minimum Functionality Test](#minimum-functionality-test)
+      - 4.3.3. [Minimum Functionality Test](#minimum-functionality-test)
 
-            4.3.3.1.   [Model A](#model-a-2)
+         - 4.3.3.1. [Model A](#model-a-2)
 
-            4.3.3.2.   [Model B](#model-b-2)
+         - 4.3.3.2. [Model B](#model-b-2)
 
-      4.3.4.   [Dataset tests](#dataset-tests)
+      - 4.3.4. [Dataset tests](#dataset-tests)
 
-            4.3.4.1.   [Model A](#model-a-3)
+         - 4.3.4.1. [Model A](#model-a-3)
 
-            4.3.4.2.   [Model B](#model-b-3)
+         - 4.3.4.2. [Model B](#model-b-3)
 
-      4.3.5.   [Model training tests](#model-training-tests)
+      - 4.3.5. [Model training tests](#model-training-tests)
 
-      4.3.6.   [Preprocessing tests](#preprocessing-tests)
+      - 4.3.6. [Preprocessing tests](#preprocessing-tests)
 
 5. [Source Code](#source-code)
 
-   5.1.  [Introduction](#introduction-1)
+   5.1. [Introduction](#introduction-1)
 
-   5.2.  [API with FastAPI](#api-with-fastapi)
+   5.2. [API with FastAPI](#api-with-fastapi)
 
-      5.2.1.  [System Functionalities](#system-functionalities)
+      - 5.2.1. [System Functionalities](#system-functionalities)
 
-      5.2.2.  [Running the API](#running-the-api)
+      - 5.2.2. [Running the API](#running-the-api)
 
-      5.2.3.  [Swagger UI](#swagger-ui)
+      - 5.2.3. [Swagger UI](#swagger-ui)
 
-   5.3.    [API tests](#api-tests)
+   5.3. [API tests](#api-tests)
 
 6. [Docker](#docker)
 
-   6.1   [Components](#components)
+   6.1. [Components](#components)
 
-   6.2   [Docker File Configuration](#docker-file-configuration)
+   6.2. [Docker File Configuration](#docker-file-configuration)
    
-   6.3   [Building and Running the Docker Container](#building-and-running-the-docker-container)
+   6.3. [Building and Running the Docker Container](#building-and-running-the-docker-container)
 
-   6.4   [Docker Compose Configuration](#docker-compose-configuration)
+   6.4. [Docker Compose Configuration](#docker-compose-configuration)
 
-   6.5   [Usage](#usage)
+   6.5. [Usage](#usage)
 
 7. [GitHub Actions](#github-actions)
 
-   7.1   [Introduction](#introduction-3)
+   7.1. [Introduction](#introduction-3)
 
 8. [System Deploy](#system-deploy)
 
-   8.1   [Introduction](#introduction-4)
+   8.1. [Introduction](#introduction-4)
 
-   8.2   [Azure](#azure)
+   8.2. [Azure](#azure)
    
-   8.3   [Deploy a multi-container group using Docker Compose](#deploy-a-multi-container-group-using-docker-compose)
+   8.3. [Deploy a multi-container group using Docker Compose](#deploy-a-multi-container-group-using-docker-compose)
 
-      8.3.1 [Create and Log in to Azure container registry](#create-and-log-in-to-azure-container-registry)
+      - 8.3.1. [Create and Log in to Azure container registry](#create-and-log-in-to-azure-container-registry)
 
-      8.3.2 [Docker compose file](#docker-compose-file)
+      - 8.3.2. [Docker compose file](#docker-compose-file)
 
-      8.3.3 [Run multi-container application locally](#run-multi-container-application-locally)
+      - 8.3.3. [Run multi-container application locally](#run-multi-container-application-locally)
 
-      8.3.4 [Push image to container registry](#push-image-to-container-registry)
+      - 8.3.4. [Push image to container registry](#push-image-to-container-registry)
 
-      8.3.5 [Create Azure context](#create-azure-context)
+      - 8.3.5. [Create Azure context](#create-azure-context)
 
-      8.3.6 [Deploy application to Azure Container Instances](#deploy-application-to-azure-container-instances)
+      - 8.3.6. [Deploy application to Azure Container Instances](#deploy-application-to-azure-container-instances)
 
-               8.3.1.6.1. [Frontend](#frontend)
+         - 8.3.6.1. [Frontend](#frontend)
 
-               8.3.1.6.2. [Backend](#backend)
+         - 8.3.6.2. [Backend](#backend)
 
-   8.4.   [Deploy the Prometheus dashboard creating a Web-App](#deploy-the-prometheus-dashboard-creating-a-web-app)
+   8.4. [Deploy the Prometheus dashboard creating a Web-App](#deploy-the-prometheus-dashboard-creating-a-web-app)
 
-      8.4.1.   [Push image to container registry](#push-image-to-container-registry-1)
+      - 8.4.1. [Push image to container registry](#push-image-to-container-registry-1)
 
-      8.4.2.   [Create Azure Web-App](#create-azure-web-app)
+      - 8.4.2. [Create Azure Web-App](#create-azure-web-app)
 
 9. [Codecarbon](#codecarbon)
 
-   9.1.  [Codecarbon configuration](#codecarbon-configuration)
+   9.1. [Codecarbon configuration](#codecarbon-configuration)
 
-   9.2.  [Code explanation](#code-explanation)
+   9.2. [Code explanation](#code-explanation)
 
-   9.3.  [Results](#results)
+   9.3. [Results](#results)
 
+10. [Monitoring](#monitoring)
 
-10.   [Monitoring](#monitoring)
+      10.1. [Detection of Online Sexism Load Testing](#detection-of-online-sexism-load-testing)
 
-   10.1. [Detection of Online Sexism Load Testing](#detection-of-online-sexism-load-testing)
+      - 10.1.1. [Overview](#overview)
 
-      10.1.1.  [Overview](#overview)
-
-      10.1.2.  [Features](#features)
+      - 10.1.2. [Features](#features)
       
-      10.1.3.  [Installation](#installation)
+      - 10.1.3. [Installation](#installation)
 
-      10.1.4.  [Usage](#usage)
+      - 10.1.4. [Usage](#usage)
 
-      10.1.5.  [File Description](#file-description)
+      - 10.1.5. [File Description](#file-description)
 
-   10.2. [BetterUpTime](#betteruptime)
+      10.2. [BetterUpTime](#betteruptime)
 
-      10.2.1.  [Features](#features-1)
+      - 10.2.1. [Features](#features-1)
   
-   10.3. [Monitoring with Prometheus and Grafana](#monitoring-with-prometheus-and-grafana)
+      10.3. [Monitoring with Prometheus and Grafana](#monitoring-with-prometheus-and-grafana)
 
-      10.3.1.  [Prometheus](#prometheus)
+      - 10.3.1. [Prometheus](#prometheus)
 
-         10.3.1.1.   [Configuration](#configuration)
+         - 10.3.1.1. [Configuration](#configuration)
 
-         10.3.1.2.   [How to execute docker-compose.yml](#how-to-execute-docker-composeyml)
+         - 10.3.1.2. [How to execute docker-compose.yml](#how-to-execute-docker-composeyml)
 
-      10.3.2   [Grafana](#grafana)
+      - 10.3.2. [Grafana](#grafana)
 
-         10.3.2.1.   [Configuration](#configuration-1)
+         - 10.3.2.1. [Configuration](#configuration-1)
 
-11.   [Drift Detection with Alibi Detect](#drift-detection-with-alibi-detect)
+11. [Drift Detection with Alibi Detect](#drift-detection-with-alibi-detect)
 
-   11.1. [Alibi Detect](#alibi-detect)
+      11.1. [Alibi Detect](#alibi-detect)
 
-   11.2. [Drift Detection](#drift-detection-1)
+      11.2. [Drift Detection](#drift-detection-1)
    
-   11.3. [Results](#results)
+      11.3. [Results](#results)
 
 
 

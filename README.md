@@ -46,6 +46,12 @@ We use Better Uptime to monitor the status of our website. You can check the cur
 
 - Link: https://detectiononlinesexism.betteruptime.com
 
+Documentation Structure 
+------------
+Within each folder, you will find specific documentation that explains the topic covered in that particular section. These documents offer detailed information and resources related to the specific subject of the folder, allowing for a comprehensive understanding of the topics addressed.
+
+For a comprehensive overview and easy reference across all sprints, navigate to [references/](references/README.md) folder. In this central documentation, you will find an index that includes all the topics. 
+
 Project Organization
 ------------
     ├── .dvc                <- Data Version Control configurations.
