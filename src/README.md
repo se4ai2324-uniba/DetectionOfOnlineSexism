@@ -94,7 +94,12 @@ Job-specific Configuration:
 Grafana is an open-source analytics and observability platform that allows users to visualize and monitor data from various sources in real-time. In the context of this setup, Grafana is integrated with Prometheus to create interactive dashboards for monitoring a FastAPI application.
 
 #### Configuration
-The file [grafana.json](./api/dashboards/graphana.json) represents the configuration of a panel within Grafana. The main elements of this configuration are:
+We have created 3 dashboards to organize in a better way the relevant metrics:
+- Python Garbage Collection Metrics
+- Scrape Metrics
+- Sexism prediction Metrics
+
+The main elements of these configurations are:
 
 -  **Panel ID (id)**: A unique identifier for the panel.
 -  **Panel Size (gridPos)**: Specifies the dimensions and position of the panel on the dashboard.
@@ -102,11 +107,6 @@ The file [grafana.json](./api/dashboards/graphana.json) represents the configura
 -  **Field Configuration (fieldConfig)**: Defines default settings and customizations for the panel's data field.
 -  **Datasource (datasource)**: Specifies the datasource type (in this case, Prometheus) and a unique identifier (uid).
 -  **Targets** represent different Prometheus metrics or expressions that the panel will display.
-
-We have created 3 dashboards to organize in a better way the relevant metrics:
-- Python Garbage Collection Metrics
-- Scrape Metrics
-- Sexism prediction Metrics
 
 The queries related to `Python Garbage Collection Metrics` are:
 - **python_gc_collections_total**:

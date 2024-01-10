@@ -36,8 +36,8 @@ Web-App Links
 ------------
 The Machine Learning system was deployed by using the Microsoft Azure provider. You can access the frontend and backend of the application using and prometheus dashboard the following links:
 
-- Frontend: http://4.232.4.253
-- Backend: http://4.232.4.253:8000
+- Frontend: http://52.188.133.113
+- Backend: http://52.188.133.113:8000
 - Prometheus: https://prometheusonlinesexism.azurewebsites.net
 
 Uptime Monitoring
@@ -45,6 +45,12 @@ Uptime Monitoring
 We use Better Uptime to monitor the status of our website. You can check the current status and past incidents at our Better Uptime status page:
 
 - Link: https://detectiononlinesexism.betteruptime.com
+
+Documentation Structure 
+------------
+Within each folder, you will find specific documentation that explains the topic covered in that particular section. These documents offer detailed information and resources related to the specific subject of the folder, allowing for a comprehensive understanding of the topics addressed.
+
+For a comprehensive overview and easy reference across all sprints, navigate to [references/](references/README.md) folder. In this central documentation, you will find an index that includes all the topics. 
 
 Project Organization
 ------------
