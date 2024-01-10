@@ -103,21 +103,12 @@ Project Organization
     │                         `1.0-jqp-initial-data-exploration`.
     |
     ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    |   |
-    │   ├── deploy_doc
-    │   │   └── README.md 
-    │   ├── docker_doc
-    │   │   └── README.md
-    │   ├── dvc_mlflow_doc
-    │   │   └── README.md
     │   ├── great_expectations_doc
     │   │   ├── expectations
     │   │   ├── static
     │   │   └── index.html
-    │   ├── monitoring_doc
-    │   │   └── README.md
     │   ├── images_doc
-    │   └── READMME.md
+    │   └── README.md
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     │   ├── alibi_detect_logs            <- Logs generated after data drift analysis.
@@ -144,7 +135,9 @@ Project Organization
     │   │   ├── prometheus_monitoring.py
     │   │   ├── server_api.py
     │   │   └── dashboards
-    │   │       └── grafana.json
+    │   │       ├── graphana_prediction_metrics.json
+    │   │       ├── graphana_python_garbage_metrics.json
+    │   │       └── graphana_scrape_metrics.json
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
     │   ├── features       <- Scripts to turn raw data into features for modeling
