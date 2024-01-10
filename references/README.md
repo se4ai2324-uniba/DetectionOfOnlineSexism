@@ -840,9 +840,18 @@ This guide is tailored to provide you with a comprehensive understanding and ste
 [Azure](https://azure.microsoft.com)  is a cloud computing service created by Microsoft for building, testing, deploying, and managing applications and services through Microsoft-managed data centers. It provides a range of cloud services, including those for computing, analytics, storage, and networking. Azure offers solutions for all industries through a comprehensive set of tools and frameworks, supporting various programming languages, tools, and frameworks, including both Microsoft-specific and third-party software and systems.
 
 ### Deploy a multi-container group using Docker Compose
+#### Prerequisites
+
+- **Azure CLI**: You must have the Azure CLI installed on your local computer. Version 2.10.1 or later is recommended.
+- **Docker Desktop**: You must use Docker Desktop version 2.3.0.5 or later, available for Windows or macOS. Or install the Docker ACI Integration CLI for Linux.
+ 
 #### Create and Log in to Azure container registry
 
 Before you create your container registry, you need a resource group to deploy it to. A resource group is a logical collection into which all Azure resources are deployed and managed.
+
+```bash
+az login
+```
 
 ```bash
 az group create --name detectiononlinesexism_group --location eastus
@@ -905,17 +914,19 @@ docker context create aci myacicontext
 ```
 #### Deploy application to Azure Container Instances
 Next, change to the ACI context. Subsequent Docker commands run in this context.
-
 ```bash
 docker context use myacicontext
 ```
 
-Finally, we can pull the images from our container registry and start the application in the Azure Container Instances, by using the following command:
+We can pull the images from our container registry and start the application in the Azure Container Instances, by using the following command:
 ```bash
 docker compose up
 ```
-Below we can see the result:
-
+Finally, to see the running containers and the IP address assigned to the container group, execute the following command:
+```bash
+docker ps
+```
+Going to the IP address previously indicated, we can see the result:
 ##### Frontend
 ![Frontend](images_doc/Frontend.png)
 
@@ -932,8 +943,8 @@ docker compose down
 In this section, we provide a step-by-step demonstration of how the Prometheus dashboard is deployed on Azure. 
 
 #### Push image to container registry
-First of all, we create a new folder called `prometheus` where we go to insert our file [prometheus.yml](../prometheus.yml) and define a new `Dockerfile`, as follows:
-
+First of all, we create a new folder called `prometheus` where we go to insert our file [prometheus.yml](../prometheus.yml) in which we have to change the field `targets` using the IP address previously generated in place of the word `backend`.
+In the meanwhile, we define a new `Dockerfile` following the belowing configuration:
 ```bash
 FROM prom/prometheus
 
@@ -946,8 +957,14 @@ ENTRYPOINT [ "/bin/prometheus" ]
 CMD [ "--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus" ]
 ```
 
-Then, using the following instructions respectively let’s create the new Docker image, tag it with the name of our Container Registry and finally push the image on Azure.
+After the creation, we move inside the new folder and we change the actual context:
+```bash
+cd prometheus
 
+docker context use desktop-linux 
+```
+
+Then, using the following instructions respectively let’s create the new Docker image, tag it with the name of our Container Registry and finally push the image on Azure.
 ```bash
 docker build -t prometheus .
 
@@ -961,7 +978,16 @@ Using the Azure web interface, we create the `prometheusonlinesexism` Web-App fi
 
 ![WebApp](images_doc/PrometheusDeploy.png)
 
-Once created the `prometheusonlinesexism` Web-App, we must select the field `Deployment Center` and chose from our Container Registry the Docker image that we want to upload on it. Below we can see the settings in the `Deployment Center`:
+After that, we execute the following steps:
+1. About `onlinesexismregistry`, we provide the necessary authorizations: 
+   - go in the section `Settings`
+   - select `Access keys`
+   - check the checkbox `Admin user`. 
+2. About `prometheusonlinesexism` Web-App:
+   - select the field `Deployment Center` 
+   - chose from our Container Registry the Docker image that we want to upload on it. 
+
+Below we can see the settings in the `Deployment Center`:
 
 ![WebApp](images_doc/DeploymentCenter.png)
 

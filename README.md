@@ -36,8 +36,8 @@ Web-App Links
 ------------
 The Machine Learning system was deployed by using the Microsoft Azure provider. You can access the frontend and backend of the application using and prometheus dashboard the following links:
 
-- Frontend: http://4.232.4.253
-- Backend: http://4.232.4.253:8000
+- Frontend: http://52.188.133.113
+- Backend: http://52.188.133.113:8000
 - Prometheus: https://prometheusonlinesexism.azurewebsites.net
 
 Uptime Monitoring
