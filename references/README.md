@@ -55,7 +55,7 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
       - 2.4.2. [Data Splits](#data-splits)
 
-3. [DVC, MLflow, and DagsHub Integration for Machine Learning Projects](#dvc-mlflow-and-dagshub-integration-for-machine-learning-projects)
+3. [Code and Data versioning](#code-and-data-versioning)
 
    3.1. [Overview](#overview)
 
@@ -79,9 +79,7 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
    3.9. [Model Deployment](#model-deployment)
 
-   3.10. [Best Practices](#best-practices)
-
-4. [Test](#test)
+4. [Quality assurance for ML systems](#quality-assurance-for-ml-systems)
 
    4.1. [Introduction](#introduction)
 
@@ -121,11 +119,11 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
       - 4.3.6. [Preprocessing tests](#preprocessing-tests)
 
-5. [Source Code](#source-code)
+5. [API](#api)
 
    5.1. [Introduction](#introduction-1)
 
-   5.2. [API with FastAPI](#api-with-fastapi)
+   5.2. [FastAPI](#fastapi)
 
       - 5.2.1. [System Functionalities](#system-functionalities)
 
@@ -135,7 +133,7 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
    5.3. [API tests](#api-tests)
 
-6. [Docker](#docker)
+6. [Deployment](#deployment)
 
    6.1. [Components](#components)
 
@@ -145,41 +143,41 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
    6.4. [Docker Compose Configuration](#docker-compose-configuration)
 
-   6.5. [Usage](#usage)
+   6.5. [Instructions](#instructions)
 
-7. [GitHub Actions](#github-actions)
+7. [CI/CD for Machine learning](#cicd-for-machine-learning)
 
-   7.1. [Introduction](#introduction-3)
+   7.1. [GitHub Actions](#github-actions)
 
-8. [System Deploy](#system-deploy)
+8. [Cloud resources](#cloud-resources)
 
-   8.1. [Introduction](#introduction-4)
-
-   8.2. [Azure](#azure)
+   8.1. [Azure](#azure)
    
-   8.3. [Deploy a multi-container group using Docker Compose](#deploy-a-multi-container-group-using-docker-compose)
+   8.2. [Deploy a multi-container group using Docker Compose](#deploy-a-multi-container-group-using-docker-compose)
 
-      - 8.3.1. [Create and Log in to Azure container registry](#create-and-log-in-to-azure-container-registry)
+      - 8.2.1. [Prerequisites](#prerequisites)
 
-      - 8.3.2. [Docker compose file](#docker-compose-file)
+      - 8.2.2. [Create and Log in to Azure container registry](#create-and-log-in-to-azure-container-registry)
 
-      - 8.3.3. [Run multi-container application locally](#run-multi-container-application-locally)
+      - 8.2.3. [Docker compose file](#docker-compose-file)
 
-      - 8.3.4. [Push image to container registry](#push-image-to-container-registry)
+      - 8.2.4. [Run multi-container application locally](#run-multi-container-application-locally)
 
-      - 8.3.5. [Create Azure context](#create-azure-context)
+      - 8.2.5. [Push image to container registry](#push-image-to-container-registry)
 
-      - 8.3.6. [Deploy application to Azure Container Instances](#deploy-application-to-azure-container-instances)
+      - 8.2.6. [Create Azure context](#create-azure-context)
 
-         - 8.3.6.1. [Frontend](#frontend)
+      - 8.2.7. [Deploy application to Azure Container Instances](#deploy-application-to-azure-container-instances)
 
-         - 8.3.6.2. [Backend](#backend)
+         - 8.2.7.1. [Frontend](#frontend)
 
-   8.4. [Deploy the Prometheus dashboard creating a Web-App](#deploy-the-prometheus-dashboard-creating-a-web-app)
+         - 8.2.7.2. [Backend](#backend)
 
-      - 8.4.1. [Push image to container registry](#push-image-to-container-registry-1)
+   8.3. [Deploy the Prometheus dashboard creating a Web-App](#deploy-the-prometheus-dashboard-creating-a-web-app)
 
-      - 8.4.2. [Create Azure Web-App](#create-azure-web-app)
+      - 8.3.1. [Push image to container registry](#push-image-to-container-registry-1)
+
+      - 8.3.2. [Create Azure Web-App](#create-azure-web-app)
 
 9. [Codecarbon](#codecarbon)
 
@@ -191,48 +189,45 @@ For more information see [GitHubRepo](https://github.com/se4ai2324-uniba/Detecti
 
 10. [Monitoring](#monitoring)
 
-      10.1. [Detection of Online Sexism Load Testing](#detection-of-online-sexism-load-testing)
+      10.1. [Resource Monitoring](#resource-monitoring)
 
-      - 10.1.1. [Overview](#overview)
+      - 10.1.1. [BetterUptime](#betteruptime)
 
-      - 10.1.2. [Features](#features)
+         - 10.1.1.1. [Features BetterUptime](#features-betteruptime)
+
+      - 10.1.2. [Locust](#locust)
+         - 10.1.2.1. [Features Locust](#features-locust)
       
-      - 10.1.3. [Installation](#installation)
+         - 10.1.2.2. [Installation](#installation-1)
 
-      - 10.1.4. [Usage](#usage)
+         - 10.1.2.3. [Usage](#usage-1)
 
-      - 10.1.5. [File Description](#file-description)
+         - 10.1.2.4. [File Description](#file-description)
 
-      10.2. [BetterUpTime](#betteruptime)
+      - 10.1.3. [Prometheus](#prometheus)
 
-      - 10.2.1. [Features](#features-1)
-  
-      10.3. [Monitoring with Prometheus and Grafana](#monitoring-with-prometheus-and-grafana)
+         - 10.1.3.1. [Configuration](#configuration)
 
-      - 10.3.1. [Prometheus](#prometheus)
+         - 10.1.3.2. [How to execute docker-compose.yml](#how-to-execute-docker-composeyml)
 
-         - 10.3.1.1. [Configuration](#configuration)
+      - 10.1.4. [Grafana](#grafana)
 
-         - 10.3.1.2. [How to execute docker-compose.yml](#how-to-execute-docker-composeyml)
+         - 10.1.4.1. [Configuration](#configuration-1)
 
-      - 10.3.2. [Grafana](#grafana)
+      10.2. [Performance Monitoring](#performance-monitoring)
 
-         - 10.3.2.1. [Configuration](#configuration-1)
+      - 10.2.1. [Alibi Detect](#alibi-detect)
 
-11. [Drift Detection with Alibi Detect](#drift-detection-with-alibi-detect)
-
-      11.1. [Alibi Detect](#alibi-detect)
-
-      11.2. [Drift Detection](#drift-detection-1)
+      - 10.2.2. [Drift Detection](#drift-detection)
    
-      11.3. [Results](#results)
+      - 10.2.3. [Results](#results-1)
 
 
 
 ## Model Card
 ###  Model Details 
 ####  Basic information about the model
-The project described in this  has been developed for the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge on CodaLab by Grazia Perna and Maria Elena Zaza in which two models have been implemented.
+The project described in this documentation has been developed for the "SemEval 2023 - Task 10 - Explainable Detection of Online Sexism (EDOS)" challenge on CodaLab by Grazia Perna, Maria Elena Zaza and Francesco Brescia in which two models have been implemented. The first one is a model able to classify Sexist phrases from the Not sexist prashes, while the second one is able to identify the Type of Sexism for sexist phrases 
 
 Before training the models, the used data was preprocessed to remove spaces, convert text to lowercase and eliminate punctuation. Other techniques like tokenization and lemmatization (for task A) were also used here.
 The preprocessed text was then inserted into a CountVectorizer, which transformed the text into numerical features suitable for classification.
@@ -325,7 +320,7 @@ A very huge limitation is that the dataset considers the context in which the me
 
 ## Dataset card
 ### Dataset Description
-
+```
 - title = SemEval-2023 Task 10: Explainable Detection of Online Sexism,
 - url = http://arxiv.org/abs/2303.04222,
 - doi = 10.48550/arXiv.2303.04222,
@@ -333,6 +328,7 @@ A very huge limitation is that the dataset considers the context in which the me
 - booktitle = Proceedings of the 17th International Workshop on Semantic Evaluation (SemEval-2023),
 - publisher = Association for Computational Linguistics,
 - year = 2023
+```
 
 ### Dataset Summary
 Online sexism is a widespread and harmful phenomenon. To address this issue "SemEval Task 10 on the Explainable Detection of Online Sexism" (EDOS) has been introduced. 
@@ -363,7 +359,7 @@ For Task B, label_pred must be one of four labels:
 
 #### Data Splits
 
-The dataset has been splitted into validation, test and training set.
+The dataset has been splitted into training, validation and test set.
 The class distribution for
 Task A was as follows:
 - TRAIN SET:
@@ -393,7 +389,7 @@ As regards task B, the class distribution was:
     - prejudiced discussions: 94
     - threats, plans to harm and incitement: 89
 
-## DVC, MLflow, and DagsHub Integration for Machine Learning Projects
+## Code and Data versioning
 
 This project employs DVC (Data Version Control), MLflow, and DagsHub to manage and track the machine learning lifecycle. DVC is an open-source version control system tailored for data science and machine learning projects. MLflow is an open-source platform that handles the end-to-end machine learning lifecycle. DagsHub complements these tools by providing a platform for collaboration on data science projects.
 
@@ -505,13 +501,7 @@ MLflow tracks each experiment's parameters, metrics, and output models, making i
 
 Utilize MLflow's model registry for deploying models to various production environments, ensuring a smooth transition from experimentation to deployment.
 
-### Best Practices
-
-- Regularly commit changes in data and code to ensure reproducibility.
-- Log all relevant experiment details in MLflow to facilitate analysis and comparison.
-- Use DVC remotes for backing up and sharing large datasets and models.
-
-## Test 
+## Quality assurance for ML systems
 
 ### Introduction
 
@@ -650,13 +640,13 @@ The results obtained are shown below:
 
 ![image](images_doc/PreprocessingTest.png)
 
-## Source Code 
+## API
 
 ### Introduction
 
-The `src` directory of our project includes two main components: the API and the feature-related code. The API is built using FastAPI, a high-performance web framework for building APIs with Python 3.7+. It's designed for automatic data validation and  generation, leveraging standard Python type hints. This section also covers the use of Docker Compose to launch a monitoring infrastructure with Prometheus and Grafana, along with a custom backend and frontend.
+The `src` directory of our project includes the API code that needs to be examined and deepened. The API is built using FastAPI, a high-performance web framework for building APIs with Python 3.7+. It's designed for automatic data validation and  generation, leveraging standard Python type hints.
 
-### API with FastAPI
+### FastAPI
 
 The API is built using [FastAPI](https://fastapi.tiangolo.com/), a modern, high-performance web framework for building APIs with Python 3.7+. FastAPI leverages standard Python type hints for automatic data validation and  generation.
 
@@ -720,9 +710,9 @@ The results obtained are shown below:
 
 ![image](images_doc/ApiTest.png)
 
-## Docker
+## Deployment
 
-Docker is a lightweight virtualization tool that allows us to isolate the development environment and ensure the reproducibility of our experiments.
+ Docker is a lightweight virtualization tool that allows us to isolate the development environment and ensure the reproducibility of our experiments This section also covers the use of Docker Compose to launch a monitoring infrastructure with Prometheus and Grafana, along with a custom backend and frontend. 
 
 ### Components
 
@@ -780,7 +770,7 @@ The `docker-compose.yml` file defines the following services:
 -  **prometheus**: Uses the `prom/prometheus` image. It mounts the `./prometheus.yml` file into the container at `/etc/prometheus/prometheus.yml.` It exposes port 9090 for accessing the Prometheus web UI. It depends on the "backend" service.
 -  **grafana**: Uses the `grafana/grafana` image. It exposes port 3000 for accessing the Grafana web UI. It depends on the "prometheus" service.
 
-### Usage
+### Instructions
 
 To use this Docker environment for our machine learning project, follow these steps:
 
@@ -811,9 +801,9 @@ Once running, you can access the Docker development environment.
 docker-compose down
 ```
 
-## GitHub Actions 
+## CI/CD for Machine learning 
 
-### Introduction
+### GitHub Actions 
 GitHub Actions is a feature provided by GitHub that enables the automation of software workflows directly within the GitHub environment.
 It can be used to build, test and deploy applications directly from the GitHub repository, reducing the need for external continuous integration services.
 
@@ -829,11 +819,7 @@ We developed GitHub Actions for integrating key tools and frameworks into our pr
 
 With these GitHub Actions in place, our development process is streamlined and we can confidently deliver robust and well-tested functionalities.
 
-## System Deploy 
-
-### Introduction
-
-This guide is tailored to provide you with a comprehensive understanding and step-by-step instructions for leveraging the powerful capabilities of Azure to host and manage your machine learning solutions. You will be equipped with the knowledge to effectively deploy and manage your machine learning system on Azure, ensuring a scalable, secure, and high-performing application. Let's begin your journey to harnessing the full potential of Azure for your machine learning needs.
+## Cloud resources 
 
 ### Azure
 
@@ -1031,24 +1017,38 @@ The second image is for the second model, used to specify the type of sexism.
 ![Emission_model_b](images_doc/Emission_model_b.png)
 
 ## Monitoring
-### Detection of Online Sexism Load Testing
+### Resource Monitoring
 
-#### Overview
+#### BetterUpTime
+
+BetterUpTime is a tool designed to monitor and improve the uptime of web applications. It provides real-time alerts, detailed reporting, and analytics to help teams maintain high availability and performance of their web services.
+
+##### Features BetterUpTime
+
+- **Real-Time Monitoring**: Continuously monitors web applications and services for downtime.
+- **Alert System**: Sends immediate notifications through email, SMS, or integrated chat applications when outages are detected.
+- **Performance Analytics**: Tracks response times and availability trends over time.
+- **Dashboard**: A user-friendly dashboard for an at-a-glance view of the system's health.
+- **Multi-Service Support**: Capable of monitoring multiple services and endpoints simultaneously.
+- **Customizable Checks**: Define the frequency and conditions for uptime checks.
+
+#### Locust
+
 The file [locustfile.py](../locustfile.py) is a Python script for performing load testing on web services designed to detect online sexism. The script uses Locust, an open-source load testing tool, to simulate users accessing different endpoints and performing various tasks. The tests are designed to assess the robustness and responsiveness of the services under simulated traffic.
 
-#### Features
+##### Features Locust
 * **Multiple Task Simulation**: Simulates various user tasks, including fetching main endpoint descriptions, task-specific details, preprocessing information, and sending prediction requests.
 * **Custom User Behavior**: Custom user class with tasks assigned different weights, representing the likelihood of each task being performed during testing.
 * **Error Handling**: Includes checks for response status codes and expected response content, raising exceptions in case of failure or unexpected responses.
 
-#### Installation
+##### Installation
 1. Ensure that Python 3.6 or later is installed on your system.
 2. Install Locust using pip:
 ```bash
 pip install locust
 ```
 
-#### Usage
+##### Usage
 1. Navigate to the directory containing the script.
 2. Execute the following command to start Locust with CSV reporting:
 ```bash
@@ -1059,23 +1059,9 @@ locust -f locustfile.py --csv=report --csv-full-history
 5. Start the load test using the web interface and monitor the results.
 6. Upon completion, check the specified directory for report_stats.csv, report_stats_history.csv, report_failures.csv and report_exceptions.csv files containing the test results.
 
-#### File Description
+##### File Description
 `locustfile.py`: The main Python script containing the definition of the Locust user class. This class includes various tasks that simulate user actions, such as accessing different endpoints and submitting data for prediction.
 
-### BetterUpTime
-
-BetterUpTime is a tool designed to monitor and improve the uptime of web applications. It provides real-time alerts, detailed reporting, and analytics to help teams maintain high availability and performance of their web services.
-
-#### Features
-
-- **Real-Time Monitoring**: Continuously monitors web applications and services for downtime.
-- **Alert System**: Sends immediate notifications through email, SMS, or integrated chat applications when outages are detected.
-- **Performance Analytics**: Tracks response times and availability trends over time.
-- **Dashboard**: A user-friendly dashboard for an at-a-glance view of the system's health.
-- **Multi-Service Support**: Capable of monitoring multiple services and endpoints simultaneously.
-- **Customizable Checks**: Define the frequency and conditions for uptime checks.
-
-### Monitoring with Prometheus and Grafana
 #### Prometheus
 
 [Prometheus](https://prometheus.io/) is an open-source monitoring and alerting toolkit designed for reliability and scalability. It collects metrics from configured targets at specified intervals, evaluates rule expressions, and can trigger alerts if conditions are met. Prometheus scrapes metrics from the "backend" service, as specified in the configuration file. The collected metrics are stored locally in a time-series database. Prometheus provides a query language (PromQL) for querying and processing the collected metrics.
@@ -1086,7 +1072,6 @@ In order to acquire the metrics, fastAPI and Prometheus have been connected usin
 The Prometheus configuration file [prometheus.yml](../prometheus.yml) contains global settings and scrape configurations.
 The provided `prometheus.yml` file configures Prometheus with the following settings:
 
-Global Configurations:
 - `scrape_interval`: Metrics are collected globally every 15 seconds.
 - `external_labels`: All collected metrics are labeled with 'monitor: codelab-monitor'.
 
@@ -1166,7 +1151,7 @@ The queries related to `Sexism prediction Metrics` are:
 
 Dashboards were saved as json file and have been uploaded in [dashboards](../src/api/dashboards).
 
-### Drift Detection with Alibi Detect
+### Performance Monitoring
 
 #### Alibi Detect
 
